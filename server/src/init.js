@@ -8,7 +8,6 @@ export const initializeAdmin = async () => {
     // Comprobar si ya existe un usuario administrador
     const [users] = await pool.query('SELECT * FROM advisors WHERE username = ? AND user_type = ?', [adminUsername, 'admin']);
     if (users.length > 0) {
-        console.log('Admin user already exists');
         return;
     }
     const salt = await bcryptjs.genSalt()

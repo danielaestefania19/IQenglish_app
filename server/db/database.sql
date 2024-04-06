@@ -24,7 +24,7 @@ VALUES ('John', 'Doe', 'john.doe@example.com', '1234567890', 'Inquiry', 30, '123
 CREATE TABLE advisors (
     id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(45) NOT NULL,
-    password VARCHAR(255) NOT NULL, -- para almacenar el hash de la contraseña
+    password VARCHAR(255) NOT NULL,
     user_type ENUM('admin', 'advisor') NOT NULL,
     PRIMARY KEY (id)
 );
