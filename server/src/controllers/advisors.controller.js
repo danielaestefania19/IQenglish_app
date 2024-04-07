@@ -171,11 +171,10 @@ export const registerUser = async (req, res) => {
     }
 }
 
-
 export const updateAdvisors = async (req, res) => {
     try {
         const { id } = req.params;
-        const { username, password, user_type } = req.body;
+        let { username, password, user_type } = req.body;
 
         const { userId } = req
 
@@ -188,6 +187,12 @@ export const updateAdvisors = async (req, res) => {
         const user = users[0];
         if (user.user_type !== 'admin') {
             return res.status(403).send({ error: 'Unauthorized' });
+        }
+
+        // Si se proporciona una nueva contraseña, encriptarla antes de guardarla
+        if (password) {
+            const salt = await bcryptjs.genSalt()
+            password = await bcryptjs.hash(password, salt)
         }
 
         // Actualizar los detalles del asesor
@@ -233,7 +238,3 @@ export const deleteAdvisors = async (req, res) => {
     }
 }
 
-export const DeleteAll = async () => {
-    // Eliminar todos los usuarios
-    await pool.query('DELETE FROM advisors WHERE username != ?', [process.env.ADMIN_USERNAME]);
-}

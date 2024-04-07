@@ -15,5 +15,8 @@ export const initializeAdmin = async () => {
 
     await pool.query('INSERT INTO advisors (username, password, user_type) VALUES (?, ?, ?)', [adminUsername, hashPassword, 'admin']);
 
-    console.log('Admin user created successfully');
 }
+
+
+
+

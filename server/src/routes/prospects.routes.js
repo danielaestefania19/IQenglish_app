@@ -10,9 +10,9 @@ router.get('/prospects/:id', advisorExtractor, getProspectById)
 
 router.post('/prospects', createProspect)
 
-router.patch('/prospects/:id', updateProspect)
+router.patch('/prospects/:id',  advisorExtractor, updateProspect)
 
-router.delete('/prospects/:id', deleteProspect)
+router.delete('/prospects/:id',  advisorExtractor, deleteProspect)
 
 
 export default router
