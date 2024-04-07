@@ -12,9 +12,9 @@ router.post('/advisors/admin/login', loginAdmin)
 
 router.post('/advisors/admin/register', advisorExtractor, registerUser)
 
-router.patch('/advisors',advisorExtractor, updateAdvisors)
+router.patch('/advisors/:id',advisorExtractor, updateAdvisors)
 
-router.delete('/advisors',advisorExtractor, deleteAdvisors)
+router.delete('/advisors/:id',advisorExtractor, deleteAdvisors)
 
 
 

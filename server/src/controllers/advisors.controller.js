@@ -161,7 +161,11 @@ export const registerUser = async (req, res) => {
 
         await pool.query('INSERT INTO advisors (username, password, user_type) VALUES (?, ?, ?)', [username, hashPassword, userType]);
 
-        res.send({ message: `${userType.charAt(0).toUpperCase() + userType.slice(1)} registered successfully` });
+        // Obtener el ID del nuevo usuario
+        const [users_id] = await pool.query('SELECT * FROM advisors WHERE username = ?', [username]);
+        const newUserId = users_id[0].id;
+
+        res.send({ message: `${userType.charAt(0).toUpperCase() + userType.slice(1)} registered successfully`, id: newUserId });
     } catch (error) {
         res.status(500).send({ error: `An error occurred while registering the ${userType}` });
     }
@@ -188,7 +192,6 @@ export const updateAdvisors = async (req, res) => {
 
         // Actualizar los detalles del asesor
         const [result] = await pool.query('UPDATE advisors SET username = IFNULL(?, username), password = IFNULL(?, password), user_type = IFNULL(?, user_type) WHERE id = ?', [username, password, user_type, id]);
-
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'Advisor not found'
         })
