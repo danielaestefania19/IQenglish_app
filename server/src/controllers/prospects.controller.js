@@ -1,8 +1,8 @@
-import { pool } from "../db.js"
-
+import { pool } from "../db.js";
 import { Resend } from 'resend';
 
-const resend = new Resend('re_AFCEBU6U_JwRaBJ3vnDm1oHujCaQYRT1G');
+const API_KEY = process.env.API_KEY;
+const resend = new Resend(API_KEY);
 
 
 export const getProspects = async (req, res) => {

@@ -1,8 +1,13 @@
 import { pool } from "../db.js"
 import bcryptjs from 'bcryptjs'
 import jsonwebtoken from 'jsonwebtoken'
+import dotenv from 'dotenv'
 
-export const DeleteAll = async () => {
+
+dotenv.config()
+
+
+export const DeleteAllAdvisors = async () => {
     // Eliminar todos los usuarios excepto el administrador y el asesor // El nombre de usuario del asesor
     await pool.query('DELETE FROM advisors WHERE username != ? AND username != ?', [process.env.ADMIN_USERNAME, process.env.ADVISOR_USERNAME]);
 }
@@ -73,3 +78,6 @@ export const testinitializeAndLoginAdvisor = async () => {
     return token;
 }
 
+export const DeleteAllProspects = async () => {
+    await pool.query('DELETE FROM prospects');
+}
