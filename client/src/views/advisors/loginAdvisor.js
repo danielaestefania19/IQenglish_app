@@ -12,13 +12,14 @@ export default async function loginAdvisor({ username, password }) {
                 "Content-Type": "application/json"
             }
         });
-
+        
         if (response.status !== 200) {
             throw new Error('Response is NOT ok');
         }
 
-        const { jwt } = response.data;
-        return jwt;
+        const { token } = response.data;
+
+        return token;
 
     } catch (error) {
         throw error;

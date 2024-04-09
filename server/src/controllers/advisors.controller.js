@@ -110,7 +110,7 @@ export const loginAdmin = async (req, res) => {
             id: user.id,
             username: user.username
         }
-        console.log(process.env.JWT_EXPIRATION)
+    
         const token = jsonwebtoken.sign(
             { userForToken },
             process.env.JWT_SECRET,
