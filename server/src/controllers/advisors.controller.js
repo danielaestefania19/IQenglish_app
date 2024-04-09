@@ -110,11 +110,12 @@ export const loginAdmin = async (req, res) => {
             id: user.id,
             username: user.username
         }
-
+        console.log(process.env.JWT_EXPIRATION)
         const token = jsonwebtoken.sign(
             { userForToken },
             process.env.JWT_SECRET,
             { expiresIn: process.env.JWT_EXPIRATION }
+           
         );
 
         res.send({status: "ok", message: "logged in successfully", token: token, username: user.username});
@@ -238,3 +239,17 @@ export const deleteAdvisors = async (req, res) => {
     }
 }
 
+export const verify = async (req, res) => {
+    const token = req.body.token;
+
+    if (!token) {
+        return res.status(400).send({ error: 'Token is required' });
+    }
+
+    try {
+        jsonwebtoken.verify(token, process.env.JWT_SECRET);
+        return res.send({ valid: true });
+    } catch (e) {
+        return res.send({ valid: false });
+    }
+};
