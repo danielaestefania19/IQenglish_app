@@ -1,20 +1,10 @@
-import Navbar from '../src/landing/Navbar';
-import React from 'react'
-import { UserContextProvider } from "./context/advisor.context.jsx";
-
+import { Button } from "flowbite-react"
 
 function App() {
 
-const App = () => {
   return (
-    <div>
-      <Navbar />
-    </div>
-  );
-};
-    <UserContextProvider>
-   
-    </UserContextProvider>
+   <Button>Hola</Button>
+  )
 }
 
-export default App;
+export default App
