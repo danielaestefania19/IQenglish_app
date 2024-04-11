@@ -40,7 +40,6 @@ export const login = async (req, res) => {
             return res.status(400).send({ error: 'Missing username or password' });
         }
 
-
         const [users] = await pool.query('SELECT * FROM advisors WHERE username = ?', [username]);
         if (users.length <= 0) {
             return res.status(400).send({ error: 'Invalid username or password' });
@@ -59,7 +58,7 @@ export const login = async (req, res) => {
 
         const userForToken = {
             id: user.id,
-            username: user.username
+            userType: user.user_type
         }
 
         const token = jsonwebtoken.sign(
@@ -68,58 +67,13 @@ export const login = async (req, res) => {
             { expiresIn: process.env.JWT_EXPIRATION }
         );
 
-        res.send({status: "ok", message: "logged successfully", token: token, username: user.username, id: user.id});
+        res.send({
+            status: "ok", 
+            message: "logged in successfully", 
+            token: token, 
+        });
     } catch (error) {
         res.status(500).send({ error: 'An error occurred during login' });
-    }
-}
-
-
-
-export const loginAdmin = async (req, res) => {
-    try {
-        const { username, password } = req.body;
-
-        // Comprobar que todos los datos estén completos
-        if (!username || !password) {
-            return res.status(400).send({ error: 'Missing username or password' });
-        }
-
-        const [users] = await pool.query('SELECT * FROM advisors WHERE username = ?', [username]);
-        if (users.length <= 0) {
-            return res.status(400).send({ error: 'Invalid username or password' });
-        }
-
-        // Obtener la contraseña hasheada del usuario
-        const user = users[0];
-        const hashedPassword = user.password;
-
-        // Comparar la contraseña proporcionada con la contraseña hasheada
-        const correctPassword = await bcryptjs.compare(password, hashedPassword);
-
-        if (!correctPassword) {
-            return res.status(400).send({ error: 'Invalid username or password' });
-        }
-
-        // Verificar que el usuario sea de tipo admin
-        if (user.user_type !== 'admin') {
-            return res.status(403).send({ error: 'Invalid username or password' });
-        }
-
-        const userForToken = {
-            id: user.id,
-            username: user.username
-        }
-
-        const token = jsonwebtoken.sign(
-            { userForToken },
-            process.env.JWT_SECRET,
-            { expiresIn: process.env.JWT_EXPIRATION }
-        );
-
-        res.send({status: "ok", message: "logged in successfully", token: token, username: user.username});
-    } catch (error) {
-        res.status(500).send({ error: 'An error occurred during admin login' });
     }
 }
 
@@ -238,3 +192,17 @@ export const deleteAdvisors = async (req, res) => {
     }
 }
 
+export const verify = async (req, res) => {
+    const token = req.body.token;
+
+    if (!token) {
+        return res.status(400).send({ error: 'Token is required' });
+    }
+
+    try {
+        jsonwebtoken.verify(token, process.env.JWT_SECRET);
+        return res.send({ valid: true });
+    } catch (e) {
+        return res.send({ valid: false });
+    }
+};
