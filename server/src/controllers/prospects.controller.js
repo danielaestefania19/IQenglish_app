@@ -7,18 +7,18 @@ const resend = new Resend(API_KEY);
 
 export const getProspects = async (req, res) => {
     try {
-        const { userId } = req
+        // const { userId } = req
 
-        // Verificar que el usuario sea de tipo admin o advisor
-        const [users] = await pool.query('SELECT * FROM advisors WHERE id = ?', [userId]);
-        if (users.length <= 0) {
-            return res.status(400).send({ error: 'Invalid user id' });
-        }
+        // // Verificar que el usuario sea de tipo admin o advisor
+        // const [users] = await pool.query('SELECT * FROM advisors WHERE id = ?', [userId]);
+        // if (users.length <= 0) {
+        //     return res.status(400).send({ error: 'Invalid user id' });
+        // }
 
-        const user = users[0];
-        if (!['admin', 'advisor'].includes(user.user_type)) {
-            return res.status(403).send({ error: 'Unauthorized' });
-        }
+        // const user = users[0];
+        // if (!['admin', 'advisor'].includes(user.user_type)) {
+        //     return res.status(403).send({ error: 'Unauthorized' });
+        // }
 
         const [rows] = await pool.query('SELECT * FROM prospects');
         res.json(rows);
@@ -30,18 +30,18 @@ export const getProspects = async (req, res) => {
 export const getProspectById = async (req, res) => {
     try {
         const id = req.params.id;
-        const { userId } = req
+        // const { userId } = req
 
-        // Verificar que el usuario sea de tipo admin o advisor
-        const [users] = await pool.query('SELECT * FROM advisors WHERE id = ?', [userId]);
-        if (users.length <= 0) {
-            return res.status(400).send({ error: 'Invalid user id' });
-        }
+        // // Verificar que el usuario sea de tipo admin o advisor
+        // const [users] = await pool.query('SELECT * FROM advisors WHERE id = ?', [userId]);
+        // if (users.length <= 0) {
+        //     return res.status(400).send({ error: 'Invalid user id' });
+        // }
 
-        const user = users[0];
-        if (!['admin', 'advisor'].includes(user.user_type)) {
-            return res.status(403).send({ error: 'Unauthorized' });
-        }
+        // const user = users[0];
+        // if (!['admin', 'advisor'].includes(user.user_type)) {
+        //     return res.status(403).send({ error: 'Unauthorized' });
+        // }
 
         const [rows] = await pool.query('SELECT * FROM prospects WHERE id = ?', [id]);
         if (rows.length <= 0) return res.status(404).json({
@@ -84,6 +84,28 @@ export const createProspect = async (req, res) => {
         res.status(500).send({ error: 'An error occurred while creating the prospect' });
     }
 }
+
+
+export const createProspectForm = async (req, res) => {
+    try {
+        const { name, lastname, email, phone_number, age, addresses } = req.body;
+
+        if (!name || !lastname || !email || !phone_number || !age || !addresses) {
+            return res.status(400).send({ error: 'Missing required fields' });
+        }
+
+        const [rows] = await pool.query('INSERT INTO prospects (name, lastname, email, phone_number, age, addresses) VALUES (?, ?, ?, ?, ?, ?)', [name, lastname, email, phone_number, age, addresses]);
+
+        res.send({
+            id: rows.insertId,
+            name,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'An error occurred while creating the prospect' });
+    }
+}
+
 
 export const updateProspect = async (req, res) => {
     try {
