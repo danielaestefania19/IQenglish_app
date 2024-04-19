@@ -1,16 +1,18 @@
-
-import Context from '../../context/advisor.context.jsx';
-import login_user from '../../views/advisors/login.js'; // Importa la función loginAdvisor
-import verifyToken from '../../views/advisors/verifytoken.js';
+import { useContext, useState, useEffect, useCallback } from 'react';
+import Context from '../context/advisor.context.jsx';
+import login_user from '../views/advisors/login.js'
+import verifyToken from '../views/advisors/verifytoken.js';
 import { jwtDecode } from "jwt-decode";
 
 const user_admin = 'admin';
 
 export default function useUser() {
-  const { jwt, setJWT, isAdmin, setIsAdmin } = useContext(Context);
+  const { jwt, setJWT, isAdmin, setIsAdmin} = useContext(Context);
   const [state, setState] = useState({ loading: false, error: false });
+  const [hasLoginError, setHasLoginError] = useState(false);
 
   const login = useCallback(({ username, password }) => {
+    setHasLoginError(false);
     setState({ loading: true, error: false });
     login_user({ username, password })
       .then(response => {
@@ -25,15 +27,17 @@ export default function useUser() {
           window.localStorage.removeItem('jwt');
           setIsAdmin(false);
           setState({ loading: false, error: true });
+          setHasLoginError(true);
         }
       })
       .catch(err => {
         window.localStorage.removeItem('jwt');
         setIsAdmin(false);
         setState({ loading: false, error: true });
-        console.error(err);
+        setHasLoginError(true);
+        console.error(err)
       });
-  }, [setJWT, setIsAdmin]);
+  }, [setJWT, setIsAdmin]); 
   
 
   const logout = useCallback(() => {
@@ -60,9 +64,10 @@ export default function useUser() {
   return {
     isLogged: Boolean(jwt) && jwt !== "" && jwt !== "null",
     isLoginLoading: state.loading,
-    hasLoginError: state.error,
+    hasLoginError, // Devuelve hasLoginError
+    setHasLoginError, // Devuelve setHasLoginError para poder actualizarlo desde el componente
     login,
     logout,
-    isAdmin
+    isAdmin,
   };
 }
