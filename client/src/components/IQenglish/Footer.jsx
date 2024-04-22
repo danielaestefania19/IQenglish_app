@@ -1,13 +1,13 @@
 import { Footer, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
-import logo from "/home/alfredo/Escritorio/IQenglish_app/client/src/assets/logo3.jpeg";
+import logo2 from "../../assets/logo2.jpeg";
 
 function FooterPage() {
   return (
-    <Footer container>
+    <Footer container className="fixed bottom-0 w-full z-50">
       <div className="w-full text-center">
         <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
           <a href="https://flowbite.com" className="flex items-center">
-            <img src={logo} className="h-12 w-12 me-3 rounded-full" alt="IQenglish Logo" />
+            <img src={logo2} className="h-12 w-12 me-3 rounded-full" alt="IQenglish Logo" />
             <span className="text-xl font-bold">IQenglish</span>
           </a>
           <FooterLinkGroup>

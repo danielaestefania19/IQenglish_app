@@ -8,10 +8,11 @@ import Context from '../../context/advisor.context.jsx';
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
 import useUser from "../../hooks/auth.jsx";
-import { Avatar } from "flowbite-react";
 import { GrHome } from "react-icons/gr";
 import Home from './Home.jsx';
 import Prospects from './Prospects/Prospects.jsx';
+import user from "../../assets/user.jpg"
+
 
 function Dashboard() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,7 +64,7 @@ function Dashboard() {
         setIsProspectsActive(false); // Establecer isProspectsActive como false al hacer clic en "Advisors"
         setIsAdvisorsActive(true); // Establecer isAdvisorsActive como true al hacer clic en "Advisors"
     };
-    
+
     useEffect(() => {
         // Añade un event listener al documento para escuchar los clics en cualquier parte de la página
         const handleDocumentClick = (event) => {
@@ -128,15 +129,16 @@ function Dashboard() {
                                             e.stopPropagation(); // Detiene la propagación del evento de clic para que no se propague al documento
                                         }}
                                         type="button"
-                                        className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                        className="flex text-sm rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 hover:scale-110 transition-transform duration-200"
                                         aria-expanded={isMenuOpen}
                                         data-dropdown-toggle="dropdown-user"
                                     >
                                         <span className="sr-only">Open user menu</span>
-                                        <div className="p-1 bg-gray-200 rounded-full">
-                                            <Avatar rounded className="w-6 h-6 text-black" alt="user photo" />
+                                        <div className="p-1 bg-white rounded-full">
+                                            <img src={user} className="w-12 h-12 rounded-full" alt="User Icon" />
                                         </div>
                                     </button>
+
 
                                 </div>
                             </div>

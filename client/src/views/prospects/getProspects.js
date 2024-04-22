@@ -2,17 +2,19 @@ import axios from "axios";
 
 const baseUrl = 'http://localhost:3001/api/prospects';
 
-export default async function getProspects(/* token */) {
+export default async function getProspects(token) {
+   
+    const tokenjwt = token.token
+    console.log("Nuevo token", tokenjwt)
     try {
-        // Comentamos la configuración del token para pruebas de desarrollo
-        // const config = {
-        //     headers: {
-        //         Authorization: `Bearer ${token}`,
-        //         "Content-Type": "application/json"
-        //     }
-        // };
+        const config = {
+            headers: {
+                Authorization: `Bearer ${tokenjwt}`,
+                "Content-Type": "application/json"
+            }
+        };
 
-        const response = await axios.get(baseUrl /*, config */);
+        const response = await axios.get(baseUrl, config);
 
         if (response.status !== 200) {
             throw new Error('Response is NOT ok');

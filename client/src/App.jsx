@@ -4,7 +4,7 @@ import Login from "./components/IQenglish/login.jsx";
 import { UserContextProvider } from './context/advisor.context.jsx';
 import Dashboard from "./components/IQenglish/Dashboard.jsx"
 import ProtectedRoute from "./components/IQenglish/middleware/ProtectedRoute.jsx";
-
+import Prueba from "./components/IQenglish/Prospects/prueba.jsx"
 function App() {
   return (
     <UserContextProvider>
@@ -12,6 +12,9 @@ function App() {
         <Routes>
           <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/login" element={<Login />} />
           <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
+          
+          
+          <Route path="/prueba" element={<Prueba/>} />
           <Route path="/" element={
             <>
               <Navbar />
