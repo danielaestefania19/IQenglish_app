@@ -4,9 +4,9 @@ import advisorExtractor from '../middleware/advisorExtractor.js'
 
 const router = Router()
 
-router.get('/prospects', getProspects)
+router.get('/prospects', advisorExtractor, getProspects)
 
-router.get('/prospects/:id', getProspectById)
+router.get('/prospects/:id', advisorExtractor, getProspectById)
 
 router.post('/prospects', createProspect)
 

@@ -5,7 +5,6 @@ import { Spinner } from "@material-tailwind/react";
 import Error from "./Error.jsx";
 import { IoTrash } from "react-icons/io5";
 import { GrUpdate } from "react-icons/gr";
-import './style.css'; // Importa los estilos de la barra de desplazamiento
 import { Pagination } from "flowbite-react";
 import check from "../../../assets/check.png"
 import { IoMdCheckmark } from "react-icons/io";
