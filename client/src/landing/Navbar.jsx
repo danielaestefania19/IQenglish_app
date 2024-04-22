@@ -15,7 +15,7 @@ function Navbar() {
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IQEnglish</span>
             </a>
           </div>
-          <div className="flex w-full items-center justify-between px-4">
+          <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
             <div>
               <button
                 onClick={() => setNavbarOpen(!navbarOpen)}
@@ -49,14 +49,14 @@ function Navbar() {
                 </ul>
               </nav>
             </div>
-            <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
+            {/* <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
               <a href="javascript:void(0)" className="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white">
                 Login
               </a>
               <a href="javascript:void(0)" className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-blue-dark">
                 Sign Up
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

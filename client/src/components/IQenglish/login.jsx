@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useUser from "../../hooks/auth.jsx";
-import logo from "/home/alfredo/Escritorio/IQenglish_app/client/src/assets/logo3.jpeg";
+import logo from "../../assets/logo3.jpeg";
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { Spinner } from "@material-tailwind/react";
 import FooterPage from './Footer.jsx';
