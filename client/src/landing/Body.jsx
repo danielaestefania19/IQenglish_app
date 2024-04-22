@@ -13,16 +13,14 @@ const Body = () => {
                 <h1
                   className="mb-5 text-4xl font-bold !leading-[1.208] text-dark dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl"
                 >
-                  The Greatest <br />
-                  Journey Of Online <br />
-                  Payment.
+                  La mejor <br />
+                  forma de aprender<br />
+                  es con nosotros
                 </h1>
                 <p
                   className="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6"
                 >
-                  With TailGrids, business and students thrive together. Business
-                  can perfectly match their staffing to changing demand throughout
-                  the dayed.
+                  Con IQenglish, los estudiantes prosperan juntos. Los estudiantes pueden adaptar perfectamente su vida personal para aprender inglés en el día a día.
                 </p>
                 <ul className="flex flex-wrap items-center">
                   <li>
@@ -30,7 +28,7 @@ const Body = () => {
                       href="javascript:void(0)"
                       className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
                     >
-                      Get Started
+                      ¡Aprende inglés ahora!
                     </a>
                   </li>
                   <li>
@@ -75,7 +73,7 @@ const Body = () => {
                   <h6
                     className="mb-6 flex items-center text-xs font-normal text-body-color dark:text-dark-6"
                   >
-                    Some Of Our Clients
+                    Uno de nuestros estudiantes
                     <span className="ml-3 inline-block h-px w-8 bg-body-color"></span>
                   </h6>
                 </div>

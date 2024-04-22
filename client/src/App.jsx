@@ -12,9 +12,13 @@ import { UserContextProvider } from './context/advisor.context.jsx';
 import Dashboard from "./components/IQenglish/Dashboard.jsx"
 import ProtectedRoute from "./components/IQenglish/middleware/ProtectedRoute.jsx";
 import Prueba from "./components/IQenglish/Prospects/prueba.jsx"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 function App() {
   return (
     <UserContextProvider>
+       <ToastContainer />
     <Router>
     <Routes>
     { <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/login" element={<Login />} /> }

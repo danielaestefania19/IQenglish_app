@@ -33,7 +33,7 @@ function Navbar() {
                 <ul className="block lg:flex">
                   <li>
                   <Link to="/" href="javascript:void(0)" className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
-                      Home
+                      Hogar
                     </Link>
                   </li>
                   <li>
