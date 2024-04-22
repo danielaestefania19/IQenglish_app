@@ -9,7 +9,6 @@ CREATE TABLE prospects (
     lastname VARCHAR(45) DEFAULT NULL,
     email VARCHAR(45) DEFAULT NULL,
     phone_number VARCHAR(20) DEFAULT NULL,
-    reason VARCHAR(20) DEFAULT NULL,
     age INT DEFAULT NULL,
     addresses VARCHAR(100) DEFAULT NULL,
     PRIMARY KEY (id)

@@ -1,7 +1,7 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useCallback } from 'react';
 import Context from '../../context/advisor.context.jsx';
-import getAllAdvisors from "../../views/advisors/getAvisors.jsx"
-import { deleteAdvisors, updateAdvisors } from "../../views/advisors/optional.jsx";
+import getAllAdvisors from "../../views/advisors/getAvisors.js"
+import { deleteAdvisors, updateAdvisors } from "../../views/advisors/optional.js";
 
 export default function useAdvisors() {
     const { jwt } = useContext(Context);
