@@ -1,8 +1,13 @@
 import "../css/Tailwind.css"
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import createProspect from "../views/prospects/createProspect.js";
-import { toast } from 'react-toastify';
+import { ModalContext } from "./ModalConext.jsx";
+
 const Blog = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const { openModal, closeModal  } = useContext(ModalContext);
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -19,11 +24,12 @@ const Blog = () => {
       [e.target.name]: e.target.value
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Inicia la carga
     try {
-     await createProspect({
+      // Guardar el resultado de createProspect en una variable
+      const result = await createProspect({
         name: formData.name,
         lastname: formData.lastname,
         email: formData.email,
@@ -31,39 +37,71 @@ const Blog = () => {
         age: formData.age,
         address: formData.address // Cambiado a 'address'
       });
-      // Display a success toast notification
-      toast.info('Su mensaje ha sido enviado correctamente', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        className: 'bg-white text-blue-300', 
-      });
-  
+      // Comprobar si result tiene un valor
+      if (result) {
+        setShowModal(true);
+        openModal();
+      } else {
+        console.error('Algo mal sucedio');
+      }
     } catch (error) {
       console.error(error); // Maneja el error aquí
     }
+    setIsLoading(false); // Termina la carga
   };
   
-  return (
 
-    <section
-      className="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px]"
-    >
+ // Manejador de eventos para cerrar el modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    closeModal();
+  };
+
+  return (
+    <section className="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px]">
       <div className="container mx-auto">
+        <div id="progress-modal" className={`fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center ${showModal ? '' : 'hidden'}`}>
+          <div className="absolute bg-black opacity-50 inset-0"></div>
+          <div className="relative p-4 w-full max-w-md max-h-full">
+            {/* Modal content */}
+            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="progress-modal" onClick={handleCloseModal}>
+                <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span className="sr-only">Close modal</span>
+              </button>
+              <div className="p-4 md:p-5">
+                <svg className="w-10 h-10 text-gray-400 dark:text-gray-500 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                  <path d="M8 5.625c4.418 0 8-1.063 8-2.375S12.418.875 8 .875 0 1.938 0 3.25s3.582 2.375 8 2.375Zm0 13.5c4.963 0 8-1.538 8-2.375v-4.019c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353c-.193.081-.394.158-.6.231l-.189.067c-2.04.628-4.165.936-6.3.911a20.601 20.601 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244c-.053-.028-.113-.053-.165-.082v4.019C0 17.587 3.037 19.125 8 19.125Zm7.09-12.709c-.193.081-.394.158-.6.231l-.189.067a20.6 20.6 0 0 1-6.3.911 20.6 20.6 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244C.112 6.035.052 6.01 0 5.981V10c0 .837 3.037 2.375 8 2.375s8-1.538 8-2.375V5.981c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353Z" />
+                </svg>
+                <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">¡Tus datos fueron recibidos correctamente!</h3>
+                <p className="text-gray-500 dark:text-gray-400 mb-6">IQenglish agradece tu preferencia para aprender inglés con nosotros. </p>
+
+                <div className="flex justify-between mb-1 text-gray-500 dark:text-gray-400">
+                  <span className="text-base font-normal">Es el momento de hacer historia juntos!</span>
+                  <span className="text-sm font-semibold text-gray-900 dark:text-white">En breve uno de nuestros asesores se pondrá en contacto contigo para darte más información.</span>
+                </div>
+                {/* Modal footer */}
+                <div className="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
+                  <button data-modal-hide="progress-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleCloseModal}>Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="-mx-4 flex flex-wrap lg:justify-between">
           <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
             <div className="mb-12 max-w-[570px] lg:mb-0">
+
               <span className="mb-4 block text-base font-semibold text-primary">
                 Contactanos
               </span>
               <h2
                 className="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px]"
               >
-               Empieza con Nosotros
+                Empieza con Nosotros
               </h2>
               <p
                 className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6"
@@ -90,10 +128,10 @@ const Blog = () => {
                 </div>
                 <div className="w-full">
                   <h4 className="mb-1 text-xl font-bold text-dark dark:text-white">
-                    Our Location
+                    Nuestra Ubicación
                   </h4>
                   <p className="text-base text-body-color dark:text-dark-6">
-                    99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                    AV. Chapultepec 2039 B, Col. Buenos Aires, Monterrey, Nuevo León, CP 64800
                   </p>
                 </div>
               </div>
@@ -132,10 +170,10 @@ const Blog = () => {
                 </div>
                 <div className="w-full">
                   <h4 className="mb-1 text-xl font-bold text-dark dark:text-white">
-                    Phone Number
+                    Número de teléfono
                   </h4>
                   <p className="text-base text-body-color dark:text-dark-6">
-                    (+62)81 414 257 9980
+                    (+52) 1 81 8014 4572
                   </p>
                 </div>
               </div>
@@ -188,7 +226,7 @@ const Blog = () => {
                     htmlFor="floating_email"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                   Direccion de correo
+                    Direccion de correo
                   </label>
                 </div>
                 <div className="grid md:grid-cols-2 md:gap-6">
@@ -207,7 +245,7 @@ const Blog = () => {
                       htmlFor="floating_first_name"
                       className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
-                     Nombre
+                      Nombre
                     </label>
                   </div>
                   <div className="relative z-0 w-full mb-5 group">
@@ -233,7 +271,7 @@ const Blog = () => {
                   <div className="relative z-0 w-full mb-5 group">
                     <input
                       type="tel"
-                      pattern="[0-9]{2}\s[0-9]{4}\s[0-9]{4}" 
+                      pattern="[0-9]{2}\s[0-9]{4}\s[0-9]{4}"
                       name="phone_number"
                       id="floating_phone"
                       value={formData.phone_number}
@@ -297,7 +335,17 @@ const Blog = () => {
                     type="submit"
                     className="w-full rounded border border-primary bg-primary p-3 text-white transition hover:bg-opacity-90"
                   >
-                    Enviar
+                    {isLoading ? (
+                      <div role="status">
+                        <svg aria-hidden="true" class="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+                          <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white" />
+                        </svg>
+                        <span class="sr-only">Enviando...</span>
+                      </div>
+                    ) : (
+                      'Enviar'
+                    )}
                   </button>
                 </div>
               </form>

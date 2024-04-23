@@ -1,9 +1,13 @@
 import logo1 from "../assets/logo1.jpeg";
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { ModalContext } from "./ModalConext";
 
 function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
+
+  // Usar el hook useContext para acceder al ModalContext
+  const { isOpenModal } = useContext(ModalContext);
 
   return (
     <header className="absolute left-0 top-0 z-50 w-full">
@@ -11,7 +15,8 @@ function Navbar() {
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-60 max-w-full px-4">
             <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-              <img src={logo1} alt="Logo" className="h-10 w-auto" />
+              {/* Renderizar el logo solo si el modal no está abierto */}
+              {!isOpenModal && <img src={logo1} alt="Logo" className="h-10 w-auto" />}
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IQEnglish</span>
             </a>
           </div>
@@ -44,6 +49,11 @@ function Navbar() {
                   <li>
                     <a href="javascript:void(0)" className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                       Metodo
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)" className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                      Sobre Nosotros
                     </a>
                   </li>
                 </ul>
