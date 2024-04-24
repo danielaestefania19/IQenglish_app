@@ -355,3 +355,4 @@ input[type="radio"]:checked ~ .box span {
 .mapFour .jvm-zoom-btn.jvm-zoomout {
   @apply right-0;
 }
+

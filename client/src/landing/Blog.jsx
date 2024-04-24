@@ -1,13 +1,21 @@
 import "../css/Tailwind.css"
-import React, { useState, useContext } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import createProspect from "../views/prospects/createProspect.js";
 import { ModalContext } from "./ModalConext.jsx";
+  import { Listbox, Transition } from '@headlessui/react'
+import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+
+const locations = [
+  { name: 'Selecciona tu ubicacion', value: '' },
+  { name: 'Apodaca', value: 'Apodaca' },
+  { name: 'Cadereyta Jiménez', value: 'Cadereyta Jiménez' },
+  // Agrega aquí el resto de tus ubicaciones
+];
 
 const Blog = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { openModal, closeModal  } = useContext(ModalContext);
-
 
   const [formData, setFormData] = useState({
     name: '',
@@ -24,6 +32,14 @@ const Blog = () => {
       [e.target.name]: e.target.value
     });
   };
+
+  const handleLocationChange = (value) => {
+    setFormData({
+      ...formData,
+      address: value
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); // Inicia la carga
@@ -49,6 +65,7 @@ const Blog = () => {
     }
     setIsLoading(false); // Termina la carga
   };
+
   
 
  // Manejador de eventos para cerrar el modal
@@ -90,13 +107,16 @@ const Blog = () => {
             </div>
           </div>
         </div>
+    
 
         <div className="-mx-4 flex flex-wrap lg:justify-between">
+        
           <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
             <div className="mb-12 max-w-[570px] lg:mb-0">
+            
 
               <span className="mb-4 block text-base font-semibold text-primary">
-                Contactanos
+                El momento es ahora
               </span>
               <h2
                 className="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px]"
@@ -307,29 +327,56 @@ const Blog = () => {
                   </div>
                 </div>
                 <div className="relative z-20 mb-6">
-                  <select
-                    className="relative z-20 w-full appearance-none rounded-lg border border-stroke bg-transparent px-5 py-[10px] text-dark-6 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-black dark:border-dark-3"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleChange}
-                  >
-                    <option value="">Selecciona tu ubicacion</option>
-                    <option value="Apodaca">Apodaca</option>
-                    <option value="Cadereyta Jiménez">Cadereyta Jiménez</option>
-                    <option value="García">García</option>
-                    <option value="San Pedro Garza García">San Pedro Garza García</option>
-                    <option value="General Escobedo">General Escobedo</option>
-                    <option value="Guadalupe">Guadalupe</option>
-                    <option value="Juárez">Juárez</option>
-                    <option value="Monterrey">Monterrey</option>
-                    <option value="Salinas Victoria">Salinas Victoria</option>
-                    <option value="San Nicolás de los Garza">San Nicolás de los Garza</option>
-                    <option value="Santa Catarina">Santa Catarina</option>
-                    <option value="Santiago">Santiago</option>
-                  </select>
+  <Listbox value={formData.address} onChange={handleLocationChange}>
+    <Listbox.Button className="relative z-20 w-full appearance-none rounded-lg border border-stroke bg-transparent px-5 py-[10px] text-dark-6 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-black dark:border-dark-3">
+      <span className="block truncate">{formData.address || 'Selecciona tu ubicacion'}</span>
+      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+        <ChevronUpDownIcon
+          className="h-5 w-5 text-gray-400"
+          aria-hidden="true"
+        />
+      </span>
+    </Listbox.Button>
+    <Transition
+      as={Fragment}
+      leave="transition ease-in duration-100"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
+      <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+        {locations.map((location, locationIdx) => (
+          <Listbox.Option
+            key={locationIdx}
+            className={({ active }) =>
+              `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                active ? 'text-white bg-blue-600' : 'text-gray-900'
+              }`
+            }
+            value={location.value}
+          >
+            {({ selected }) => (
+              <>
+                <span
+                  className={`block truncate ${
+                    selected ? 'font-medium' : 'font-normal'
+                  }`}
+                >
+                  {location.name}
+                </span>
+                {selected ? (
+  <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+    <CheckIcon className="h-5 w-5 text-black" aria-hidden="true" />
+  </span>
+) : null}
 
-                  <span className="absolute right-4 top-1/2 z-10 mt-[-2px] h-[10px] w-[10px] -translate-y-1/2 rotate-45 border-b-2 border-r-2 border-body-color"></span>
-                </div>
+              </>
+            )}
+          </Listbox.Option>
+        ))}
+      </Listbox.Options>
+    </Transition>
+  </Listbox>
+</div>
                 <div>
                   <button
                     type="submit"

@@ -15,6 +15,7 @@ import Prueba from "./components/IQenglish/Prospects/prueba.jsx"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { ProviderModal } from './landing/ModalConext.jsx';
+import Contacto from "./landing/Contacto.jsx"
 
 function App() {
   return (
@@ -29,8 +30,11 @@ function App() {
             <Route path="/" element={
               <>
                 <Navbar />
+
                 <Body />
+                <Contacto />
                 <Blog />
+                
                 <Card/>
                 <Footer />
               </>

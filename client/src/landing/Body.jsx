@@ -6,6 +6,8 @@ const Body = () => {
         <div
         className="relative bg-white pb-[110px] pt-[120px] dark:bg-dark lg:pt-[150px]"
       >
+      
+
         <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-5/12">
@@ -79,6 +81,7 @@ const Body = () => {
                 </div>
               </div>
             </div>
+            
             <div className="hidden px-4 lg:block lg:w-1/12"></div>
             <div className="w-full px-4 lg:w-6/12">
               <div className="lg:ml-auto lg:text-right">
