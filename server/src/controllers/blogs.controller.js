@@ -30,6 +30,7 @@ export const getBlogById = async (req, res) => {
 export const createBlog = async (req, res) => {
     try {
         const { userId } = req;
+        console.log(userId)
         const { foto, fecha, titulo, description } = req.body;
 
         // Verificar que el usuario sea de tipo admin
