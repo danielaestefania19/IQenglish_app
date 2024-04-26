@@ -17,8 +17,12 @@ import "react-toastify/dist/ReactToastify.css"
 import { ProviderModal } from './landing/ModalConext.jsx';
 import Contacto from "./landing/Contacto.jsx"
 
+import { ThemeProvider } from "@material-tailwind/react";
+ 
+
 function App() {
   return (
+    <ThemeProvider>
     <ProviderModal>
       <UserContextProvider>
         <ToastContainer />
@@ -32,7 +36,6 @@ function App() {
                 <Navbar />
 
                 <Body />
-                <Contacto />
                 <Blog />
                 
                 <Card/>
@@ -44,6 +47,7 @@ function App() {
         </Router>
       </UserContextProvider>
     </ProviderModal>
+    </ThemeProvider>
   );
 }
 

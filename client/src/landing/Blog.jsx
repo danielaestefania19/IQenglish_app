@@ -2,20 +2,36 @@ import "../css/Tailwind.css"
 import React, { Fragment, useState, useContext } from 'react';
 import createProspect from "../views/prospects/createProspect.js";
 import { ModalContext } from "./ModalConext.jsx";
-  import { Listbox, Transition } from '@headlessui/react'
+import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
+
+
+
 const locations = [
-  { name: 'Selecciona tu ubicacion', value: '' },
+  { name: 'Selecciona tu ubicacion:', value: '' },
   { name: 'Apodaca', value: 'Apodaca' },
   { name: 'Cadereyta Jiménez', value: 'Cadereyta Jiménez' },
-  // Agrega aquí el resto de tus ubicaciones
+  { name: 'García', value: 'García' },
+  { name: 'San Pedro Garza García', value: 'San Pedro Garza García' },
+  { name: 'General Escobedo', value: 'General Escobedo' },
+  { name: 'Guadalupe', value: 'Guadalupe' },
+  { name: 'Juárez', value: 'Juárez' },
+  { name: 'Monterrey', value: 'Monterrey' },
+  { name: 'Salinas Victoria', value: 'Salinas Victoria' },
+  { name: 'San Nicolás de los Garza', value: 'San Nicolás de los Garza' },
+  { name: 'Santa Catarina', value: 'Santa Catarina' },
+  { name: 'Santiago', value: 'Santiago' },
 ];
 
 const Blog = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const { openModal, closeModal  } = useContext(ModalContext);
+  const [showModalSucess, setShowModalSucess] = useState(false);
+  const [showModalError, setShowModalError] = useState(false);
+  const { openModalSucess, closeModalSucess, openModalError, closeModalError } = useContext(ModalContext);
+  const [ageError, setAgeError] = useState(null);
+  const [addressError, setAddressError] = useState(null);
+
 
   const [formData, setFormData] = useState({
     name: '',
@@ -27,13 +43,25 @@ const Blog = () => {
   });
 
   const handleChange = (e) => {
+    let value = e.target.value;
+
+    if (e.target.name === 'age') {
+      if (value.trim() === '') {
+        setAgeError(null); // Si el campo de edad está vacío, borra el mensaje de error
+      }
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: value
     });
   };
 
+
   const handleLocationChange = (value) => {
+    if (value !== '') {
+      setAddressError(null); // Si se selecciona una opción, borra el mensaje de error
+    }
     setFormData({
       ...formData,
       address: value
@@ -43,6 +71,27 @@ const Blog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); // Inicia la carga
+
+    // Validación de la edad
+    if (!/^\d+$/.test(formData.age)) {
+      setAgeError('La edad debe ser un número');
+      setIsLoading(false); // Termina la carga
+      return;
+    } else {
+      setAgeError(null);
+    }
+
+    // Validación de la dirección
+    if (formData.address === '') {
+      setAddressError('Este campo es obligatorio');
+      setIsLoading(false); // Termina la carga
+      return;
+    } else {
+      setAddressError(null);
+    }
+
+    const age = parseInt(formData.age);
+
     try {
       // Guardar el resultado de createProspect en una variable
       const result = await createProspect({
@@ -50,39 +99,49 @@ const Blog = () => {
         lastname: formData.lastname,
         email: formData.email,
         phone_number: formData.phone_number,
-        age: formData.age,
+        age: age,
         address: formData.address // Cambiado a 'address'
       });
       // Comprobar si result tiene un valor
       if (result) {
-        setShowModal(true);
-        openModal();
+        setShowModalSucess(true);
+        openModalSucess();
       } else {
         console.error('Algo mal sucedio');
+        setShowModalError(true);
+        openModalError()
       }
     } catch (error) {
       console.error(error); // Maneja el error aquí
+      setShowModalError(true);
+      openModalError()
     }
     setIsLoading(false); // Termina la carga
   };
 
-  
 
- // Manejador de eventos para cerrar el modal
-  const handleCloseModal = () => {
-    setShowModal(false);
-    closeModal();
+  // Manejador de eventos para cerrar el modal
+  const handleCloseModalSucess = () => {
+    setShowModalSucess(false);
+    closeModalSucess();
   };
 
+
+  const handlecloseModalError = () => {
+    setShowModalError(false);
+    closeModalError()
+  };
+
+
   return (
-    <section className="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px]">
+    <section className="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
       <div className="container mx-auto">
-        <div id="progress-modal" className={`fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center ${showModal ? '' : 'hidden'}`}>
+        <div id="progress-modal" className={`fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center ${showModalSucess ? '' : 'hidden'}`}>
           <div className="absolute bg-black opacity-50 inset-0"></div>
           <div className="relative p-4 w-full max-w-md max-h-full">
             {/* Modal content */}
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-              <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="progress-modal" onClick={handleCloseModal}>
+              <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="progress-modal" onClick={handleCloseModalSucess}>
                 <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                 </svg>
@@ -101,19 +160,45 @@ const Blog = () => {
                 </div>
                 {/* Modal footer */}
                 <div className="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
-                  <button data-modal-hide="progress-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleCloseModal}>Cerrar</button>
+                  <button data-modal-hide="progress-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleCloseModalSucess}>Aceptar</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    
+
+        <div id="error-modal" className={`fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center ${showModalError ? '' : 'hidden'}`}>
+          <div className="absolute bg-black opacity-50 inset-0"></div>
+          <div className="relative p-4 w-full max-w-md max-h-full">
+            {/* Modal content */}
+            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="error-modal" onClick={handlecloseModalError}>
+                <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+                <span className="sr-only">Close modal</span>
+              </button>
+              <div className="p-4 md:p-5">
+                <svg className="w-10 h-10 text-red-500 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                  <path d="M8 5.625c4.418 0 8-1.063 8-2.375S12.418.875 8 .875 0 1.938 0 3.25s3.582 2.375 8 2.375Zm0 13.5c4.963 0 8-1.538 8-2.375v-4.019c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353c-.193.081-.394.158-.6.231l-.189.067c-2.04.628-4.165.936-6.3.911a20.601 20.601 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244c-.053-.028-.113-.053-.165-.082v4.019C0 17.587 3.037 19.125 8 19.125Zm7.09-12.709c-.193.081-.394.158-.6.231l-.189.067a20.6 20.6 0 0 1-6.3.911 20.6 20.6 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244C.112 6.035.052 6.01 0 5.981V10c0 .837 3.037 2.375 8 2.375s8-1.538 8-2.375V5.981c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353Z" />
+                </svg>
+                <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">Lo sentimos, algo mal ha sucedido al enviar tus datos.</h3>
+                <p className="text-gray-500 dark:text-gray-400 mb-6">Por favor, intenta de nuevo.</p>
+
+                {/* Modal footer */}
+                <div className="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
+                  <button data-modal-hide="error-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handlecloseModalError}>Intentar de nuevo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="-mx-4 flex flex-wrap lg:justify-between">
-        
+
           <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
             <div className="mb-12 max-w-[570px] lg:mb-0">
-            
+
 
               <span className="mb-4 block text-base font-semibold text-primary">
                 El momento es ahora
@@ -291,7 +376,7 @@ const Blog = () => {
                   <div className="relative z-0 w-full mb-5 group">
                     <input
                       type="tel"
-                      pattern="[0-9]{2}\s[0-9]{4}\s[0-9]{4}"
+                      pattern="([0-9]{2}\s[0-9]{4}\s[0-9]{4})|([0-9]{2}\s[0-9]{4}\s[0-9]{4})|([0-9]{3}\s[0-9]{3}\s[0-9]{4})"
                       name="phone_number"
                       id="floating_phone"
                       value={formData.phone_number}
@@ -300,12 +385,14 @@ const Blog = () => {
                       placeholder=" "
                       required
                     />
+
                     <label
                       htmlFor="floating_phone"
                       className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
-                      Numero de teléfono (123-456-7890)
+                      Teléfono <span className="text-xs">(81 1635 9851)</span>
                     </label>
+
                   </div>
                   <div className="relative z-0 w-full mb-5 group">
                     <input
@@ -314,10 +401,11 @@ const Blog = () => {
                       id="floating_company"
                       value={formData.age}
                       onChange={handleChange}
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      className={`block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 ${ageError ? 'border-red-500' : 'border-gray-300'} appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                       placeholder=" "
                       required
                     />
+                    {ageError && <p className="text-red-500">{ageError}</p>}
                     <label
                       htmlFor="floating_company"
                       className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -326,61 +414,74 @@ const Blog = () => {
                     </label>
                   </div>
                 </div>
-                <div className="relative z-20 mb-6">
-  <Listbox value={formData.address} onChange={handleLocationChange}>
-    <Listbox.Button className="relative z-20 w-full appearance-none rounded-lg border border-stroke bg-transparent px-5 py-[10px] text-dark-6 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-black dark:border-dark-3">
-      <span className="block truncate">{formData.address || 'Selecciona tu ubicacion'}</span>
-      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-        <ChevronUpDownIcon
-          className="h-5 w-5 text-gray-400"
-          aria-hidden="true"
-        />
-      </span>
-    </Listbox.Button>
-    <Transition
-      as={Fragment}
-      leave="transition ease-in duration-100"
-      leaveFrom="opacity-100"
-      leaveTo="opacity-0"
-    >
-      <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-        {locations.map((location, locationIdx) => (
-          <Listbox.Option
-            key={locationIdx}
-            className={({ active }) =>
-              `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                active ? 'text-white bg-blue-600' : 'text-gray-900'
-              }`
-            }
-            value={location.value}
-          >
-            {({ selected }) => (
-              <>
-                <span
-                  className={`block truncate ${
-                    selected ? 'font-medium' : 'font-normal'
-                  }`}
-                >
-                  {location.name}
-                </span>
-                {selected ? (
-  <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-    <CheckIcon className="h-5 w-5 text-black" aria-hidden="true" />
-  </span>
-) : null}
+                <div className="relative z-20 mb-8">
+                  <Listbox value={formData.address} onChange={handleLocationChange}>
+                    <Listbox.Button className="relative z-20 w-full appearance-none rounded-lg border border-stroke bg-transparent px-5 py-[10px] text-dark-6 outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-black dark:border-dark-3">
+                      <span className={`block truncate ${addressError ? 'text-red-500' : ''}`}>
+                        {addressError || formData.address || 'Selecciona tu ubicacion'}
+                      </span>
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                        <ChevronUpDownIcon
+                          className="h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </Listbox.Button>
 
-              </>
-            )}
-          </Listbox.Option>
-        ))}
-      </Listbox.Options>
-    </Transition>
-  </Listbox>
-</div>
+                    <Transition
+                      as={Fragment}
+                      leave="transition ease-in duration-100"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+                        {locations.map((location, locationIdx) => (
+                          <Listbox.Option
+                            key={locationIdx}
+                            className={({ active }) =>
+                              `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'text-white bg-blue-600' : 'text-gray-900'
+                              }`
+                            }
+                            value={location.value}
+                          >
+                            {({ selected }) => (
+                              <>
+                                <span
+                                  className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                                    }`}
+                                >
+                                  {location.name}
+                                </span>
+                                {selected ? (
+                                  <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <CheckIcon className="h-5 w-5 text-black" aria-hidden="true" />
+                                  </span>
+                                ) : null}
+
+                              </>
+                            )}
+                          </Listbox.Option>
+                        ))}
+                      </Listbox.Options>
+                    </Transition>
+                  </Listbox>
+                </div>
+                <div class="flex items-start mb-5">
+                  <div class="flex items-center h-5">
+                    <input id="terms" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                  </div>
+                  <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">De acuerdo con los <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">términos y condiciones</a></label>
+                </div>
+                <div class="flex items-start mb-5">
+                  <div class="flex items-center h-5">
+                    <input id="terms" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                  </div>
+                  <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Acepto recibir mensajes o llamadas</label>
+                </div>
                 <div>
                   <button
                     type="submit"
-                    className="w-full rounded border border-primary bg-primary p-3 text-white transition hover:bg-opacity-90"
+                    className="w-full mt-4 rounded border border-primary bg-primary p-3 text-white transition hover:bg-opacity-90"
                   >
                     {isLoading ? (
                       <div role="status">
@@ -395,6 +496,7 @@ const Blog = () => {
                     )}
                   </button>
                 </div>
+
               </form>
               <div>
                 <span className="absolute -right-9 -top-10 z-[-1]">
