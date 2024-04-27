@@ -14,9 +14,15 @@ import Prueba from "./components/IQenglish/Prospects/prueba.jsx"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { ProviderModal } from './landing/ModalConext.jsx';
+import { ProviderModalIQ } from './components/IQenglish/Prospects/IQContextModal.jsx';
+
+import { ThemeProvider } from "@material-tailwind/react";
+ 
 
 function App() {
   return (
+    <ThemeProvider>
+       <ProviderModalIQ>
     <ProviderModal>
       <UserContextProvider>
         <ToastContainer />
@@ -28,8 +34,10 @@ function App() {
             <Route path="/" element={
               <>
                 <Navbar />
+
                 <Body />
                 <Blog />
+                
                 <Card/>
                 <Reviews/>
                 <Footer />
@@ -40,6 +48,8 @@ function App() {
         </Router>
       </UserContextProvider>
     </ProviderModal>
+    </ProviderModalIQ>
+    </ThemeProvider>
   );
 }
 

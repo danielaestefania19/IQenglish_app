@@ -5,13 +5,17 @@ export const ModalContext = createContext();
 
 // Crear un Proveedor de Contexto Global
 export const ProviderModal = ({ children }) => {
-  const [isOpenModal, setisOpenModal] = useState(false);
+  const [isOpenModalSucess, setisOpenModalSucess] = useState(false);
+  const [isOpenModalError, setisOpenModalError] = useState(false);
 
   // Definir el valor del contexto
   const contextValue = {
-    isOpenModal,
-    openModal: () => setisOpenModal(true),
-    closeModal: () => setisOpenModal(false),
+    isOpenModalSucess,
+    isOpenModalError,
+    openModalSucess: () => setisOpenModalSucess(true),
+    closeModalSucess: () => setisOpenModalSucess(false),
+    openModalError: () => setisOpenModalError(true),
+    closeModalError: () => setisOpenModalError(false),
   };
 
   // Retornar el Provider del contexto con el valor definido

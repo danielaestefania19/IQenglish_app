@@ -27,3 +27,25 @@ CREATE TABLE advisors (
     user_type ENUM('admin', 'advisor') NOT NULL,
     PRIMARY KEY (id)
 );
+
+
+
+CREATE TABLE Blogs (
+    id INT NOT NULL AUTO_INCREMENT,
+    foto VARCHAR(255) DEFAULT NULL,
+    fecha DATE DEFAULT NULL,
+    titulo VARCHAR(255) DEFAULT NULL,
+    description TEXT DEFAULT NULL,
+    PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE Reviews (
+    id INT NOT NULL AUTO_INCREMENT,
+    puntuacion INT CHECK(puntuacion >= 1 AND puntuacion <= 5),
+    titulo VARCHAR(255) DEFAULT NULL,
+    description TEXT DEFAULT NULL,
+    nombre VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY (id)
+);
