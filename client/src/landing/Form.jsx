@@ -1,10 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
 import createProspectForm from "../views/prospects/createProspect.js"
 
+
+
 const Form = () => {
-
-
-
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="text-left mr-8"> {/* Texto al lado izquierdo */}

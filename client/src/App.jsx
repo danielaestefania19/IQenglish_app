@@ -1,5 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from "./landing/Navbar"
 import Body from "./landing/Body"
@@ -8,6 +6,7 @@ import Footer from "./landing/Footer"
 import Card from "./landing/Card" 
 import Blog from "./landing/Blog"
 import Teachers from "./landing/Teachers"
+import Reviews from "./landing/Reviews.jsx" 
 import { UserContextProvider } from './context/advisor.context.jsx';
 import Dashboard from "./components/IQenglish/Dashboard.jsx"
 import ProtectedRoute from "./components/IQenglish/middleware/ProtectedRoute.jsx";
@@ -32,6 +31,7 @@ function App() {
                 <Body />
                 <Blog />
                 <Card/>
+                <Reviews/>
                 <Footer />
               </>
             }/>
