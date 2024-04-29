@@ -4,10 +4,10 @@ import logo2 from "../../assets/logo2.jpeg";
 import { ModalContextIQ } from './Prospects/IQContextModal.jsx';
 
 function FooterPage() {
-  const { isOpenModal } = useContext(ModalContextIQ);
+  const { isOpenModalContext, isOpenModalUpdateContext, isOpenModalDeleteContext } = useContext(ModalContextIQ);
 
   return (
-    !isOpenModal && (
+    !isOpenModalContext && !isOpenModalUpdateContext && !isOpenModalDeleteContext && (
       <Footer container className="fixed bottom-0 w-full z-50">
         <div className="w-full text-center">
           <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">

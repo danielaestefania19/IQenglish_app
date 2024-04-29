@@ -12,6 +12,7 @@ import { GrHome } from "react-icons/gr";
 import Home from './Home.jsx';
 import Prospects from './Prospects/Prospects.jsx';
 import user from "../../assets/user.jpg"
+import logo2 from "../../assets/logo2.jpeg";
 
 
 function Dashboard() {
@@ -25,6 +26,12 @@ function Dashboard() {
     const [isHomeActive, setIsHomeActive] = useState(true); // Establecer inicialmente como activo
     const [isProspectsActive, setIsProspectsActive] = useState(false); // Establecer inicialmente como inactivo
     const [isAdvisorsActive, setIsAdvisorsActive] = useState(false); // Establecer inicialmente como inactivo
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleToggle = () => {
+        setIsOpen(!isOpen);
+    };
+
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -99,7 +106,7 @@ function Dashboard() {
                                 <FaBars className="w-6 h-6" />
                             </button>
                             <a href="https://gateway.pinata.cloud/ipfs/QmfDd1ht7GD3jcmtzNuNvc8xgLWcmy4jtendDAtf58vVMK" className="flex ms-2 md:me-24">
-                                <img src="https://gateway.pinata.cloud/ipfs/QmfDd1ht7GD3jcmtzNuNvc8xgLWcmy4jtendDAtf58vVMK" className="h-8 me-3 rounded-full" alt="FlowBite Logo" />
+                            <img src={logo2} className="h-8 me-3 rounded-full" alt="FlowBite Logo" />
                                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">IQenglish</span>
                             </a>
                         </div>

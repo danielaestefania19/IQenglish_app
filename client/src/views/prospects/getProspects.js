@@ -5,7 +5,6 @@ const baseUrl = 'http://localhost:3001/api/prospects';
 export default async function getProspects(token) {
    
     const tokenjwt = token.token
-    console.log("Nuevo token", tokenjwt)
     try {
         const config = {
             headers: {

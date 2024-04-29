@@ -313,10 +313,10 @@ const Blog = () => {
           </div>
           <div className="w-full px-4 lg:w-full xl:w-5/12">
             <div
-              className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12"
+              className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12 transition-transform duration-300 transform hover:scale-105"
             >
               <form onSubmit={handleSubmit}>
-                <div className="relative z-0 w-full mb-5 group">
+                <div className="relative z-0 w-full mb-5 group ">
                   <input
                     type="email"
                     name="email"

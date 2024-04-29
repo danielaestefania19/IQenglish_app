@@ -6,6 +6,8 @@ const tailwindConfig = {
     extend: {
       colors: {
         primary: '#1D4ED8', /* Cambia esto por el color que desees */
+        customBlue: '#74a7e4',
+
       },
       spacing: {
         '7px': '7px',
@@ -31,6 +33,13 @@ const tailwindConfig = {
       },
       textColor: {
         'body-color': '#333',
+      },
+      screens: {
+        'xs': '750px',
+        'sm': '768px',
+        'md': '1024px',
+        'lg': '1280px',
+        'xl': '1536px',
       },
     },
   },
