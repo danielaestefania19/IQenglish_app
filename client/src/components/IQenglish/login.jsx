@@ -57,7 +57,7 @@ function Login({ onLogin }) {
             onLogin && onLogin();
         } // No hay más else
     }, [isLogged, isAdmin, navigate, onLogin]);
-    
+
 
 
     const handleShowPassword = (event) => {
@@ -99,7 +99,7 @@ function Login({ onLogin }) {
     if (isLoading) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <Spinner className="h-10 w-10" color="blue" />
+                <Spinner className="h-10 w-10 ml-4" color="blue" />
             </div>
         );
     }
@@ -148,22 +148,28 @@ function Login({ onLogin }) {
                                 type="submit"
                                 className="w-full bg-blue-500 py-2 px-4 text-white rounded-md hover:bg-blue-600 transition-colors"
                             >
-                                {isLoginLoading ? <Spinner className="h-5 w-5" color="white" /> : 'Iniciar sesión'}
+                                {isLoginLoading ?
+                                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                        <Spinner className="h-5 w-5" color="white" />
+                                    </div>
+                                    : 'Iniciar sesión'}
                             </button>
+
                         </div>
                     </form>
                     {formSubmitted && hasLoginError && (
-                        <div className="absolute left-1/2 transform -translate-x-1/2 bottom-20">
-                            <strong>Usuario o contraseña inválido</strong>
-                        </div>
-                    )}
+    <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-1 sm:-bottom-3 md:bottom-1 lg:bottom-1 text-sm sm:text-base md:text-base lg:text-base">
+        <strong>Usuario o contraseña inválido</strong>
+    </div>
+)}
+
                 </div>
             </div>
             {shouldRenderFooter && <FooterPageLogin />}
         </div>
     );
-    
-    
+
+
 }
 
 export default Login;

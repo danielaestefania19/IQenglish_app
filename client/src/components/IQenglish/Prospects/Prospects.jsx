@@ -1,20 +1,17 @@
 import React, { Fragment, useState, useContext, useEffect } from 'react';
 import useProspects from "../../../hooks/prospects/useProspects.jsx";
-import { Checkbox, Table, TableBody, TableCell, TableHead, TableHeadCell, TableRow } from "flowbite-react";
 import { Spinner } from "@material-tailwind/react";
 import Error from "./Error.jsx";
-import { IoTrash } from "react-icons/io5";
-import { GrUpdate } from "react-icons/gr";
-import { Pagination } from "flowbite-react";
 import { IoMdCheckmark } from "react-icons/io";
 import createProspectForm from "../../../views/prospects/createProspectForm.js";
 import { toast } from 'react-toastify';
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { ModalContextIQ } from './IQContextModal.jsx';
-import check from "../../../assets/comprobar.png"
-
-
+import check from "../../../assets/comprobar.png";
+import TableConditional from './TableConditional.jsx';
+import { useMediaQuery } from 'react-responsive';
+import { RiChatNewLine } from "react-icons/ri";
 
 
 const locations = [
@@ -61,6 +58,8 @@ const Prospects = () => {
     const [phoneNumberActive, setPhoneNumberActive] = useState(false);
     const [ageActive, setAgeActive] = useState(false);
     const [addressActive, setAddressActive] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const isDesktopOrLaptop = useMediaQuery({ minWidth: 1200 });
 
 
     const handleMouseEnter = () => {
@@ -244,6 +243,7 @@ const Prospects = () => {
         });
         setIsModalOpen(true);
         openModalContext()
+        setIsTooltipVisible(false);
     };
 
     // Función para cerrar el modal
@@ -278,6 +278,7 @@ const Prospects = () => {
 
 
     const handleMenuToggle = (index) => {
+        console.log("Hola")
         setOpenMenuIndex(index === openMenuIndex ? null : index);
         setIsOpen(prevState => {
             const newState = [...prevState];
@@ -335,7 +336,7 @@ const Prospects = () => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        setIsLoading(true); // Inicia la carga
+        setIsDeleting(true);
 
         try {
             const { success, data } = await deleteProspect({
@@ -350,20 +351,15 @@ const Prospects = () => {
             } else {
                 toast.error('Algo mal sucedio al eliminar el prospecto: ' + error.message);
             }
-
-            setisModalOpenDelete(false);
-            closeModalDeleteContext();
         } catch (error) {
             console.error(error); // Maneja el error aquí
             toast.error('Algo mal sucedió al eliminar el prospecto'); // Muestra una alerta de error
-
+        } finally {
+            setIsDeleting(false);
             setisModalOpenDelete(false);
             closeModalDeleteContext();
         }
-
-        setIsLoading(false); // Termina la carga
     };
-
 
     useEffect(() => {
         const handleDocumentClick = (event) => {
@@ -389,26 +385,78 @@ const Prospects = () => {
 
     if (error) return <Error message={error.message} />;
 
+    const buttonCreateProspectStyle = {
+        position: 'fixed',
+        zIndex: 1000,
+        right: isDesktopOrLaptop ? '220px' : '60px',
+        top: isDesktopOrLaptop ? '90px' : '700px', // Ajusta el valor del top según el tamaño de la pantalla
+    };
+    
+
+// Estilos base del tooltip
+const tooltipBaseStyle = {
+    position: 'absolute',
+    zIndex: 10,
+    padding: '2px',
+    fontSize: '0.75rem',
+    fontWeight: '500',
+    color: '#111827',
+    transition: 'opacity 0.3s',
+    backgroundColor: '#F9FAFB',
+    border: '1px solid #E5E7EB',
+    borderRadius: '0.375rem',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+};
+
+// Estilos para Desktop o Laptop
+const tooltipDesktopStyle = {
+    ...tooltipBaseStyle,
+    bottom: '530px', right: '190px',
+};
+
+// Estilos para dispositivos móviles o pantallas más pequeñas
+const tooltipMobileStyle = {
+    ...tooltipBaseStyle,
+    bottom: '-80px', right: '40px',
+};
+
+const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyle;
+
 
 
     return (
         <div className="flex flex-col min-h-screen">
-            <div className="bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900 absolute top-0 left-0 z-0 w-full h-full"></div>
+            <div className="dark:from-blue-900 absolute top-0 left-0 z-0 w-full h-full"></div>
+            {!isOpenModalContext && !isOpenModalUpdateContext && !isOpenModalDeleteContext && (
+    <div>
+        <button
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onClick={openModal}
+            type="button"
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 me-2 mb-2"
+            style={buttonCreateProspectStyle}
+        >
+            <RiChatNewLine />
+            <span className="sr-only">Open modal</span>
+        </button>
+    </div>
+)}
 
             <div id="popup-modal" tabindex="-1" class={`${isModalOpenDelete ? '' : 'hidden'} fixed top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 z-50`}>
-                    <div class="bg-white rounded-lg shadow w-full max-w-md">
-                        <div class="p-4 md:p-5 text-center">
-                            <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                            </svg>
-                            <h3 class="mb-5 text-lg font-normal text-gray-500">Esta seguro que quieres eliminar este prospecto??</h3>
-                            <button onClick={handleDelete} type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
-                                Si, estoy seguro
-                            </button>
-                            <button onClick={closeModalDelete} type="button" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">No, cancelar</button>
-                        </div>
+                <div class="bg-white rounded-lg shadow w-full max-w-md">
+                    <div class="p-4 md:p-5 text-center">
+                        <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                        <h3 class="mb-5 text-lg font-normal text-gray-500">Esta seguro que quieres eliminar este prospecto??</h3>
+                        <button onClick={handleDelete} type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-3">
+                            {isDeleting ? <Spinner className="h-5 w-5" color="red" /> : 'Si, estoy seguro'}
+                        </button>
+                        <button onClick={closeModalDelete} type="button" class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">No, cancelar</button>
                     </div>
                 </div>
+            </div>
 
             <div
                 className="fixed end-6 bottom-31 group"
@@ -418,9 +466,9 @@ const Prospects = () => {
                     <div
                         id="tooltip-share"
                         role="tooltip"
-                        className="absolute z-10 inline-block w-auto px-3 py-2 text-sm font-medium text-gray-900 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm tooltip"
-                        style={{ bottom: '80px', right: '-15px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}
-                    >
+                        className="absolute z-10 inline-block w-auto px-2 py-1 text-xs font-medium text-gray-900 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm tooltip"
+                        style={tooltipStyle}
+                             >
                         Nuevo Prospecto
                         <div className="tooltip-arrow" data-popper-arrow></div>
                     </div>
@@ -431,25 +479,9 @@ const Prospects = () => {
 
                 <div id="speed-dial-menu-bottom-right" className="flex flex-col items-center hidden mb-4 space-y-2">
                 </div>
-                <button
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onClick={openModal}
-                    type="button"
-                    className="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
-                >
-                    <svg
-                        className="w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                    </svg>
-                    <span className="sr-only">Open modal</span>
-                </button>
+
             </div>
+
 
             {isModalOpen && (
                 <div id="crud-modal" tabIndex="-1" aria-hidden="true" className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-black bg-opacity-50">
@@ -921,155 +953,178 @@ const Prospects = () => {
 
 
             {!isOpenModalContext && !isOpenModalUpdateContext && !isOpenModalDeleteContext && (
-                <form className="max-w-lg mx-auto mb-8" style={{ position: 'relative', top: '-2cm', zIndex: 999, right: "-80px" }}>
-                    <div className="flex">
-                        <button
-                            id="dropdown-button"
-                            onClick={toggleDropdown}
-                            className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
-                            type="button"
-                        >
-                            Filtrar por:
-                            <svg
-                                className={`w-2.5 h-2.5 ms-2.5 transition-transform ${isSearchOpen ? "rotate-180" : ""}`}
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 10 6"
-                            >
-                                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
-                        {isSearchOpen && (
-                            <div
-                                id="dropdown"
-                                className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute mt-12"
-                            >
-                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-                                    <li>
-                                        <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Nombre")}>
-
-                                            Nombre
-                                            {searchType === "Nombre" && <IoMdCheckmark className="w-4 h-4 ml-2" />}
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Id")}>
-                                            Id
-                                            {searchType === "Id" && <IoMdCheckmark className="w-4 h-4 ml-2" />}
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        )}
-                        <div className="relative w-full">
-                            <input
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                                type="search"
-                                id="search-dropdown"
-                                className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                                placeholder="Search Prospects:"
-                                required
-                                style={{ width: "300px" }} // Establece un ancho específico para el botón
-                            />
-                            <button
-                                type="submit"
-                                disabled={searchType === "Nombre"}
-                                className={`absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white ${searchType === "Nombre" ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
-                            >
-                                <svg
-                                    className="w-4 h-4"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 20 20"
+                <>
+                    {isDesktopOrLaptop ? (
+                        <form className="max-w-lg mx-auto mb-8" style={{ position: 'fixed', top: '11%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 999 }}>
+                            <div className="flex">
+                                <button
+                                    id="dropdown-button"
+                                    onClick={toggleDropdown}
+                                    className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                                    type="button"
                                 >
-                                    <path
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                    Filtrar por:
+                                    <svg
+                                        className={`w-2.5 h-2.5 ms-2.5 transition-transform ${isSearchOpen ? "rotate-180" : ""}`}
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 10 6"
+                                    >
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+                                {isSearchOpen && (
+                                    <div
+                                        id="dropdown"
+                                        className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute mt-12"
+                                    >
+                                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                                            <li>
+                                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Nombre")}>
+
+                                                    Nombre
+                                                    {searchType === "Nombre" && <IoMdCheckmark className="w-4 h-4 ml-2" />}
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Id")}>
+                                                    Id
+                                                    {searchType === "Id" && <IoMdCheckmark className="w-4 h-4 ml-2" />}
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+                                <div className="relative w-full">
+                                    <input
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        type="search"
+                                        id="search-dropdown"
+                                        className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                                        placeholder="Search Prospects:"
+                                        required
+                                        style={{ width: "300px" }} // Establece un ancho específico para el botón
                                     />
-                                </svg>
-                                <span className="sr-only">Search</span>
-                            </button>
-                        </div>
-                    </div>
-                </form>
+                                    <button
+                                        type="submit"
+                                        disabled={searchType === "Nombre"}
+                                        className={`absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white ${searchType === "Nombre" ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
+                                    >
+                                        <svg
+                                            className="w-4 h-4"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 20 20"
+                                        >
+                                            <path
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                            />
+                                        </svg>
+                                        <span className="sr-only">Search</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    ) : (
+                        <form className="max-w-xs mx-auto mb-4" style={{ position: 'fixed', top: '11%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 999 }}>
+                            <div className="flex">
+                                <button
+                                    id="dropdown-button"
+                                    onClick={toggleDropdown}
+                                    className="flex-shrink-0 z-10 inline-flex items-center py-1 px-2 text-xs font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                                    type="button"
+                                >
+                                    Filtrar por:
+                                    <svg
+                                        className={`w-2 h-2 ms-1 transition-transform ${isSearchOpen ? "rotate-180" : ""}`}
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 10 6"
+                                    >
+                                        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+                                {isSearchOpen && (
+                                    <div
+                                        id="dropdown"
+                                        className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-36 dark:bg-gray-700 absolute mt-8"
+                                    >
+                                        <ul className="py-1 text-xs text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                                            <li>
+                                                <button type="button" className="inline-flex w-full px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Nombre")}>
+                                                    Nombre
+                                                    {searchType === "Nombre" && <IoMdCheckmark className="w-3 h-3 ml-1" />}
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button type="button" className="inline-flex w-full px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Id")}>
+                                                    Id
+                                                    {searchType === "Id" && <IoMdCheckmark className="w-3 h-3 ml-1" />}
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+                                <div className="relative w-full">
+                                    <input
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        type="search"
+                                        id="search-dropdown"
+                                        className="block p-1.5 w-full z-20 text-xs text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+                                        placeholder="Search Prospects:"
+                                        required
+                                        style={{ width: "200px" }} // Establece un ancho específico para el botón
+                                    />
+                                    <button
+                                        type="submit"
+                                        disabled={searchType === "Nombre"}
+                                        className={`absolute top-0 right-0 p-1.5 text-xs font-medium h-full text-white ${searchType === "Nombre" ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
+                                    >
+                                        <svg
+                                            className="w-3 h-3"
+                                            aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 20 20"
+                                        >
+                                            <path
+                                                stroke="currentColor"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                            />
+                                        </svg>
+                                        <span className="sr-only">Search</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    )}
+                </>
             )}
-            <div className="flex-grow relative" style={{ paddingLeft: '250px', marginTop: '-60px' }}>
-                <div className="overflow-x-hidden"> {/* Modificado overflow-x-hidden */}
-                    <Table hoverable className="relative z-10 min-w-max" style={{ minWidth: '400px', marginLeft: 'auto' }}>
-                        <TableHead>
-                            <TableHeadCell className="p-4">
-                                <Checkbox color="blue" />
-                            </TableHeadCell>
-                            <TableHeadCell>Nombre</TableHeadCell>
-                            <TableHeadCell>Apellido</TableHeadCell>
-                            <TableHeadCell>Email</TableHeadCell>
-                            <TableHeadCell>Número de Teléfono</TableHeadCell>
-                            <TableHeadCell>Dirección</TableHeadCell>
-                            <TableHeadCell>Edad</TableHeadCell>
-                            <TableHeadCell>
-                                <span className="sr-only">Acciones</span>
-                            </TableHeadCell>
-                        </TableHead>
-                        <TableBody className="divide-y">
-                            {currentProspects.map((prospect, index) => (
-                                <TableRow key={prospect.id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                                    <TableCell className="p-4">
-                                        <Checkbox color="blue" />
-                                    </TableCell>
-                                    <TableCell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {prospect.name}
-                                    </TableCell>
-                                    <TableCell>{prospect.lastname}</TableCell>
-                                    <TableCell>{prospect.email}</TableCell>
-                                    <TableCell>{prospect.phone_number}</TableCell>
-                                    <TableCell>{prospect.addresses ? prospect.addresses : "No disponible"}</TableCell>
-                                    <TableCell>{prospect.age}</TableCell>
-                                    <TableCell>
-                                        <button id="menu-button" onClick={() => handleMenuToggle(index)} className={`relative group p-2 ${isOpen[index] ? 'open' : ''}`}>
-                                            <div className={`relative flex overflow-hidden items-center justify-center rounded-full w-[32px] h-[32px] transform transition-all bg-white ring-0 ring-gray-300 hover:ring-8  ${isOpen[index] ? 'ring-4' : ''} ring-opacity-30 duration-200 shadow-md`}>
-                                                <div className="flex flex-col justify-between w-[12px] h-[12px] transform transition-all duration-300 origin-center overflow-hidden">
-                                                    <div className={`bg-blue-500 h-[1px] w-3 transform transition-all duration-300 origin-left ${isOpen[index] ? 'translate-x-6' : ''}`}></div>
-                                                    <div className={`bg-blue-500 h-[1px] w-3 rounded transform transition-all duration-300 ${isOpen[index] ? 'translate-x-6' : ''} delay-75`}></div>
-                                                    <div className={`bg-blue-500 h-[1px] w-3 transform transition-all duration-300 origin-left ${isOpen[index] ? 'translate-x-6' : ''} delay-150`}></div>
-
-                                                    <div className={`absolute items-center justify-between transform transition-all duration-500 top-1 -translate-x-6 ${isOpen[index] ? 'translate-x-0' : ''} flex w-0 ${isOpen[index] ? 'w-8' : ''}`}>
-                                                        <div className={`absolute bg-blue-500 h-[1px] w-3 transform transition-all duration-500 rotate-0 delay-300 ${isOpen[index] ? 'rotate-45' : ''}`}></div>
-                                                        <div className={`absolute bg-blue-500 h-[1px] w-3 transform transition-all duration-500 -rotate-0 delay-300 ${isOpen[index] ? '-rotate-45' : ''}`}></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </button>
-                                        {openMenuIndex === index && (
-                                            <div className={`absolute right-0 bg-white mt-1 py-2 w-48 border rounded-lg shadow-lg menu-options ${menuDirection}`} style={{ zIndex: 9999, bottom: menuDirection === 'up' ? (index === currentProspects.length - 1 ? '2cm' : index === currentProspects.length - 2 ? '4cm' : 'initial') : 'initial' }}>
-                                                <ul>
-                                                    <li className="flex items-center">
-                                                        <GrUpdate className="inline-block ml-8" />
-                                                        <a onClick={() => openModalUpdate(prospect)} href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Actualizar Prospecto</a>
-
-                                                    </li>
-                                                    <li className="flex items-center">
-                                                        <IoTrash className="inline-block ml-8" />
-                                                        <a onClick={() => openModalDelete(prospect)}  href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Eliminar Prospecto</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </div>
-                <div className="flex overflow-x-auto sm:justify-center">
-                    <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
-                </div>
-            </div>
+            <TableConditional
+                currentProspects={currentProspects}
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={onPageChange}
+                handleMenuToggle={handleMenuToggle}
+                isOpen={isOpen}
+                openMenuIndex={openMenuIndex}
+                openModalUpdate={openModalUpdate}
+                openModalDelete={openModalDelete}
+                menuDirection={menuDirection} // Pasar menuDirection a Cards
+            />
         </div>
     );
 };

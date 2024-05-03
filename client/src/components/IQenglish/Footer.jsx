@@ -8,7 +8,7 @@ function FooterPage() {
 
   return (
     !isOpenModalContext && !isOpenModalUpdateContext && !isOpenModalDeleteContext && (
-      <Footer container className="fixed bottom-0 w-full z-50">
+      <Footer container className="fixed bottom-0 w-full z-1000">
         <div className="w-full text-center">
           <div className="w-full justify-between sm:flex sm:items-center sm:justify-between">
             <a href="https://flowbite.com" className="flex items-center">
