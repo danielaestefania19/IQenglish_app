@@ -13,7 +13,7 @@ import Home from './Home.jsx';
 import Prospects from './Prospects/Prospects.jsx';
 import user from "../../assets/user.jpg"
 import logo2 from "../../assets/logo2.jpeg";
-
+import Advisors from './Advisors/Advisors.jsx';
 
 function Dashboard() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -197,9 +197,11 @@ function Dashboard() {
             </aside>
             {/* Contenedor para mostrar el componente activo */}
             <div className="flex justify-center items-center h-full">
-                <div className="mt-40"> {/* Agrega márgenes al contenedor */}
-                {isHomeActive && <Home handleProspectsClick={handleProspectsClick} />}
+            <div className="mt-40">
+                    {/* Conditional rendering based on active state */}
+                    {isHomeActive && <Home handleProspectsClick={handleProspectsClick} />}
                     {isProspectsActive && <Prospects />}
+                    {isAdvisorsActive && <Advisors />} {/* Render Advisors component when active */}
                 </div>
             </div>
 

@@ -6,8 +6,9 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { ModalContextIQ } from './IQContextModal.jsx';
 import { FaWhatsapp } from "react-icons/fa";
 import { MdCall } from "react-icons/md";
+import { Pagination } from "flowbite-react";
 
-const Cards = ({ currentProspects, handleMenuToggle, isOpen, openMenuIndex, openModalUpdate, openModalDelete, setOpenMenuIndex, setIsOpen }) => {
+const Cards = ({ currentProspects, handleMenuToggle, isOpen, openMenuIndex, openModalUpdate, openModalDelete, setOpenMenuIndex, setIsOpen, currentPage, totalPages, onPageChange }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedProspect, setSelectedProspect] = useState(null);
   const { openModalViewAllContext, closeModalViewAllContext } = useContext(ModalContextIQ);
@@ -42,9 +43,8 @@ const Cards = ({ currentProspects, handleMenuToggle, isOpen, openMenuIndex, open
     closeModalViewAllContext()
   }
 
-
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginBottom: '15rem', marginTop: '-1rem' }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem', marginBottom: '15rem', marginTop: '-1rem', overflow: 'auto' }}>
       {currentProspects.map((prospect, index) => (
         <Card key={index} className="sm:max-w-xs bg-white text-black transform transition duration-500 ease-in-out hover:scale-105" style={{ width: '100%', maxWidth: '18rem', marginBottom: '5cm', margin: '1rem' }}>
           <div className="mb-4 flex items-center justify-between">
@@ -156,9 +156,13 @@ const Cards = ({ currentProspects, handleMenuToggle, isOpen, openMenuIndex, open
           </div>
         </div>
       )}
-
-
+     <div style={{ position: 'relative', zIndex: 999 }}>
+        <div className="flex overflow-x-auto sm:justify-center">
+            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+        </div>
     </div>
+    </div>
+    
   );
 };
 

@@ -42,6 +42,7 @@ const Prospects = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [search, setSearch] = useState('');
     const [searchType, setSearchType] = useState('Nombre'); // Por defecto, busca por nombre
+    const [isManualSearch, setIsManualSearch] = useState(false);
     const itemsPerPage = 6;
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -200,7 +201,7 @@ const Prospects = () => {
 
         // Después de que se complete la creación del prospecto con éxito
         try {
-            const { success, data } = await updateProspect({
+            const { success } = await updateProspect({
                 id: formData.id,
                 name: formData.name,
                 lastname: formData.lastname,
@@ -346,13 +347,12 @@ const Prospects = () => {
                 toast.info('Se elimino correctamente el prospecto', {
                     icon: () => <img src={check} alt="Success Icon" />
                 });
-                // Puedes usar los datos actualizados aquí si es necesario
             } else {
                 toast.error('Algo mal sucedio al eliminar el prospecto: ' + error.message);
             }
         } catch (error) {
-            console.error(error); // Maneja el error aquí
-            toast.error('Algo mal sucedió al eliminar el prospecto'); // Muestra una alerta de error
+            console.error(error);
+            toast.error('Algo mal sucedió al eliminar el prospecto');
         } finally {
             setIsDeleting(false);
             setisModalOpenDelete(false);
@@ -360,72 +360,73 @@ const Prospects = () => {
         }
     };
 
+    // Función para cambiar el tipo de búsqueda
     const handleSearchTypeChange = (type) => {
         setSearchType(type);
         setIsSearchOpen(false);
-        setSearch(''); // Limpia el campo de búsqueda cuando se cambia el tipo de búsqueda
+        setSearch('');
+        // Si el tipo de búsqueda es 'Id', habilita la búsqueda manual
+        setIsManualSearch(type === 'Id');
+
+        let reversedProspects = prospects ? [...prospects].reverse() : null;
+            if (reversedProspects) {
+                setTotalPages(Math.ceil(reversedProspects.length / itemsPerPage));
+                setCurrentProspects(reversedProspects.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+            } else {
+                setTotalPages(2);
+                setCurrentProspects([]);
+            }
     };
+
 
     const searcherProspect = async (searchTerm) => {
         const lowercaseSearchTerm = searchTerm.toLowerCase();
         let filteredProspects = [];
-    
+        console.log("Valor", searchTerm)
         if (searchType === 'Nombre') {
-            // Filtrar por nombre en tiempo real
             filteredProspects = prospects.filter(prospect => prospect.name.toLowerCase().includes(lowercaseSearchTerm));
         } else if (searchType === 'Id') {
             try {
-                const prospect = await getProspectById(searchTerm, jwt); // Reemplaza "token" con el token de autenticación apropiado
+                const prospect = await getProspectById(searchTerm, jwt);
                 if (prospect) {
                     filteredProspects.push(prospect);
                 } else {
-                    // Si no se encuentra ningún prospecto, establece filteredProspects como un array vacío
                     filteredProspects = [];
                 }
             } catch (error) {
                 if (error.response && error.response.status === 404) {
-                    // Si la API devuelve un error 404 (prospecto no encontrado), establece filteredProspects como un array vacío
                     filteredProspects = [];
                 } else {
-                    console.error("Algo mal sucedio");
-                    // Maneja otros errores, si lo deseas
+                    console.error("Algo mal sucedio")
                 }
             }
         }
-    
 
-        // Actualiza el estado con los resultados de la búsqueda
         setCurrentProspects(filteredProspects);
-        // Actualiza el número de páginas según los resultados de la búsqueda
         setTotalPages(Math.ceil(filteredProspects.length / itemsPerPage));
-        // Regresa a la primera página después de realizar una búsqueda
         setCurrentPage(1);
     };
-    
-    
 
-    const handleSearch = (e) => {
-        setSearch(e.target.value);
-        // Realiza la búsqueda solo si el tipo de búsqueda es por ID
-        if (searchType === 'Id') {
-            // Llama a searcherProspect con el término de búsqueda actual (ID)
-            searcherProspect(search);
-        }
 
-        
 
-    };
-
+    // Función para manejar el cambio en el input de búsqueda
     const handleSearchInputChange = (e) => {
         const searchTerm = e.target.value;
         setSearch(searchTerm);
-    
-        if (searchType === 'Nombre') {
-            // Realiza la búsqueda en tiempo real cuando el tipo de búsqueda es por nombre
+
+        // Si la búsqueda es por ID y hay un valor ingresado, activa el botón de búsqueda
+        if (searchType === 'Id' && searchTerm.trim() !== '') {
+            setIsManualSearch(true);
+        }
+
+        // Si la búsqueda es por Nombre, realiza la búsqueda automáticamente
+        if (searchType === 'Nombre' && searchTerm.trim() !== '') {
             searcherProspect(searchTerm);
-        } 
-        // Si el campo de búsqueda está vacío, restablece el orden original de los currentProspects
+        }
+
+        // Si se borra el valor del input, vuelve al comportamiento predeterminado
         if (searchTerm.trim() === '') {
+            setIsManualSearch(false);
             let reversedProspects = prospects ? [...prospects].reverse() : null;
             if (reversedProspects) {
                 setTotalPages(Math.ceil(reversedProspects.length / itemsPerPage));
@@ -435,8 +436,15 @@ const Prospects = () => {
                 setCurrentProspects([]);
             }
         }
+    }
+
+    // Función para manejar la búsqueda manual (por ID)
+    const handleManualSearch = () => {
+        if (search.trim() !== '') {
+            searcherProspect(search);
+        }
     };
-    
+
 
     if (loading) return (
         <div className="flex items-start justify-start h-screen" style={{ position: 'relative' }}>
@@ -1045,9 +1053,9 @@ const Prospects = () => {
                                     />
                                     <button
                                         type="button"
-                                        disabled={searchType === "Nombre"}
-                                        onClick={handleSearch} // Llama a handleSearch solo si la búsqueda es por ID
-                                        className={`absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white ${searchType === "Nombre" ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
+                                        disabled={!isManualSearch} // Deshabilitado si no es una búsqueda manual
+                                        onClick={handleManualSearch} // Realiza la búsqueda manual
+                                        className={`absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white ${!isManualSearch ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
                                     >
                                         <svg
                                             className="w-4 h-4"
@@ -1069,9 +1077,6 @@ const Prospects = () => {
                                 </div>
                             </div>
                         </form>
-
-
-
                     ) : (
                         <form className="max-w-xs mx-auto mb-4" style={{ position: 'fixed', top: '11%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 999 }}>
                             <div className="flex">
@@ -1126,9 +1131,9 @@ const Prospects = () => {
                                     />
                                     <button
                                         type="button"
-                                        disabled={searchType === "Nombre"}
-                                        onClick={handleSearch} // Llama a handleSearch solo si la búsqueda es por ID
-                                        className={`absolute top-0 right-0 p-1.5 text-xs font-medium h-full text-white ${searchType === "Nombre" ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
+                                        disabled={!isManualSearch} // Deshabilitado si no es una búsqueda manual
+                                        onClick={handleManualSearch} // Realiza la búsqueda manual
+                                        className={`absolute top-0 right-0 p-1.5 text-xs font-medium h-full text-white ${!isManualSearch ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
                                     >
                                         <svg
                                             className="w-3 h-3"
