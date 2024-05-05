@@ -12,6 +12,8 @@ import check from "../../../assets/comprobar.png";
 import TableConditional from './TableConditional.jsx';
 import { useMediaQuery } from 'react-responsive';
 import { RiChatNewLine } from "react-icons/ri";
+import getProspectById from "../../../views/prospects/getProspectsId.js"
+import Context from '../../../context/advisor.context.jsx';
 
 
 const locations = [
@@ -38,8 +40,8 @@ const Prospects = () => {
     const [openMenuIndex, setOpenMenuIndex] = useState(null);
     const [isOpen, setIsOpen] = useState([]);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [search, setSearch] = useState("")
-    const [searchType, setSearchType] = useState("Nombre");
+    const [search, setSearch] = useState('');
+    const [searchType, setSearchType] = useState('Nombre'); // Por defecto, busca por nombre
     const itemsPerPage = 6;
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -48,7 +50,7 @@ const Prospects = () => {
     const [ageError, setAgeError] = useState(null);
     const [addressError, setAddressError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const { openModalContext, closeModalContext, isOpenModalContext, openModalUpdateContext, closeModalUpdateContext, isOpenModalUpdateContext, openModalDeleteContext, closeModalDeleteContext, isOpenModalDeleteContext } = useContext(ModalContextIQ);
+    const { openModalContext, closeModalContext, isOpenModalContext, openModalUpdateContext, closeModalUpdateContext, isOpenModalUpdateContext, openModalDeleteContext, closeModalDeleteContext, isOpenModalDeleteContext, isOpenModalViewAllContext } = useContext(ModalContextIQ);
     const [isTooltipVisible, setIsTooltipVisible] = useState(false);
     const [ismodalOpenUpdate, setisModalOpenUpdate] = useState(false);
     const [isModalOpenDelete, setisModalOpenDelete] = useState(false);
@@ -60,6 +62,9 @@ const Prospects = () => {
     const [addressActive, setAddressActive] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const isDesktopOrLaptop = useMediaQuery({ minWidth: 1200 });
+    const { jwt } = useContext(Context);
+
+
 
 
     const handleMouseEnter = () => {
@@ -144,7 +149,6 @@ const Prospects = () => {
             });
 
             if (result) {
-                console.log(result)
                 toast.info('Se creó correctamente el prospecto', {
                     icon: () => <img src={check} alt="Success Icon" /> // Usar el icono check importado
                 });
@@ -271,15 +275,10 @@ const Prospects = () => {
     const toggleDropdown = () => setIsSearchOpen(!isSearchOpen);
 
 
-    const handleSearchTypeChange = (type) => {
-        setSearchType(type);
-        setIsSearchOpen(false);
-    };
-
 
     const handleMenuToggle = (index) => {
-        console.log("Hola")
         setOpenMenuIndex(index === openMenuIndex ? null : index);
+
         setIsOpen(prevState => {
             const newState = [...prevState];
             newState[index] = !newState[index];
@@ -361,21 +360,83 @@ const Prospects = () => {
         }
     };
 
-    useEffect(() => {
-        const handleDocumentClick = (event) => {
-            if (openMenuIndex !== null && !event.target.closest("#menu-button") && !event.target.closest(".menu-options")) {
-                setOpenMenuIndex(null);
-                setIsOpen(prevState => prevState.map((state, i) => i === openMenuIndex ? false : state));
+    const handleSearchTypeChange = (type) => {
+        setSearchType(type);
+        setIsSearchOpen(false);
+        setSearch(''); // Limpia el campo de búsqueda cuando se cambia el tipo de búsqueda
+    };
+
+    const searcherProspect = async (searchTerm) => {
+        const lowercaseSearchTerm = searchTerm.toLowerCase();
+        let filteredProspects = [];
+    
+        if (searchType === 'Nombre') {
+            // Filtrar por nombre en tiempo real
+            filteredProspects = prospects.filter(prospect => prospect.name.toLowerCase().includes(lowercaseSearchTerm));
+        } else if (searchType === 'Id') {
+            try {
+                const prospect = await getProspectById(searchTerm, jwt); // Reemplaza "token" con el token de autenticación apropiado
+                if (prospect) {
+                    filteredProspects.push(prospect);
+                } else {
+                    // Si no se encuentra ningún prospecto, establece filteredProspects como un array vacío
+                    filteredProspects = [];
+                }
+            } catch (error) {
+                if (error.response && error.response.status === 404) {
+                    // Si la API devuelve un error 404 (prospecto no encontrado), establece filteredProspects como un array vacío
+                    filteredProspects = [];
+                } else {
+                    console.error("Algo mal sucedio");
+                    // Maneja otros errores, si lo deseas
+                }
             }
-        };
+        }
+    
 
-        document.addEventListener("click", handleDocumentClick);
+        // Actualiza el estado con los resultados de la búsqueda
+        setCurrentProspects(filteredProspects);
+        // Actualiza el número de páginas según los resultados de la búsqueda
+        setTotalPages(Math.ceil(filteredProspects.length / itemsPerPage));
+        // Regresa a la primera página después de realizar una búsqueda
+        setCurrentPage(1);
+    };
+    
+    
 
-        return () => {
-            document.removeEventListener("click", handleDocumentClick);
-        };
-    }, [openMenuIndex]);
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+        // Realiza la búsqueda solo si el tipo de búsqueda es por ID
+        if (searchType === 'Id') {
+            // Llama a searcherProspect con el término de búsqueda actual (ID)
+            searcherProspect(search);
+        }
 
+        
+
+    };
+
+    const handleSearchInputChange = (e) => {
+        const searchTerm = e.target.value;
+        setSearch(searchTerm);
+    
+        if (searchType === 'Nombre') {
+            // Realiza la búsqueda en tiempo real cuando el tipo de búsqueda es por nombre
+            searcherProspect(searchTerm);
+        } 
+        // Si el campo de búsqueda está vacío, restablece el orden original de los currentProspects
+        if (searchTerm.trim() === '') {
+            let reversedProspects = prospects ? [...prospects].reverse() : null;
+            if (reversedProspects) {
+                setTotalPages(Math.ceil(reversedProspects.length / itemsPerPage));
+                setCurrentProspects(reversedProspects.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+            } else {
+                setTotalPages(2);
+                setCurrentProspects([]);
+            }
+        }
+    };
+    
 
     if (loading) return (
         <div className="flex items-start justify-start h-screen" style={{ position: 'relative' }}>
@@ -389,59 +450,57 @@ const Prospects = () => {
         position: 'fixed',
         zIndex: 1000,
         right: isDesktopOrLaptop ? '220px' : '60px',
-        top: isDesktopOrLaptop ? '90px' : '700px', // Ajusta el valor del top según el tamaño de la pantalla
+        bottom: isDesktopOrLaptop ? '840px' : '213px', // Ajusta el valor del top según el tamaño de la pantalla
     };
-    
-
-// Estilos base del tooltip
-const tooltipBaseStyle = {
-    position: 'absolute',
-    zIndex: 10,
-    padding: '2px',
-    fontSize: '0.75rem',
-    fontWeight: '500',
-    color: '#111827',
-    transition: 'opacity 0.3s',
-    backgroundColor: '#F9FAFB',
-    border: '1px solid #E5E7EB',
-    borderRadius: '0.375rem',
-    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-};
-
-// Estilos para Desktop o Laptop
-const tooltipDesktopStyle = {
-    ...tooltipBaseStyle,
-    bottom: '530px', right: '190px',
-};
-
-// Estilos para dispositivos móviles o pantallas más pequeñas
-const tooltipMobileStyle = {
-    ...tooltipBaseStyle,
-    bottom: '-80px', right: '40px',
-};
-
-const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyle;
 
 
+    const tooltipBaseStyle = {
+        position: 'absolute',
+        zIndex: 10000,
+        padding: '2px',
+        fontSize: '0.75rem',
+        fontWeight: '500',
+        color: '#111827',
+        transition: 'opacity 0.3s',
+        backgroundColor: '#F9FAFB',
+        border: '1px solid #E5E7EB',
+        borderRadius: '0.375rem',
+        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        top: '-120%', // Posiciona el tooltip debajo del botón
+        left: '50%', // Centra el tooltip horizontalmente
+        transform: 'translateX(-50%)', // Asegura que el tooltip esté centrado
+    };
 
     return (
         <div className="flex flex-col min-h-screen">
             <div className="dark:from-blue-900 absolute top-0 left-0 z-0 w-full h-full"></div>
-            {!isOpenModalContext && !isOpenModalUpdateContext && !isOpenModalDeleteContext && (
-    <div>
-        <button
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onClick={openModal}
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 me-2 mb-2"
-            style={buttonCreateProspectStyle}
-        >
-            <RiChatNewLine />
-            <span className="sr-only">Open modal</span>
-        </button>
-    </div>
-)}
+            {!isOpenModalContext && !isOpenModalUpdateContext && !isOpenModalDeleteContext && !isOpenModalViewAllContext && (
+                <div>
+                    <button
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        onClick={openModal}
+                        type="button"
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 me-2 mb-2"
+                        style={buttonCreateProspectStyle}
+                    >
+                        <RiChatNewLine />
+                        <span className="sr-only">Open modal</span>
+
+                        {isTooltipVisible && (
+                            <div
+                                id="tooltip-share"
+                                role="tooltip"
+                                className="absolute z-10 inline-block w-auto px-2 py-1 text-xs font-medium text-gray-900 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm tooltip"
+                                style={tooltipBaseStyle}
+                            >
+                                Nuevo Prospecto
+                                <div className="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        )}
+                    </button>
+                </div>
+            )}
 
             <div id="popup-modal" tabindex="-1" class={`${isModalOpenDelete ? '' : 'hidden'} fixed top-0 right-0 left-0 bottom-0 flex justify-center items-center bg-black bg-opacity-50 z-50`}>
                 <div class="bg-white rounded-lg shadow w-full max-w-md">
@@ -458,29 +517,7 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
                 </div>
             </div>
 
-            <div
-                className="fixed end-6 bottom-31 group"
-                style={{ marginTop: "500px", right: "100px" }}
-            >
-                {isTooltipVisible && (
-                    <div
-                        id="tooltip-share"
-                        role="tooltip"
-                        className="absolute z-10 inline-block w-auto px-2 py-1 text-xs font-medium text-gray-900 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm tooltip"
-                        style={tooltipStyle}
-                             >
-                        Nuevo Prospecto
-                        <div className="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                )}
 
-
-
-
-                <div id="speed-dial-menu-bottom-right" className="flex flex-col items-center hidden mb-4 space-y-2">
-                </div>
-
-            </div>
 
 
             {isModalOpen && (
@@ -952,20 +989,20 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
             )}
 
 
-            {!isOpenModalContext && !isOpenModalUpdateContext && !isOpenModalDeleteContext && (
+            {!isOpenModalContext && !isOpenModalUpdateContext && !isOpenModalDeleteContext && !isOpenModalViewAllContext && (
                 <>
                     {isDesktopOrLaptop ? (
-                        <form className="max-w-lg mx-auto mb-8" style={{ position: 'fixed', top: '11%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 999 }}>
+                        <form className="max-w-xs mx-auto mb-4" style={{ position: 'fixed', top: '11%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 999 }}>
                             <div className="flex">
                                 <button
                                     id="dropdown-button"
                                     onClick={toggleDropdown}
-                                    className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+                                    className="flex-shrink-0 z-10 inline-flex items-center py-1 px-2 text-xs font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
                                     type="button"
                                 >
                                     Filtrar por:
                                     <svg
-                                        className={`w-2.5 h-2.5 ms-2.5 transition-transform ${isSearchOpen ? "rotate-180" : ""}`}
+                                        className={`w-2 h-2 ms-1 transition-transform ${isSearchOpen ? "rotate-180" : ""}`}
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -977,20 +1014,19 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
                                 {isSearchOpen && (
                                     <div
                                         id="dropdown"
-                                        className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute mt-12"
+                                        className="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute mt-8"
                                     >
-                                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
+                                        <ul className="py-1 text-xs text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
                                             <li>
-                                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Nombre")}>
-
+                                                <button type="button" className="inline-flex w-full px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Nombre")}>
                                                     Nombre
-                                                    {searchType === "Nombre" && <IoMdCheckmark className="w-4 h-4 ml-2" />}
+                                                    {searchType === "Nombre" && <IoMdCheckmark className="w-3 h-3 ml-1" />}
                                                 </button>
                                             </li>
                                             <li>
-                                                <button type="button" className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Id")}>
+                                                <button type="button" className="inline-flex w-full px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={() => handleSearchTypeChange("Id")}>
                                                     Id
-                                                    {searchType === "Id" && <IoMdCheckmark className="w-4 h-4 ml-2" />}
+                                                    {searchType === "Id" && <IoMdCheckmark className="w-3 h-3 ml-1" />}
                                                 </button>
                                             </li>
                                         </ul>
@@ -999,7 +1035,7 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
                                 <div className="relative w-full">
                                     <input
                                         value={search}
-                                        onChange={(e) => setSearch(e.target.value)}
+                                        onChange={handleSearchInputChange}
                                         type="search"
                                         id="search-dropdown"
                                         className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
@@ -1008,9 +1044,10 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
                                         style={{ width: "300px" }} // Establece un ancho específico para el botón
                                     />
                                     <button
-                                        type="submit"
+                                        type="button"
                                         disabled={searchType === "Nombre"}
-                                        className={`absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white ${searchType === "Nombre" ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
+                                        onClick={handleSearch} // Llama a handleSearch solo si la búsqueda es por ID
+                                        className={`absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white ${searchType === "Nombre" ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
                                     >
                                         <svg
                                             className="w-4 h-4"
@@ -1032,6 +1069,8 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
                                 </div>
                             </div>
                         </form>
+
+
 
                     ) : (
                         <form className="max-w-xs mx-auto mb-4" style={{ position: 'fixed', top: '11%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 999 }}>
@@ -1077,17 +1116,18 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
                                 <div className="relative w-full">
                                     <input
                                         value={search}
-                                        onChange={(e) => setSearch(e.target.value)}
+                                        onChange={handleSearchInputChange}
                                         type="search"
                                         id="search-dropdown"
                                         className="block p-1.5 w-full z-20 text-xs text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                                         placeholder="Search Prospects:"
                                         required
-                                        style={{ width: "200px" }} // Establece un ancho específico para el botón
+                                        style={{ width: "200px" }}
                                     />
                                     <button
-                                        type="submit"
+                                        type="button"
                                         disabled={searchType === "Nombre"}
+                                        onClick={handleSearch} // Llama a handleSearch solo si la búsqueda es por ID
                                         className={`absolute top-0 right-0 p-1.5 text-xs font-medium h-full text-white ${searchType === "Nombre" ? "bg-gray-400 border-gray-400 cursor-not-allowed" : "bg-blue-700 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"}`}
                                     >
                                         <svg
@@ -1110,6 +1150,8 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
                                 </div>
                             </div>
                         </form>
+
+
                     )}
                 </>
             )}
@@ -1124,6 +1166,8 @@ const tooltipStyle = isDesktopOrLaptop ? tooltipDesktopStyle : tooltipMobileStyl
                 openModalUpdate={openModalUpdate}
                 openModalDelete={openModalDelete}
                 menuDirection={menuDirection} // Pasar menuDirection a Cards
+                setOpenMenuIndex={setOpenMenuIndex}
+                setIsOpen={setIsOpen}
             />
         </div>
     );

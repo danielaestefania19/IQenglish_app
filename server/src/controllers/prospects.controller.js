@@ -42,6 +42,7 @@ export const getProspectById = async (req, res) => {
         const id = req.params.id;
         const { userId } = req
 
+
         // Verificar que el usuario sea de tipo admin o advisor
         const [users] = await pool.query('SELECT * FROM advisors WHERE id = ?', [userId]);
         if (users.length <= 0) {

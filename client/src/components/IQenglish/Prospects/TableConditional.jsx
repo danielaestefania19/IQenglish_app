@@ -12,13 +12,16 @@ const TablaCondicionada = ({
     openMenuIndex,
     openModalUpdate,
     openModalDelete,
-    menuDirection // Asegúrate de agregar la prop menuDirection
+    menuDirection,
+    setOpenMenuIndex,
+    setIsOpen
+
 }) => {
     const [shouldRenderTable, setShouldRenderTable] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 1200 ) {
+            if (window.innerWidth >= 1200) {
                 setShouldRenderTable(true);
             } else {
                 setShouldRenderTable(false);
@@ -49,6 +52,8 @@ const TablaCondicionada = ({
             openModalUpdate={openModalUpdate}
             openModalDelete={openModalDelete}
             menuDirection={menuDirection} // Pasar menuDirection a TableComponent
+            setOpenMenuIndex={setOpenMenuIndex}
+            setIsOpen={setIsOpen}
         />
     ) : (
         <Cards
@@ -62,6 +67,8 @@ const TablaCondicionada = ({
             openModalUpdate={openModalUpdate}
             openModalDelete={openModalDelete}
             menuDirection={menuDirection} // Pasar menuDirection a Cards
+            setOpenMenuIndex={setOpenMenuIndex}
+            setIsOpen={setIsOpen}
         />
     );
 };

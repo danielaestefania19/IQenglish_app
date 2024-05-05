@@ -376,7 +376,6 @@ const Blog = () => {
                   <div className="relative z-0 w-full mb-5 group">
                     <input
                       type="tel"
-                      pattern="([0-9]{2}\s[0-9]{4}\s[0-9]{4})|([0-9]{2}\s[0-9]{4}\s[0-9]{4})|([0-9]{3}\s[0-9]{3}\s[0-9]{4})"
                       name="phone_number"
                       id="floating_phone"
                       value={formData.phone_number}
