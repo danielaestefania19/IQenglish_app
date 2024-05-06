@@ -49,7 +49,7 @@ export default function useAdvisors() {
       }
   }, [jwt]);
 
-  const registerNewAdvisor = async ({ username, password, userType }) => {
+  const registerNewAdvisor = useCallback(async ({ username, password, userType }) => {
     try {
         const newAdvisor = await register({ username, password, userType, token: jwt });
         console.log(newAdvisor);
@@ -65,7 +65,8 @@ export default function useAdvisors() {
             return { success: false, error: 'Error al crear el prospecto' };
         }
     }
-}
+}, [jwt]);
+
 
 
   
