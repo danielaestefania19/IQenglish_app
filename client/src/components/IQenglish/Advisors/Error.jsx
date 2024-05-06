@@ -3,7 +3,7 @@ import React from "react";
 function Error(props) {
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 max-w-md">
+      <div className="p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 max-w-md" style={{ marginTop: "-600px" }}>
         <div className="flex items-center">
           <svg
             className="flex-shrink-0 w-4 h-4 me-2"
