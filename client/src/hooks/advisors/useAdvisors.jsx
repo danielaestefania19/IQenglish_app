@@ -51,15 +51,22 @@ export default function useAdvisors() {
 
   const registerNewAdvisor = async ({ username, password, userType }) => {
     try {
-      const newAdvisor = await register({ username, password, userType, token: jwt });
-      console.log(newAdvisor);
-      setAdvisors(prevAdvisors => [...prevAdvisors, newAdvisor]);
-      return { success: true, data: newAdvisor };
+        const newAdvisor = await register({ username, password, userType, token: jwt });
+        console.log(newAdvisor);
+        setAdvisors(prevAdvisors => [...prevAdvisors, newAdvisor]);
+        return { success: true, data: newAdvisor };
     } catch (error) {
-      console.error(error);
-      return { success: false, error };
+        if (error.response && error.response.status === 400 && error.response.data.error === 'Username already exists') {
+            // El error es que el nombre de usuario ya existe
+            return { success: false, error: 'El nombre de usuario ya existe' };
+        } else {
+            // Otro tipo de error
+            console.error(error);
+            return { success: false, error: 'Error al crear el prospecto' };
+        }
     }
-  };
+}
+
 
   
   return { advisors, loading, error, deleteAdvisor, updateAdvisor, registerNewAdvisor };

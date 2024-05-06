@@ -118,7 +118,7 @@ const Advisors = () => {
     const handleCreate = async (e) => {
         e.preventDefault();
         setIsLoading(true); // Inicia la carga
-
+    
         // Validación de la dirección
         if (formData.user_type === '') {
             setusertypeError('Este campo es obligatorio');
@@ -127,6 +127,7 @@ const Advisors = () => {
         } else {
             setusertypeError(null);
         }
+        
         // Después de que se complete la creación del prospecto con éxito
         try {
             // Guardar el resultado de createProspect en una variable
@@ -135,16 +136,24 @@ const Advisors = () => {
                 password: formData.password,
                 userType: formData.user_type,
             });
-
+    
             if (success) {
                 toast.info('Se creó correctamente el prospecto', {
                     icon: () => <img src={check} alt="Success Icon" /> // Usar el icono check importado
                 });
-
-
+    
                 setIsModalOpenCreate(false);
             } else {
-                toast.warning('Algo mal sucedió al crear el prospecto', error.message); // Muestra una alerta de advertencia
+                // Verificar si el error es debido a que el nombre de usuario ya existe
+                if (error === 'El nombre de usuario ya existe') {
+                    // Mostrar un mensaje específico al usuario
+                    toast.warning('El nombre de usuario ya existe. Por favor, elige otro.', {
+                        icon: 'error', // Icono de advertencia
+                    });
+                } else {
+                    // Otro tipo de error
+                    toast.warning('Algo mal sucedió al crear el prospecto', error.message); // Muestra una alerta de advertencia
+                }
                 setIsModalOpenCreate(false);
             }
         } catch (error) {
@@ -152,9 +161,10 @@ const Advisors = () => {
             toast.error('Algo mal sucedió al crear el prospecto'); // Muestra una alerta de error
             setIsModalOpenCreate(false);
         }
-
+    
         setIsLoading(false); // Termina la carga
     };
+    
 
 
     const openModalCreate = () => {
