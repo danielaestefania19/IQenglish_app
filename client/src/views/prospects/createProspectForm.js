@@ -19,7 +19,6 @@ export default async  function createProspectForm({ name, lastname, email, phone
             throw new Error('Response is NOT ok');
         }
 
-        console.log(response.data)
         return response.data;
 
 

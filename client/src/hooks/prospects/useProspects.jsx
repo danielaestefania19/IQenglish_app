@@ -26,7 +26,6 @@ export default function useProspects() {
     const deleteProspect = useCallback(async (id) => {
       try {
           const responseStatus = await deleteProspects({id, token: jwt});
-         console.log(id.id)
           if (responseStatus === 204) {
               setProspects(prevProspects => prevProspects.filter(prospect => prospect.id !== id.id));
           }

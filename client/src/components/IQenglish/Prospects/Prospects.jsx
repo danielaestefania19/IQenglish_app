@@ -455,12 +455,11 @@ const Prospects = () => {
     if (error) return <Error message={error.message} />;
 
     const buttonCreateProspectStyle = {
-        position: 'fixed',
+        position: isDesktopOrLaptop ? 'relative' : 'fixed',
         zIndex: 1000,
-        right: isDesktopOrLaptop ? '220px' : '60px',
-        bottom: isDesktopOrLaptop ? '840px' : '213px', // Ajusta el valor del top según el tamaño de la pantalla
+        right: isDesktopOrLaptop ? '-1200px' : '60px',
+        bottom: isDesktopOrLaptop ? '60px' : '213px', // Ajusta el valor del top según el tamaño de la pantalla
     };
-
 
     const tooltipBaseStyle = {
         position: 'absolute',

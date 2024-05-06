@@ -69,9 +69,9 @@ export const login = async (req, res) => {
         );
 
         res.send({
-            status: "ok", 
-            message: "logged in successfully", 
-            token: token, 
+            status: "ok",
+            message: "logged in successfully",
+            token: token,
         });
     } catch (error) {
         res.status(500).send({ error: 'An error occurred during login' });
@@ -114,13 +114,21 @@ export const registerUser = async (req, res) => {
         const salt = await bcryptjs.genSalt()
         const hashPassword = await bcryptjs.hash(password, salt)
 
-        await pool.query('INSERT INTO advisors (username, password, user_type) VALUES (?, ?, ?)', [username, hashPassword, userType]);
+        const [rows] = await pool.query('INSERT INTO advisors (username, password, user_type) VALUES (?, ?, ?)', [username, hashPassword, userType]);
 
-        // Obtener el ID del nuevo usuario
-        const [users_id] = await pool.query('SELECT * FROM advisors WHERE username = ?', [username]);
-        const newUserId = users_id[0].id;
+        // Obtener el ID del nuevo asesor
+        const newUserId = rows.insertId;
 
-        res.send({ message: `${userType.charAt(0).toUpperCase() + userType.slice(1)} registered successfully`, id: newUserId });
+        // Obtener toda la información del nuevo asesor registrado
+        const [newUser] = await pool.query('SELECT * FROM advisors WHERE id = ?', [newUserId]);
+
+        // Verificar que se haya encontrado el nuevo asesor
+        if (newUser.length > 0) {
+            const newAdvisor = newUser[0];
+            res.status(200).send(newAdvisor);
+        } else {
+            res.status(404).send({ error: 'advisor registered not found' });
+        }
     } catch (error) {
         res.status(500).send({ error: `An error occurred while registering the ${userType}` });
     }

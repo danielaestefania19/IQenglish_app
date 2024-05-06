@@ -8,6 +8,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { MdCall } from "react-icons/md";
 import { Pagination } from "flowbite-react";
 
+
+
 const Cards = ({ currentProspects, handleMenuToggle, isOpen, openMenuIndex, openModalUpdate, openModalDelete, setOpenMenuIndex, setIsOpen, currentPage, totalPages, onPageChange }) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedProspect, setSelectedProspect] = useState(null);
@@ -156,8 +158,8 @@ const Cards = ({ currentProspects, handleMenuToggle, isOpen, openMenuIndex, open
           </div>
         </div>
       )}
-     <div style={{ position: 'relative', zIndex: 999 }}>
-        <div className="flex overflow-x-auto sm:justify-center">
+     <div style={{ zIndex: 999 }}>
+     <div className="flex overflow-x-auto sm:justify-center">
             <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
         </div>
     </div>
