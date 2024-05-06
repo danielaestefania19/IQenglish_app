@@ -42,6 +42,7 @@ export const getProspectById = async (req, res) => {
         const id = req.params.id;
         const { userId } = req
 
+
         // Verificar que el usuario sea de tipo admin o advisor
         const [users] = await pool.query('SELECT * FROM advisors WHERE id = ?', [userId]);
         if (users.length <= 0) {
@@ -101,11 +102,9 @@ export const createProspect = async (req, res) => {
     }
 }
 
-
 export const createProspectForm = async (req, res) => {
     try {
         const { name, lastname, email, phone_number, age, address } = req.body;
-
         if (!name || !lastname || !email || !phone_number || !age || !address) {
             return res.status(400).send({ error: 'Missing required fields' });
         }
@@ -114,13 +113,18 @@ export const createProspectForm = async (req, res) => {
             return res.status(400).send({ error: 'Invalid address' });
         }
         
-
         const [rows] = await pool.query('INSERT INTO prospects (name, lastname, email, phone_number, age, addresses) VALUES (?, ?, ?, ?, ?, ?)', [name, lastname, email, phone_number, age, address]);
 
-        res.send({
-            id: rows.insertId,
-            name,
-        });
+        // Consulta para obtener el prospecto recién insertado
+        const [prospectRows] = await pool.query('SELECT * FROM prospects WHERE id = ?', [rows.insertId]);
+        
+        // Si hay datos del prospecto, devuélvelos como respuesta
+        if (prospectRows.length > 0) {
+            const prospect = prospectRows[0];
+            res.send(prospect);
+        } else {
+            res.status(404).send({ error: 'Prospect not found' });
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: 'An error occurred while creating the prospect' });
@@ -131,7 +135,11 @@ export const createProspectForm = async (req, res) => {
 export const updateProspect = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, lastname, email, phone_number, age, addresses } = req.body;
+        const { name, lastname, email, phone_number, age, address } = req.body;
+
+        if (!name || !lastname || !email || !phone_number || !age || !address) {
+            return res.status(400).send({ error: 'Missing required fields' });
+        }
 
         const { userId } = req
 
@@ -147,7 +155,7 @@ export const updateProspect = async (req, res) => {
         }
 
         // Actualizar el prospecto
-        const [result] = await pool.query('UPDATE prospects SET name = IFNULL(?, name), lastname = IFNULL(?, lastname), email = IFNULL(?, email), phone_number = IFNULL(?, phone_number), age = IFNULL(?, age), addresses = IFNULL(?, addresses) WHERE id = ?', [name, lastname, email, phone_number, age, addresses, id]);
+        const [result] = await pool.query('UPDATE prospects SET name = IFNULL(?, name), lastname = IFNULL(?, lastname), email = IFNULL(?, email), phone_number = IFNULL(?, phone_number), age = IFNULL(?, age), addresses = IFNULL(?, addresses) WHERE id = ?', [name, lastname, email, phone_number, age, address, id]);
 
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'Prospect not found'

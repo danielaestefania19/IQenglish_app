@@ -12,7 +12,8 @@ import { GrHome } from "react-icons/gr";
 import Home from './Home.jsx';
 import Prospects from './Prospects/Prospects.jsx';
 import user from "../../assets/user.jpg"
-
+import logo2 from "../../assets/logo2.jpeg";
+import Advisors from './Advisors/Advisors.jsx';
 
 function Dashboard() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,6 +26,12 @@ function Dashboard() {
     const [isHomeActive, setIsHomeActive] = useState(true); // Establecer inicialmente como activo
     const [isProspectsActive, setIsProspectsActive] = useState(false); // Establecer inicialmente como inactivo
     const [isAdvisorsActive, setIsAdvisorsActive] = useState(false); // Establecer inicialmente como inactivo
+    const [shouldRenderFooter, setShouldRenderFooter] = useState(true);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+   
+
+
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -82,6 +89,10 @@ function Dashboard() {
         };
     }, [isMenuOpen]);
 
+    const handlerSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen)
+    }
+
 
     return (
         <div>
@@ -90,23 +101,24 @@ function Dashboard() {
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
                             <button
-                                onClick={toggleMenu}
+                                onClick={handlerSidebar}
                                 aria-controls="logo-sidebar"
                                 type="button"
-                                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                                className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                             >
                                 <span className="sr-only">Open sidebar</span>
                                 <FaBars className="w-6 h-6" />
                             </button>
+
                             <a href="https://gateway.pinata.cloud/ipfs/QmfDd1ht7GD3jcmtzNuNvc8xgLWcmy4jtendDAtf58vVMK" className="flex ms-2 md:me-24">
-                                <img src="https://gateway.pinata.cloud/ipfs/QmfDd1ht7GD3jcmtzNuNvc8xgLWcmy4jtendDAtf58vVMK" className="h-8 me-3 rounded-full" alt="FlowBite Logo" />
+                                <img src={logo2} className="h-8 me-3 rounded-full" alt="FlowBite Logo" />
                                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">IQenglish</span>
                             </a>
                         </div>
                         <div className="flex items-center">
                             <div className="flex items-center ms-3 relative">
                                 {isMenuOpen && (
-                                    <div className="absolute bg-white mt-40 ml-[-500%] py-2 w-48 border rounded-lg shadow-lg">
+                                    <div className="absolute bg-white mt-48 ml-[-220%] sm:ml-[-200%] md:ml-[-220%] xs:ml-[-230%]s py-2 w-25 sm:w-26 md:w-28 xs:w-36 border rounded-lg shadow-lg">
                                         <div className="px-4 py-3" role="none">
                                             <p className="text-sm text-gray-900 dark:text-white" role="none">
                                                 {username}
@@ -146,8 +158,11 @@ function Dashboard() {
                     </div>
                 </div>
             </nav>
-            <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-                <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <aside
+                id="logo-sidebar"
+                className={`fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} bg-white border-r border-gray-200 lg:translate-x-0 dark:bg-gray-800 dark:border-gray-700`}
+                aria-label="Sidebar"
+            >   <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
                             <a href="#" className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isHomeActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`} onClick={handleHomeClick}>
@@ -182,14 +197,16 @@ function Dashboard() {
             </aside>
             {/* Contenedor para mostrar el componente activo */}
             <div className="flex justify-center items-center h-full">
-                <div className="mt-40"> {/* Agrega márgenes al contenedor */}
-                    {isHomeActive && <Home />}
+            <div className="mt-40">
+                    {/* Conditional rendering based on active state */}
+                    {isHomeActive && <Home handleProspectsClick={handleProspectsClick} />}
                     {isProspectsActive && <Prospects />}
+                    {isAdvisorsActive && <Advisors />} {/* Render Advisors component when active */}
                 </div>
             </div>
 
             <footer className="absolute bottom-0 w-full">
-                <FooterPage />
+                 <FooterPage />
             </footer>
         </div>
     );

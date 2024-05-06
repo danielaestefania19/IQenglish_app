@@ -25,21 +25,29 @@ export default function useProspects() {
   
     const deleteProspect = useCallback(async (id) => {
       try {
-        await deleteProspects({ id, token: jwt }); 
-        setProspects(prevProspects => prevProspects.filter(prospect => prospect.id !== id));
+          const responseStatus = await deleteProspects({id, token: jwt});
+          if (responseStatus === 204) {
+              setProspects(prevProspects => prevProspects.filter(prospect => prospect.id !== id.id));
+          }
+          return { success: responseStatus === 204 }; // Devuelve un indicador de éxito
       } catch (err) {
-        console.error(err);
+          console.error(err);
+          return { success: false, error: err }; // Devuelve un indicador de error
       }
-    }, []); [jwt] 
+  }, [jwt]);
   
-    const updateProspect = useCallback(async ({ id, name, lastname, email, phone_number, age, addresses }) => {
+    
+    const updateProspect = useCallback(async ({ id, name, lastname, email, phone_number, age, address }) => {
       try {
-        const updatedProspect = await updateProspects({ id, name, lastname, email, phone_number, age, addresses , token: jw });
+        const updatedProspect = await updateProspects({ id, name, lastname, email, phone_number, age, address, token: jwt });
         setProspects(prevProspects => prevProspects.map(prospect => prospect.id === id ? updatedProspect : prospect));
+        return { success: true, data: updatedProspect }; // Devuelve un indicador de éxito y los datos actualizados
       } catch (err) {
         console.error(err);
+        return { success: false, error: err }; // Devuelve un indicador de error
       }
-    }, []); [jwt]
+    }, [jwt]);
+    
   
-    return { prospects, loading, error, deleteProspect, updateProspect };
+    return { prospects, loading, error, deleteProspect, updateProspect, setProspects };
 }
