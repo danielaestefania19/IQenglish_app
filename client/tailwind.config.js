@@ -7,6 +7,9 @@ const tailwindConfig = {
       colors: {
         primary: '#1D4ED8', /* Cambia esto por el color que desees */
       },
+      fontSize: {
+        'rem-8.75': '8.75rem',
+      },
       spacing: {
         '7px': '7px',
       },
