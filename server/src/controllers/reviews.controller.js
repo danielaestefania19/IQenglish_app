@@ -51,17 +51,24 @@ export const createReview = async (req, res) => {
         // Capturar el ID del correo electrónico
         const emailId = emailResponse.data.id;
 
-        res.send({
-            id: rows.insertId,
-            titulo,
-            emailId
-        });
+        // Obtener el review recién insertado
+        const [reviewRows] = await pool.query('SELECT * FROM Reviews WHERE id = ?', [rows.insertId]);
+        
+        // Si hay datos del review, devolverlos como respuesta
+        if (reviewRows.length > 0) {
+            const review = reviewRows[0];
+            res.send({
+                review,
+                emailId
+            });
+        } else {
+            res.status(404).send({ error: 'Review not found' });
+        }
     } catch (error) {
         console.error(error);
         res.status(500).send({ error: 'An error occurred while creating the review' });
     }
 }
-
 
 export const updateReview = async (req, res) => {
     try {

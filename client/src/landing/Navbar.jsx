@@ -7,7 +7,7 @@ function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   // Usar el hook useContext para acceder al ModalContext
-  const { isOpenModalSucess, isOpenModalError } = useContext(ModalContext);
+  const { isOpenModalSucess, isOpenModalError, isOpenModalReview } = useContext(ModalContext);
 
   return (
     <header className="absolute left-0 top-0 z-50 w-full">
@@ -15,7 +15,7 @@ function Navbar() {
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-60 max-w-full px-4">
             {/* Renderizar el logo solo si ni el modal de éxito ni el de error están abiertos */}
-            {!isOpenModalSucess && !isOpenModalError && (
+            {!isOpenModalSucess && !isOpenModalError && !isOpenModalReview && (
               <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src={logo1} alt="Logo" className="h-12 w-auto" /> {/* Aumentar el tamaño del logo */}
                 <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">IQEnglish</span> {/* Aumentar el tamaño del texto */}
@@ -62,14 +62,6 @@ function Navbar() {
                 </ul>
               </nav>
             </div>
-            {/* <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
-              <a href="javascript:void(0)" className="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white">
-                Login
-              </a>
-              <a href="javascript:void(0)" className="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-blue-dark">
-                Sign Up
-              </a>
-            </div> */}
           </div>
         </div>
       </div>

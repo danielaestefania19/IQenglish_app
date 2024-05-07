@@ -42,7 +42,7 @@ const Card = () => {
                   <span
                     className="mb-5 inline-block rounded bg-primary px-4 py-1 text-center text-xs font-semibold leading-loose text-white"
                   >
-                    Dec 22, 2023
+                    Diciembre 22, 2023
                   </span>
                   <h3>
                     <a
@@ -72,7 +72,7 @@ const Card = () => {
                   <span
                     className="mb-5 inline-block rounded bg-primary px-4 py-1 text-center text-xs font-semibold leading-loose text-white"
                   >
-                    Mar 15, 2023
+                    Marzo 15, 2023
                   </span>
                   <h3>
                     <a
@@ -102,7 +102,7 @@ const Card = () => {
                   <span
                     className="mb-5 inline-block rounded bg-primary px-4 py-1 text-center text-xs font-semibold leading-loose text-white"
                   >
-                    Jan 05, 2023
+                    Junio 05, 2023
                   </span>
                   <h3>
                     <a

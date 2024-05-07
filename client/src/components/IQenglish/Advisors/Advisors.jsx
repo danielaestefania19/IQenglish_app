@@ -189,10 +189,11 @@ const Advisors = () => {
 
 
     if (loading) return (
-        <div className="flex items-center justify-center h-screen">
+        <div className="flex items-start justify-center h-screen pt-20">
             <Spinner className="h-10 w-10" color="blue" />
         </div>
     )
+    
 
     if (error) return <Error message={error.message} />;
 

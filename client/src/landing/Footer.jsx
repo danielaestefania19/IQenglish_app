@@ -4,7 +4,7 @@ import { PiInstagramLogoLight } from "react-icons/pi";
 
 const Footer = () => {
     return (
-        <footer className="bg-gradient-to-b from-white to-blue-50 dark:bg-gray-900">
+        <footer className="bg-gradient-to-b from-gray-50 to-white dark:bg-gray-900">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
