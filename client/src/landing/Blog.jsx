@@ -201,7 +201,7 @@ const Blog = () => {
 
 
               <span className="mb-4 block text-base font-semibold text-primary">
-                El momento es ahora
+                ¿Deseas aprender ingles?
               </span>
               <h2
                 className="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px]"

@@ -47,19 +47,15 @@ export const createReview = async (req, res) => {
             subject: 'Nuevo comentario creado',
             html: `<strong>Alguien ha creado un nuevo comentario:</strong><br>Id: ${rows.insertId}`,
         });
-
-        // Capturar el ID del correo electrónico
-        const emailId = emailResponse.data.id;
-
         // Obtener el review recién insertado
         const [reviewRows] = await pool.query('SELECT * FROM Reviews WHERE id = ?', [rows.insertId]);
         
         // Si hay datos del review, devolverlos como respuesta
         if (reviewRows.length > 0) {
             const review = reviewRows[0];
+            console.log(review)
             res.send({
                 review,
-                emailId
             });
         } else {
             res.status(404).send({ error: 'Review not found' });

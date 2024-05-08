@@ -22,7 +22,9 @@ export default function useReviews() {
     const createNewReview = useCallback(async ({ puntuacion, titulo, description, nombre }) => {
         try {
             const newReview = await createReview({ puntuacion, titulo, description, nombre });
-            setReviews(prevReviews => [newReview, ...prevReviews]);
+            console.log("Actualizado", newReview.review)
+            setReviews(prevReviews => [newReview.review, ...prevReviews]);
+
             return { success: true, data: newReview }; // Devuelve un indicador de éxito y los datos del nuevo review
         } catch (err) {
             console.error(err);
