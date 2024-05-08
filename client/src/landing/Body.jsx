@@ -7,12 +7,12 @@ const Body = () => {
       <div className="flex">
         {/* Div izquierdo */}
         <div className="w-[400px] flex justify-center">
-          <img src={blogs} alt="hero" className="max-w-full lg:ml-auto w-[350px]" />
+          <img src={blogs} alt="hero" className="max-w-full lg:ml-auto w-[350px] transform transition duration-500 ease-in-out hover:scale-105" />
         </div>
         {/* Div derecho */}
         <div className="w-full lg:w-1/2 flex items-center flex-grow ml-4 ">
           <div className="w-full lg:w-6/6">
-            <p className="mb-2 text-[150px] font-bold leading-[1.208] text-dark dark:text-white text-primary sm:text-[42px] lg:text-[48px] xl:text-[140px] font-montserrat" style={{ letterSpacing: '-0.05em' }}>
+            <p className="-mb-2 text-[150px] font-bold leading-[1.208] text-dark dark:text-white text-primary sm:text-[42px] lg:text-[48px] xl:text-[140px] font-montserrat" style={{ letterSpacing: '-0.05em' }}>
               LA MEJOR
             </p>
 
@@ -24,9 +24,14 @@ const Body = () => {
             </p>
             <ul className="flex flex-wrap items-center">
               <li>
-                <button className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-[20px] font-medium text-white hover:bg-blue-dark lg:px-7">
+                <button
+                  className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-[20px] font-medium text-white hover:bg-blue-dark lg:px-7"
+                  onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}
+                >
                   Comenzar
                 </button>
+
+
               </li>
               <li>
                 <Contacto /> {/* Renderizar el componente Contacto aquí */}

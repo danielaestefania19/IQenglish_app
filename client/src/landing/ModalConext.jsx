@@ -7,15 +7,18 @@ export const ModalContext = createContext();
 export const ProviderModal = ({ children }) => {
   const [isOpenModalSucess, setisOpenModalSucess] = useState(false);
   const [isOpenModalError, setisOpenModalError] = useState(false);
-
+  const [isOpenModalReview, setisOpenModalReview] = useState(false);
   // Definir el valor del contexto
   const contextValue = {
     isOpenModalSucess,
     isOpenModalError,
+    isOpenModalReview,
     openModalSucess: () => setisOpenModalSucess(true),
     closeModalSucess: () => setisOpenModalSucess(false),
     openModalError: () => setisOpenModalError(true),
     closeModalError: () => setisOpenModalError(false),
+    openModalReview: () => setisOpenModalReview(true),
+    closeModalReview: () => setisOpenModalReview(false),
   };
 
   // Retornar el Provider del contexto con el valor definido

@@ -14,12 +14,14 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { ProviderModal } from './landing/ModalConext.jsx';
 import { ProviderModalIQ } from './components/IQenglish/Prospects/IQContextModal.jsx';
+import {NextUIProvider} from "@nextui-org/react";
 
 import { ThemeProvider } from "@material-tailwind/react";
  
 
 function App() {
   return (
+    <NextUIProvider>
     <ThemeProvider>
        <ProviderModalIQ>
     <ProviderModal>
@@ -48,6 +50,7 @@ function App() {
     </ProviderModal>
     </ProviderModalIQ>
     </ThemeProvider>
+    </NextUIProvider>
   );
 }
 
