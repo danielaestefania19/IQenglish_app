@@ -1,13 +1,17 @@
 import withMT from "@material-tailwind/react/utils/withMT";
+import { nextui } from "@nextui-org/react";
 
 const tailwindConfig = {
-  content: ["./src/**/*.{js,ts,tsx,jsx,css}", 'node_modules/flowbite-react/lib/esm/**/*.js'],
+  content: [
+    "./src/**/*.{js,ts,tsx,jsx,css}", 
+    'node_modules/flowbite-react/lib/esm/**/*.js',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
         primary: '#1D4ED8', /* Cambia esto por el color que desees */
         customBlue: '#74a7e4',
-
       },
       fontSize: {
         'rem-8.75': '8.75rem',
@@ -43,12 +47,11 @@ const tailwindConfig = {
         'md': '1024px',
         'lg': '1280px',
         'xl': '1536px',
-        
       },
     },
   },
-  variants: {},
-  plugins: [ ('flowbite/plugin')],
+  darkMode: "class",
+  plugins: [nextui(), 'flowbite/plugin'],
 };
 
 export default withMT(tailwindConfig);

@@ -4,6 +4,10 @@ import { ModalContext } from "./ModalConext.jsx";
 import StarRatings from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
 import { IconButton } from "@material-tailwind/react";
+import {Pagination} from "@nextui-org/react";
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
+
 
 const Reviews = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,38 +19,47 @@ const Reviews = () => {
   const [rating, setRating] = useState({ value: '', completed: false });
   const [isLoading, setIsLoading] = useState(false);
   const [attemptedAdvance, setAttemptedAdvance] = useState(false);
+  const [nameError, setNameError] = useState('');
+  const [titleError, setTitleError] = useState('');
+  const [commentError, setCommentError] = useState('');
   const { createNewReview, reviews } = useReviews();
-  const [currentPage, setCurrentPage] = useState(1);
-  const reviewsPerPage = 6;
+  const [startIndex, setStartIndex] = useState(0); // Índice del primer comentario mostrado en la página actual
 
-  const indexOfLastReview = currentPage * reviewsPerPage;
-  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
-  const currentReviews = reviews.slice(indexOfFirstReview, indexOfLastReview);
+  const reviewsPerPage = 3;
 
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
+  const handleNextReview = () => {
+    if (startIndex + reviewsPerPage < reviews.length) {
+      setStartIndex(startIndex => startIndex + 1);
+    } else {
+      setStartIndex(0); // Vuelve al principio si estás en el último comentario
+    }
   };
 
-  const handlePrevPage = () => {
-    setCurrentPage(currentPage - 1);
+  const handlePrevReview = () => {
+    if (startIndex > 0) {
+      setStartIndex(startIndex => startIndex - 1);
+    } else {
+      setStartIndex(reviews.length - reviewsPerPage); // Vuelve al último comentario si estás en el primero
+    }
   };
 
-
+  // Obtén los comentarios para mostrar en la página actual
+  const currentReviews = reviews.slice(startIndex, startIndex + reviewsPerPage);
 
 
   const handleNext = (e) => {
     e.preventDefault();
     if (step < 4) {
-      // Verificar si todos los campos están completos antes de avanzar
-      if (step === 1 && !name.completed) {
+      // Verificar si todos los campos están completos y dentro de los límites de caracteres permitidos antes de avanzar
+      if (step === 1 && (!name.completed || name.value.length > 20)) {
         setAttemptedAdvance(true);
         return;
       }
-      if (step === 2 && !title.completed) {
+      if (step === 2 && (!title.completed || title.value.length > 60)) {
         setAttemptedAdvance(true);
         return;
       }
-      if (step === 3 && !comment.completed) {
+      if (step === 3 && (!comment.completed || comment.value.length > 100)) {
         setAttemptedAdvance(true);
         return;
       }
@@ -54,11 +67,12 @@ const Reviews = () => {
         setAttemptedAdvance(true);
         return;
       }
-
-      // Si todos los campos están completos, avanzar al siguiente paso
+  
+      // Si todos los campos están completos y dentro de los límites, avanzar al siguiente paso
       setStep(step + 1);
     }
   };
+  
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -68,19 +82,45 @@ const Reviews = () => {
   };
 
   const handleNameChange = (event) => {
-    setName({ value: event.target.value, completed: !!event.target.value });
+    const value = event.target.value;
+    setName({ value: value, completed: !!value });
     setAttemptedAdvance(false);
+    if (value.length > 20) {
+      setNameError('Se acepta un máximo de 20 caracteres.');
+      setAttemptedAdvance(false);
+    } else {
+      setNameError('');
+      setAttemptedAdvance(false);
+    }
   };
 
-  const handleTitleChange = (event) => {
-    setTitle({ value: event.target.value, completed: !!event.target.value });
-    setAttemptedAdvance(false);
-  };
 
-  const handleCommentChange = (event) => {
-    setComment({ value: event.target.value, completed: !!event.target.value });
+ 
+const handleTitleChange = (event) => {
+  const value = event.target.value;
+  setTitle({ value: value, completed: !!value });
+  setAttemptedAdvance(false);
+  if (value.length > 60) {
+    setTitleError('Se acepta un máximo de 60 caracteres.');
     setAttemptedAdvance(false);
-  };
+  } else {
+    setTitleError('');
+    setAttemptedAdvance(false);
+  }
+};
+
+const handleCommentChange = (event) => {
+  const value = event.target.value;
+  setComment({ value: value, completed: !!value });
+  setAttemptedAdvance(false);
+  if (value.length > 100) {
+    setCommentError('Se acepta un máximo de 100 caracteres.');
+    setAttemptedAdvance(false);
+  } else {
+    setCommentError('');
+    setAttemptedAdvance(false);
+  }
+};
 
   const ratingChanged = (newRating) => {
     setRating({ value: newRating, completed: !!newRating });
@@ -101,7 +141,8 @@ const Reviews = () => {
     setComment({ value: '', completed: false });
     setRating({ value: '', completed: false });
     setAttemptedAdvance(false);
-    setCurrentPage(1);
+  
+
   };
 
   const handleSubmit = async (event) => {
@@ -149,7 +190,7 @@ const Reviews = () => {
     closeModal();
   };
 
-  console.log(currentPage)
+
 
 
   return (
@@ -157,14 +198,14 @@ const Reviews = () => {
       <div className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="md:flex md:items-end md:justify-between">
           <div className="max-w-xl">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl">
               Comentarios
             </h2>
           </div>
 
           <button
             onClick={openModal}
-            className="mt-6 inline-flex shrink-0 items-center gap-2 rounded-full border border-rose-600 px-5 py-3 text-rose-600 transition hover:bg-rose-600 hover:text-white md:mt-0"
+            className="mt-6 inline-flex shrink-0 items-center gap-2 rounded-full border border-rose-600 px-5 py-3 text-primary transition hover:bg-rose-600 hover:text-white md:mt-0"
           >
             <span className="font-medium">Añade un comentario...</span>
 
@@ -183,32 +224,83 @@ const Reviews = () => {
 
 
 
-
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 ">
-          {currentReviews.map(review => (
-            <blockquote key={review.id} className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 transform transition duration-500 ease-in-out hover:scale-105">
-              <div>
-                <div className="flex gap-0.5 text-yellow-500">
-                  <StarRatings
-                    count={review.puntuacion}
-                    value={review.puntuacion}
-                    size={24}
-                    activeColor="#ffd700"
-                  />
-                </div>
-
-                <div className="mt-4">
-                  <p className="text-2xl font-bold text-rose-600 sm:text-3xl">{review.titulo}</p>
-                  <p className="mt-4 leading-relaxed text-gray-700">{review.description}</p>
-                </div>
-              </div>
-
-              <footer className="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
-                &mdash; Hola
-              </footer>
-            </blockquote>
-          ))}
+        <div className="mt-8 buttom-10 grid grid-cols-1 gap-4 md:grid-cols-3 relative">
+        {currentReviews.map((review, index) => (
+    <blockquote key={review.id} className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 transform transition duration-500 ease-in-out hover:scale-105">
+      <div>
+        <div className="flex gap-0.5 text-yellow-500">
+          <StarRatings
+            count={review.puntuacion}
+            value={review.puntuacion}
+            size={24}
+            activeColor="#ffd700"
+          />
         </div>
+
+        <div className="mt-4">
+          <p className="text-2xl font-bold text-rose-600 sm:text-3xl">{review.titulo}</p>
+          <p className="mt-4 leading-relaxed text-gray-700">{review.description}</p>
+        </div>
+      </div>
+
+      <footer className="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
+        — {review.nombre}
+      </footer>
+    </blockquote>
+  ))}
+
+  <div className="absolute -bottom-2 right-0 space-x-4">
+    <IconButton
+     onClick={handlePrevReview}
+      variant="text"
+      color="black"
+      size="lg"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="h-6 w-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+        />
+      </svg>
+    </IconButton>
+
+    <IconButton
+     onClick={handleNextReview}
+      variant="text"
+      color="black"
+      size="lg"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
+        stroke="currentColor"
+        className="h-6 w-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+        />
+      </svg>
+    </IconButton>
+
+  
+  </div>
+  <Pagination total={10} initialPage={1} />
+</div>
+
+
+
         {/* Modal */}
         {isModalOpen && (
           <div className="fixed inset-0 z-10 overflow-y-auto" style={{ height: '100vh' }}>
@@ -250,6 +342,7 @@ const Reviews = () => {
                                 required // Campo requerido
                               />
                               {attemptedAdvance && !name.completed && <p className="text-red-500 text-xs mt-1">Este campo es requerido</p>}
+                              {nameError && <p className="text-red-500 text-xs mt-1">{nameError}</p>}
                             </div>
                           )}
 
@@ -265,6 +358,7 @@ const Reviews = () => {
                                 required // Campo requerido
                               />
                               {attemptedAdvance && !title.completed && <p className="text-red-500 text-xs mt-1">Este campo es requerido</p>}
+                              {titleError && <p className="text-red-500 text-xs mt-1">{titleError}</p>}
                             </div>
                           )}
 
@@ -278,6 +372,7 @@ const Reviews = () => {
                                 required // Campo requerido
                               ></textarea>
                               {attemptedAdvance && !comment.completed && <p className="text-red-500 text-xs mt-1">Este campo es requerido</p>}
+                              {commentError && <p className="text-red-500 text-xs mt-1">{commentError}</p>}
                             </div>
                           )}
 
