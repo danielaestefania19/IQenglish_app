@@ -3,7 +3,7 @@ import Contacto from "./Contacto.jsx";
 
 const Body = () => {
   return (
-    <div className="container mx-auto py-32">
+    <div className="container mx-auto py-32 bg-[#F0F4F9]">
       <div className="flex">
         {/* Div izquierdo */}
         <div className="w-[400px] flex justify-center">
