@@ -168,7 +168,11 @@ const Reviews = () => {
   const openModal = () => {
     setIsModalOpen(true);
     openModalReview();
+    // Establecer el índice de inicio en 0 y la página actual en 1 al abrir el modal
+    setStartIndex(0);
+    setCurrentPage(1);
   };
+  
 
   const closeModal = () => {
     setIsModalOpen(false);
