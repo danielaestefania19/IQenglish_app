@@ -1,13 +1,12 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import useReviews from '../hooks/reviews/useReviews';
 import { ModalContext } from "./ModalConext.jsx";
 import StarRatings from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
 import { IconButton } from "@material-tailwind/react";
-import {Pagination} from "@nextui-org/react";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-
-
+import { Pagination } from "@nextui-org/pagination";
+import { useTransition, animated, config } from 'react-spring';
+import check from "../../src/assets/check.png"
 
 const Reviews = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,27 +23,66 @@ const Reviews = () => {
   const [commentError, setCommentError] = useState('');
   const { createNewReview, reviews } = useReviews();
   const [startIndex, setStartIndex] = useState(0); // Índice del primer comentario mostrado en la página actual
+  const [direction, setDirection] = useState(0); // 0 para adelante, 1 para atrás
+  const [currentReviews, setCurrentReviews] = useState([]);
+  const [reviewsLoaded, setReviewsLoaded] = useState(false);
+  const [TotalPage, setTotalPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1);
 
   const reviewsPerPage = 3;
 
+
+
+  // Actualiza el estado de la página actual al cambiar de página
   const handleNextReview = () => {
+    setDirection(0);
     if (startIndex + reviewsPerPage < reviews.length) {
-      setStartIndex(startIndex => startIndex + 1);
+      setStartIndex(startIndex => startIndex + 3);
+      setCurrentPage(currentPage => currentPage + 1); // Incrementa la página actual
     } else {
       setStartIndex(0); // Vuelve al principio si estás en el último comentario
+      setCurrentPage(1); // Reinicia la página actual
     }
   };
-
+  
   const handlePrevReview = () => {
+    setDirection(1);
     if (startIndex > 0) {
-      setStartIndex(startIndex => startIndex - 1);
+      setStartIndex(startIndex => startIndex - 3);
+      setCurrentPage(currentPage => currentPage - 1); // Decrementa la página actual
     } else {
       setStartIndex(reviews.length - reviewsPerPage); // Vuelve al último comentario si estás en el primero
+      setCurrentPage(Math.ceil(reviews.length / reviewsPerPage)); // Establece la página actual como la última
     }
   };
 
-  // Obtén los comentarios para mostrar en la página actual
-  const currentReviews = reviews.slice(startIndex, startIndex + reviewsPerPage);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage); // Actualiza la página actual
+    setStartIndex((newPage - 1) * reviewsPerPage); // Actualiza el índice de inicio basado en la nueva página
+  };
+  
+
+  useEffect(() => {
+    // Verifica si las revisiones están cargadas
+    if (Array.isArray(reviews) && reviews.length) {
+      const newCurrentReviews = reviews.slice(startIndex, startIndex + reviewsPerPage);
+      setCurrentReviews(newCurrentReviews);
+      // Calcula el total de páginas
+      setTotalPage(Math.ceil(reviews.length / reviewsPerPage));
+      // Marcamos que las revisiones están cargadas
+      setReviewsLoaded(true);
+    }
+  }, [reviews, startIndex, reviewsPerPage]);
+  
+
+
+  const transitions = useTransition(currentReviews, {
+    from: { opacity: 0, transform: direction === 0 ? 'translate3d(100%,0,0)' : 'translate3d(-100%,0,0)' },
+    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
+    config: config.molasses, // Añade esta línea
+  });
+
 
 
   const handleNext = (e) => {
@@ -59,7 +97,7 @@ const Reviews = () => {
         setAttemptedAdvance(true);
         return;
       }
-      if (step === 3 && (!comment.completed || comment.value.length > 100)) {
+      if (step === 3 && (!comment.completed || comment.value.length > 250)) {
         setAttemptedAdvance(true);
         return;
       }
@@ -67,12 +105,12 @@ const Reviews = () => {
         setAttemptedAdvance(true);
         return;
       }
-  
+
       // Si todos los campos están completos y dentro de los límites, avanzar al siguiente paso
       setStep(step + 1);
     }
   };
-  
+
 
   const handleBack = (e) => {
     e.preventDefault();
@@ -95,32 +133,32 @@ const Reviews = () => {
   };
 
 
- 
-const handleTitleChange = (event) => {
-  const value = event.target.value;
-  setTitle({ value: value, completed: !!value });
-  setAttemptedAdvance(false);
-  if (value.length > 60) {
-    setTitleError('Se acepta un máximo de 60 caracteres.');
-    setAttemptedAdvance(false);
-  } else {
-    setTitleError('');
-    setAttemptedAdvance(false);
-  }
-};
 
-const handleCommentChange = (event) => {
-  const value = event.target.value;
-  setComment({ value: value, completed: !!value });
-  setAttemptedAdvance(false);
-  if (value.length > 100) {
-    setCommentError('Se acepta un máximo de 100 caracteres.');
+  const handleTitleChange = (event) => {
+    const value = event.target.value;
+    setTitle({ value: value, completed: !!value });
     setAttemptedAdvance(false);
-  } else {
-    setCommentError('');
+    if (value.length > 60) {
+      setTitleError('Se acepta un máximo de 60 caracteres.');
+      setAttemptedAdvance(false);
+    } else {
+      setTitleError('');
+      setAttemptedAdvance(false);
+    }
+  };
+
+  const handleCommentChange = (event) => {
+    const value = event.target.value;
+    setComment({ value: value, completed: !!value });
     setAttemptedAdvance(false);
-  }
-};
+    if (value.length > 250) {
+      setCommentError('Se acepta un máximo de 250 caracteres.');
+      setAttemptedAdvance(false);
+    } else {
+      setCommentError('');
+      setAttemptedAdvance(false);
+    }
+  };
 
   const ratingChanged = (newRating) => {
     setRating({ value: newRating, completed: !!newRating });
@@ -141,7 +179,7 @@ const handleCommentChange = (event) => {
     setComment({ value: '', completed: false });
     setRating({ value: '', completed: false });
     setAttemptedAdvance(false);
-  
+
 
   };
 
@@ -166,6 +204,7 @@ const handleCommentChange = (event) => {
 
       if (result.success) {
         toast.info('¡El comentario se creó exitosamente!', {
+          icon: () => <img src={check} alt="Success Icon" />, // Usar el icono check importado
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -223,81 +262,86 @@ const handleCommentChange = (event) => {
 
 
 
+        <div className="mt-8 buttom-10 grid grid-cols-1 gap-4 md:grid-cols-3 relative mb-20 ">
+          {transitions((props, item) => (
+            <animated.blockquote style={props} className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 min-h-[500px]">
+              <div>
+                <div className="flex gap-0.5 text-yellow-500">
+                  <StarRatings
+                    count={item.puntuacion}
+                    value={item.puntuacion}
+                    size={24}
+                    activeColor="#ffd700"
+                  />
+                </div>
 
-        <div className="mt-8 buttom-10 grid grid-cols-1 gap-4 md:grid-cols-3 relative">
-        {currentReviews.map((review, index) => (
-    <blockquote key={review.id} className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 transform transition duration-500 ease-in-out hover:scale-105">
-      <div>
-        <div className="flex gap-0.5 text-yellow-500">
-          <StarRatings
-            count={review.puntuacion}
-            value={review.puntuacion}
-            size={24}
-            activeColor="#ffd700"
-          />
+                <div className="mt-4">
+                  <p className="text-2xl font-bold text-rose-600 sm:text-3xl">{item.titulo}</p>
+                  <p className="mt-4 leading-relaxed text-gray-700">{item.description}</p>
+                </div>
+              </div>
+
+              <footer className="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
+                — {item.nombre}
+              </footer>
+            </animated.blockquote>
+
+          ))}
+
+
+          <div className="absolute -bottom-12 right-0 space-x-4">
+            <IconButton
+              onClick={handlePrevReview}
+              variant="text"
+              color="black"
+              size="lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                />
+              </svg>
+            </IconButton>
+
+            <IconButton
+              onClick={handleNextReview}
+              variant="text"
+              color="black"
+              size="lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                className="h-6 w-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
+            </IconButton>
+
+
+          </div>
+          {reviewsLoaded && TotalPage > 0 && !isModalOpen && (
+         <div className="pagination-container absolute -bottom-20 right-100 mb-8 mr-4">
+         <Pagination active initialPage={1} total={TotalPage} page={currentPage} color='primary' onChange={handlePageChange}/> {/* Agrega la función handlePageChange a onChange */}
+       </div>
+      )}
         </div>
-
-        <div className="mt-4">
-          <p className="text-2xl font-bold text-rose-600 sm:text-3xl">{review.titulo}</p>
-          <p className="mt-4 leading-relaxed text-gray-700">{review.description}</p>
-        </div>
-      </div>
-
-      <footer className="mt-4 text-sm font-medium text-gray-700 sm:mt-6">
-        — {review.nombre}
-      </footer>
-    </blockquote>
-  ))}
-
-  <div className="absolute -bottom-2 right-0 space-x-4">
-    <IconButton
-     onClick={handlePrevReview}
-      variant="text"
-      color="black"
-      size="lg"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-        />
-      </svg>
-    </IconButton>
-
-    <IconButton
-     onClick={handleNextReview}
-      variant="text"
-      color="black"
-      size="lg"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={2}
-        stroke="currentColor"
-        className="h-6 w-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-        />
-      </svg>
-    </IconButton>
-
-  
-  </div>
-  <Pagination total={10} initialPage={1} />
-</div>
 
 
 

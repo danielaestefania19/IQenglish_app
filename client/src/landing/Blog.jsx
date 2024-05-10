@@ -392,7 +392,7 @@ const Blog = () => {
                           <Listbox.Option
                             key={locationIdx}
                             className={({ active }) =>
-                              `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'text-white bg-blue-600' : 'text-gray-900'
+                              `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'text-white bg-primary' : 'text-gray-900'
                               }`
                             }
                             value={location.value}
