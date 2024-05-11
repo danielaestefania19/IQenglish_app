@@ -1,11 +1,11 @@
 import { Fragment, useState, useContext } from 'react';
 import createProspect from "../views/prospects/createProspect.js";
-import { ModalContext } from "./ModalConext.jsx";
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import clock from "../../src/assets/clock.png"
 import idea from "../../src/assets/idea.png"
 import lesson from "../../src/assets/lesson.png"
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, RadioGroup, Radio} from "@nextui-org/react";
 
 
 const locations = [
@@ -26,11 +26,10 @@ const locations = [
 
 const Blog = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [showModalSucess, setShowModalSucess] = useState(false);
-  const [showModalError, setShowModalError] = useState(false);
-  const { openModalSucess, closeModalSucess, openModalError, closeModalError } = useContext(ModalContext);
   const [ageError, setAgeError] = useState(null);
   const [addressError, setAddressError] = useState(null);
+  const {isOpen, onOpen, onClose, onOpenChange} = useDisclosure();
+  const [isError, setIsError] = useState(false); // Nuevo estado para manejar el estado de error
 
 
   const [formData, setFormData] = useState({
@@ -104,95 +103,56 @@ const Blog = () => {
       });
       // Comprobar si result tiene un valor
       if (result) {
-        setShowModalSucess(true);
-        openModalSucess();
+        onOpen(); // Abre el modal de éxito;
       } else {
         console.error('Algo mal sucedio');
-        setShowModalError(true);
-        openModalError()
+        setIsError(true); // Indicar que hubo un error
+        onOpen();
       }
     } catch (error) {
       console.error(error); // Maneja el error aquí
-      setShowModalError(true);
-      openModalError()
+      setIsError(true); // Indicar que hubo un error
+      onOpen();
     }
     setIsLoading(false); // Termina la carga
   };
 
-
-  // Manejador de eventos para cerrar el modal
-  const handleCloseModalSucess = () => {
-    setShowModalSucess(false);
-    closeModalSucess();
-  };
-
-
-  const handlecloseModalError = () => {
-    setShowModalError(false);
-    closeModalError()
-  };
-
-
   return (
     <section className="relative z-10 overflow-hidden bg-gradient-to-b from-blue-50 to-white py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
       <div className="container mx-auto">
-        <div id="progress-modal" className={`fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center ${showModalSucess ? '' : 'hidden'}`}>
-          <div className="absolute bg-black opacity-50 inset-0"></div>
-          <div className="relative p-4 w-full max-w-md max-h-full">
-            {/* Modal content */}
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-              <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="progress-modal" onClick={handleCloseModalSucess}>
-                <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                </svg>
-                <span className="sr-only">Close modal</span>
-              </button>
-              <div className="p-4 md:p-5">
-                <svg className="w-10 h-10 text-gray-400 dark:text-gray-500 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
-                  <path d="M8 5.625c4.418 0 8-1.063 8-2.375S12.418.875 8 .875 0 1.938 0 3.25s3.582 2.375 8 2.375Zm0 13.5c4.963 0 8-1.538 8-2.375v-4.019c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353c-.193.081-.394.158-.6.231l-.189.067c-2.04.628-4.165.936-6.3.911a20.601 20.601 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244c-.053-.028-.113-.053-.165-.082v4.019C0 17.587 3.037 19.125 8 19.125Zm7.09-12.709c-.193.081-.394.158-.6.231l-.189.067a20.6 20.6 0 0 1-6.3.911 20.6 20.6 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244C.112 6.035.052 6.01 0 5.981V10c0 .837 3.037 2.375 8 2.375s8-1.538 8-2.375V5.981c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353Z" />
-                </svg>
-                <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">¡Tus datos fueron recibidos correctamente!</h3>
-                <p className="text-gray-500 dark:text-gray-400 mb-6">IQenglish agradece tu preferencia para aprender inglés con nosotros. </p>
-
-                <div className="flex justify-between mb-1 text-gray-500 dark:text-gray-400">
-                  <span className="text-base font-normal">Es el momento de hacer historia juntos!</span>
-                  <span className="text-sm font-semibold text-gray-900 dark:text-white">En breve uno de nuestros asesores se pondrá en contacto contigo para darte más información.</span>
-                </div>
-                {/* Modal footer */}
-                <div className="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
-                  <button data-modal-hide="progress-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleCloseModalSucess}>Aceptar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="error-modal" className={`fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center ${showModalError ? '' : 'hidden'}`}>
-          <div className="absolute bg-black opacity-50 inset-0"></div>
-          <div className="relative p-4 w-full max-w-md max-h-full">
-            {/* Modal content */}
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-              <button type="button" className="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="error-modal" onClick={handlecloseModalError}>
-                <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                </svg>
-                <span className="sr-only">Close modal</span>
-              </button>
-              <div className="p-4 md:p-5">
-                <svg className="w-10 h-10 text-red-500 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
-                  <path d="M8 5.625c4.418 0 8-1.063 8-2.375S12.418.875 8 .875 0 1.938 0 3.25s3.582 2.375 8 2.375Zm0 13.5c4.963 0 8-1.538 8-2.375v-4.019c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353c-.193.081-.394.158-.6.231l-.189.067c-2.04.628-4.165.936-6.3.911a20.601 20.601 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244c-.053-.028-.113-.053-.165-.082v4.019C0 17.587 3.037 19.125 8 19.125Zm7.09-12.709c-.193.081-.394.158-.6.231l-.189.067a20.6 20.6 0 0 1-6.3.911 20.6 20.6 0 0 1-6.3-.911l-.189-.067a10.719 10.719 0 0 1-.852-.34 8.08 8.08 0 0 1-.493-.244C.112 6.035.052 6.01 0 5.981V10c0 .837 3.037 2.375 8 2.375s8-1.538 8-2.375V5.981c-.052.029-.112.054-.165.082a8.08 8.08 0 0 1-.745.353Z" />
-                </svg>
-                <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">Lo sentimos, algo mal ha sucedido al enviar tus datos.</h3>
-                <p className="text-gray-500 dark:text-gray-400 mb-6">Por favor, intenta de nuevo.</p>
-
-                {/* Modal footer */}
-                <div className="flex items-center mt-6 space-x-4 rtl:space-x-reverse">
-                  <button data-modal-hide="error-modal" type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handlecloseModalError}>Intentar de nuevo</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <Modal
+          isOpen={isOpen}
+          placement="top-center"
+          onOpenChange={onOpenChange}
+          classNames={{
+            backdrop: "bg-gradient-to-t from-blue-50 to-white backdrop-opacity-20"
+          }}
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1 font-montserrat">¡Que gran noticia!</ModalHeader>
+                <ModalBody>
+              <p>
+                {isError
+                  ? "Lo sentimos, algo mal ha sucedido al enviar tus datos. Por favor, intenta de nuevo."
+                  : "Acabas de dar el primer paso para convertirte en una persona bilingue. IQenglish agradece tu preferencia para aprender inglés con nosotros."}
+              </p>
+              <p>
+                {isError
+                  ? null
+                  : "En breve uno de nuestros asesores se pondrá en contacto contigo para darte más información."}
+              </p>
+            </ModalBody>
+                <ModalFooter>
+              <Button color="primary" onPress={onClose}>
+                Aceptar
+              </Button>
+            </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
 
         <div id="register"  className="-mx-4 flex flex-wrap lg:justify-between">
 
@@ -200,16 +160,16 @@ const Blog = () => {
             <div className="mb-12 max-w-[570px] lg:mb-0">
 
 
-              <span className="mb-4 block text-base font-semibold text-primary">
+              <span className="mb-4 block text-base font-semibold text-primary font-montserrat">
                 ¿Deseas aprender ingles?
               </span>
               <h2
-                className="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px]"
+                className="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px] font-montserrat"
               >
                 Empieza con Nosotros
               </h2>
               <p
-                className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6"
+                className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6 font-montserrat"
               >
                 ¡Nos gustaría saber de ti! Completa a continuación tu información de contacto. Cuando recibamos tu consulta, nos pondremos en contacto contigo lo antes posible.
               </p>
@@ -221,10 +181,10 @@ const Blog = () => {
                   <img src={lesson} alt="Clock" className="object-cover" />
                 </div>
                 <div className="w-full">
-                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white">
+                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white font-montserrat">
                     Nuestro Método de Enseñanza
                   </h4>
-                  <p className="text-base text-body-color dark:text-dark-6">
+                  <p className="text-base text-body-color dark:text-dark-6 font-montserrat">
                     Aprende con nuestro método Activo-Inductivo
                   </p>
                 </div>
@@ -239,10 +199,10 @@ const Blog = () => {
 
                 </div>
                 <div className="w-full">
-                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white">
+                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white font-montserrat">
                     Tiempo de Aprendizaje
                   </h4>
-                  <p className="text-base text-body-color dark:text-dark-6">
+                  <p className="text-base text-body-color dark:text-dark-6 font-montserrat">
                     Aprende ingles en 8 o 12 meses
                   </p>
                 </div>
@@ -255,10 +215,10 @@ const Blog = () => {
                    <img src={idea} alt="Clock" className="object-cover" />
                 </div>
                 <div className="w-full">
-                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white">
+                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white font-montserrat">
                     Nuestro Slogan
                   </h4>
-                  <p className="text-base text-body-color dark:text-dark-6">
+                  <p className="text-base text-body-color dark:text-dark-6 font-montserrat">
                     ¡Aprender ingles nunca fue tan fácil!
                   </p>
                 </div>
@@ -283,7 +243,7 @@ const Blog = () => {
                   />
                   <label
                     htmlFor="floating_email"
-                    className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                    className="peer-focus:font-medium font-montserrat absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
                     Direccion de correo
                   </label>
@@ -302,7 +262,7 @@ const Blog = () => {
                     />
                     <label
                       htmlFor="floating_first_name"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      className="peer-focus:font-medium absolute font-montserrat text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Nombre
                     </label>
@@ -320,7 +280,7 @@ const Blog = () => {
                     />
                     <label
                       htmlFor="floating_last_name"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      className="peer-focus:font-medium absolute font-montserrat text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Apellido
                     </label>
@@ -334,14 +294,14 @@ const Blog = () => {
                       id="floating_phone"
                       value={formData.phone_number}
                       onChange={handleChange}
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                      className="block py-2.5 px-0 w-full text-sm font-montserrat text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                       placeholder=" "
                       required
                     />
 
                     <label
                       htmlFor="floating_phone"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      className="peer-focus:font-medium font-montserrat absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Teléfono <span className="text-xs">(81 1635 9851)</span>
                     </label>
@@ -361,7 +321,7 @@ const Blog = () => {
                     {ageError && <p className="text-red-500">{ageError}</p>}
                     <label
                       htmlFor="floating_company"
-                      className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                      className="peer-focus:font-medium absolute font-montserrat text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                     >
                       Edad
                     </label>
@@ -392,7 +352,7 @@ const Blog = () => {
                           <Listbox.Option
                             key={locationIdx}
                             className={({ active }) =>
-                              `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'text-white bg-blue-600' : 'text-gray-900'
+                              `relative cursor-default select-none font-montserrat py-2 pl-10 pr-4 ${active ? 'text-white bg-primary' : 'text-gray-900'
                               }`
                             }
                             value={location.value}
@@ -400,7 +360,7 @@ const Blog = () => {
                             {({ selected }) => (
                               <>
                                 <span
-                                  className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                                  className={`block truncate ${selected ? 'font-medium' : 'font-montserrat'
                                     }`}
                                 >
                                   {location.name}
@@ -423,13 +383,13 @@ const Blog = () => {
                   <div className="flex items-center h-5">
                     <input id="terms" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                   </div>
-                  <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">De acuerdo con los <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">términos y condiciones</a></label>
+                  <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 font-montserrat">De acuerdo con los <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">términos y condiciones</a></label>
                 </div>
                 <div className="flex items-start mb-5">
                   <div className="flex items-center h-5">
                     <input id="terms" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                   </div>
-                  <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Acepto recibir mensajes o llamadas</label>
+                  <label htmlFor="terms" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 font-montserrat">Acepto recibir mensajes o llamadas</label>
                 </div>
                 <div>
                   <button
@@ -442,7 +402,7 @@ const Blog = () => {
                           <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
                           <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="white" />
                         </svg>
-                        <span className="sr-only">Enviando...</span>
+                        <span className="sr-only font-montserrat">Enviando...</span>
                       </div>
                     ) : (
                       'Enviar'

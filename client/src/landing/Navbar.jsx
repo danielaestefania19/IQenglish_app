@@ -1,13 +1,11 @@
 import logo1 from "../assets/logo1.jpeg";
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ModalContext } from "./ModalConext";
+
 
 function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
-  // Usar el hook useContext para acceder al ModalContext
-  const { isOpenModalSucess, isOpenModalError, isOpenModalReview } = useContext(ModalContext);
 
   return (
 

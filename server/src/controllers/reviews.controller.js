@@ -40,20 +40,12 @@ export const createReview = async (req, res) => {
 
         const [rows] = await pool.query('INSERT INTO Reviews (puntuacion, titulo, description, nombre) VALUES (?, ?, ?, ?)', [puntuacion, titulo, description, nombre]);
 
-        // Enviar un correo electrónico
-        const emailResponse = await resend.emails.send({
-            from: "Acme <onboarding@resend.dev>",
-            to: ['iqenglishapp@gmail.com'],
-            subject: 'Nuevo comentario creado',
-            html: `<strong>Alguien ha creado un nuevo comentario:</strong><br>Id: ${rows.insertId}`,
-        });
         // Obtener el review recién insertado
         const [reviewRows] = await pool.query('SELECT * FROM Reviews WHERE id = ?', [rows.insertId]);
         
         // Si hay datos del review, devolverlos como respuesta
         if (reviewRows.length > 0) {
             const review = reviewRows[0];
-            console.log(review)
             res.send({
                 review,
             });

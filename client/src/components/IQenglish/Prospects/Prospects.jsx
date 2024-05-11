@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { ModalContextIQ } from './IQContextModal.jsx';
-import check from "../../../assets/comprobar.png";
+import check from "../../../assets/check.png";
 import TableConditional from './TableConditional.jsx';
 import { useMediaQuery } from 'react-responsive';
 import { RiChatNewLine } from "react-icons/ri";
@@ -151,8 +151,12 @@ const Prospects = () => {
 
             if (result) {
                 toast.info('Se creó correctamente el prospecto', {
-                    icon: () => <img src={check} alt="Success Icon" /> // Usar el icono check importado
-                });
+                    icon: () => <img src={check} alt="Success Icon" />, // Usar el icono check importado
+                    progressStyle: {
+                      background: '#1D4ED8', // Color de la barra de progreso (azul oscuro)
+                    }
+                  });
+                  
 
                 // Actualiza la lista de prospectos en el estado local
                 const updatedProspects = [...prospects, result];
@@ -212,9 +216,12 @@ const Prospects = () => {
             });
 
             if (success) {
-                toast.info('Se actualizó correctamente el prospecto', {
-                    icon: () => <img src={check} alt="Success Icon" />
-                });
+                toast.info('Se actualizo correctamente el prospecto', {
+                    icon: () => <img src={check} alt="Success Icon" />, // Usar el icono check importado
+                    progressStyle: {
+                      background: '#1D4ED8', // Color de la barra de progreso (azul oscuro)
+                    }
+                  });
                 // Puedes usar los datos actualizados aquí si es necesario
             } else {
                 toast.error('Algo mal sucedió al actualizar el prospecto: ' + error.message);
@@ -345,8 +352,11 @@ const Prospects = () => {
 
             if (success) {
                 toast.info('Se elimino correctamente el prospecto', {
-                    icon: () => <img src={check} alt="Success Icon" />
-                });
+                    icon: () => <img src={check} alt="Success Icon" />, // Usar el icono check importado
+                    progressStyle: {
+                      background: '#1D4ED8', // Color de la barra de progreso (azul oscuro)
+                    }
+                  });
             } else {
                 toast.error('Algo mal sucedio al eliminar el prospecto: ' + error.message);
             }

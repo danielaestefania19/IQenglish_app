@@ -5,7 +5,7 @@ import logo_admin from "../../../assets/admin.jpg"
 import logo_advisor from "../../../assets/advisor.jpg"
 import Error from "./Error.jsx";
 import { toast } from 'react-toastify';
-import check from "../../../assets/comprobar.png";
+import check from "../../../assets/check.png";
 import { useMediaQuery } from 'react-responsive';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { RiChatNewLine } from "react-icons/ri";
@@ -95,7 +95,10 @@ const Advisors = () => {
 
             if (success) {
                 toast.info('Se eliminó correctamente el asesor', {
-                    icon: () => <img src={check} alt="Success Icon" />
+                    icon: () => <img src={check} alt="Success Icon" />, // Usar el icono check importado
+                    progressStyle: {
+                      background: '#1D4ED8', // Color de la barra de progreso (azul oscuro)
+                    }
                 });
             } else {
                 toast.error('Algo mal sucedió al eliminar el asesor: ' + error.message);
@@ -138,8 +141,11 @@ const Advisors = () => {
             });
     
             if (success) {
-                toast.info('Se creó correctamente el prospecto', {
-                    icon: () => <img src={check} alt="Success Icon" /> // Usar el icono check importado
+                toast.info('Se creó correctamente el asesor', {
+                    icon: () => <img src={check} alt="Success Icon" />, // Usar el icono check importado
+                    progressStyle: {
+                      background: '#1D4ED8', // Color de la barra de progreso (azul oscuro)
+                    }
                 });
     
                 setIsModalOpenCreate(false);
@@ -244,7 +250,7 @@ const Advisors = () => {
                                 className="absolute z-10 inline-block w-auto px-2 py-1 text-xs font-medium text-gray-900 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm tooltip"
                                 style={tooltipBaseStyle}
                             >
-                                Nuevo Prospecto
+                                Nuevo Asesor
                                 <div className="tooltip-arrow" data-popper-arrow></div>
                             </div>
                         )}
@@ -257,7 +263,7 @@ const Advisors = () => {
         <div className="relative p-4 mx-auto mt-20 max-w-md bg-white rounded-lg shadow-lg dark:bg-gray-700">
             <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Crear Nuevo Prospecto
+                    Crear Nuevo Asesor
                 </h3>
                 <button onClick={closeModalCreate} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                     <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
