@@ -24,6 +24,7 @@ function App() {
     <NextUIProvider>
     <ThemeProvider>
       <ProviderModalIQ>
+        
           <UserContextProvider>
             <ToastContainer />
             <Router>
@@ -37,7 +38,7 @@ function App() {
                     <Blog />
                     <Card/>
                     <Reviews/>
-                    <Footer />
+                   
                   </>
                 }/>
                 <Route path="/teachers" element={
@@ -59,8 +60,10 @@ function App() {
                   </>
                 }/>
               </Routes>
+              <Footer />
             </Router>
           </UserContextProvider>
+      
       </ProviderModalIQ>
     </ThemeProvider>
   </NextUIProvider>

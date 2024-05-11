@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useReviews from '../hooks/reviews/useReviews';
 import StarRatings from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
@@ -6,7 +6,7 @@ import { IconButton } from "@material-tailwind/react";
 import { Pagination } from "@nextui-org/pagination";
 import { useTransition, animated, config } from 'react-spring';
 import check from "../../src/assets/check.png"
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Textarea, Spinner } from "@nextui-org/react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input, Textarea } from "@nextui-org/react";
 
 const Reviews = () => {
   const [name, setName] = useState({ value: '', completed: false });
@@ -136,7 +136,7 @@ const Reviews = () => {
   }
 
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async () => {
     console.log("Hola mundo")
 
     if (!name.completed || !title.completed || !comment.completed || !rating.completed) {
