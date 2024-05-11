@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tooltip } from '@nextui-org/react'; // Importa Tooltip desde NextUI
 import llamada from "../assets/phone.png";
 import whatsapp from "../assets/whatsapp.png";
@@ -30,7 +29,7 @@ function Contacto() {
                 <div className="flex">
                     {/* Envuelve cada imagen en un Tooltip */}
                     <Tooltip showArrow={true} color='foreground' content="Llamada">
-                        <img src={llamada} alt="Llamada" className="h-5 w-5 mr-2 mr-3 hover:shadow-md hover:opacity-50" onClick={hacerLlamada} />
+                        <img src={llamada} alt="Llamada" className="h-5 w-5 mr-3 hover:shadow-md hover:opacity-50" onClick={hacerLlamada} />
                     </Tooltip>
                     <Tooltip showArrow={true} color='default' content="WhatsApp">
                         <img src={whatsapp} alt="WhatsApp" className="h-5 w-5 mr-3 hover:shadow-md hover:opacity-50" onClick={enviarMensaje} />
