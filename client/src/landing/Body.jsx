@@ -23,7 +23,7 @@ const Body = () => {
   }, []); // Vacío para que solo se ejecute una vez al montar el componente
 
   return (
-    <div className="py-32 mx-auto  bg-gradient-to-b from-white to-blue-50 "> 
+    <div className="py-5 mx-auto  bg-gradient-to-b from-white to-blue-50 "> 
       <div className="flex flex-col-reverse lg:flex-row items-center ml-0 lg:ml-[150px]">
         {/* Div izquierdo */}
         <div className="w-full lg:w-1/3 flex justify-center mb-8 lg:mb-0 order-2 lg:order-1">

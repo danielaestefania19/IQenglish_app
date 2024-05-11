@@ -19,7 +19,6 @@ import {NextUIProvider} from "@nextui-org/react";
 
 import { ThemeProvider } from "@material-tailwind/react";
  
-
 function App() {
   return (
     <NextUIProvider>
@@ -28,12 +27,12 @@ function App() {
           <UserContextProvider>
             <ToastContainer />
             <Router>
-              <Navbar /> {/* Navbar fuera de las rutas */}
               <Routes>
                 <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/login" element={<Login />} />
                 <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
                 <Route path="/" element={
                   <>
+                    <Navbar /> {/* Navbar dentro de las rutas */}
                     <Body />
                     <Blog />
                     <Card/>
@@ -41,9 +40,24 @@ function App() {
                     <Footer />
                   </>
                 }/>
-                <Route path="/teachers" element={<Teachers />} />
-                <Route path="/metodo" element={<Metodo />} />
-                <Route path="/nosotros" element={<Nosotros />} />
+                <Route path="/teachers" element={
+                  <>
+                    <Navbar /> {/* Navbar dentro de las rutas */}
+                    <Teachers />
+                  </>
+                }/>
+                <Route path="/metodo" element={
+                  <>
+                    <Navbar /> {/* Navbar dentro de las rutas */}
+                    <Metodo />
+                  </>
+                }/>
+                <Route path="/nosotros" element={
+                  <>
+                    <Navbar /> {/* Navbar dentro de las rutas */}
+                    <Nosotros />
+                  </>
+                }/>
               </Routes>
             </Router>
           </UserContextProvider>
