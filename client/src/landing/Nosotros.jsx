@@ -1,6 +1,6 @@
 const Nosotros = () => {
     return (
-        <div className="2xl:container mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-8">
+        <div className=" mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-8">
             <div className="flex lg:flex-row justify-center">
                 <div className="w-full lg:w-5/12 flex flex-col justify-center mx-auto lg:mx-0"> {/* Aplicando mx-auto aquí */}
                     <h1 className="text-4xl lg:text-5xl font-bold leading-9 text-primary pb-4 justify-center flex">¿Quiénes somos?</h1>
