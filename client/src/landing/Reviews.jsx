@@ -195,7 +195,7 @@ const Reviews = () => {
 
 
   return (
-    <section className="bg-gray-50">
+    <section className="bg-gradient-to-b from-blue-50 to-white">
       <div className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="md:flex md:items-end md:justify-between">
           <div className="max-w-xl">
@@ -314,7 +314,7 @@ const Reviews = () => {
         >
           <ModalContent>
            
-                <ModalHeader className="flex flex-col gap-1 font-montserrat">Añadir Comentario</ModalHeader>
+                <ModalHeader className="flex flex-col text-primary gap-1 font-montserrat">Añadir Comentario</ModalHeader>
                 <ModalBody>
                   <Input
                     label="Nombre"
@@ -341,7 +341,7 @@ const Reviews = () => {
                     style={{ width: "400px" }} // Ajusta el ancho aquí según tus necesidades
                   />
                   {commentError && <p className="text-red-500 text-xs mt-1 font-montserrat">{commentError}</p>}
-                  <p className="-mb-3 font-montserrat">¿Cuántas estrellas le darías a IQenglish?</p>
+                  <p className="-mb-3 font-semibold">¿Cuántas estrellas le darías a IQenglish?</p>
                   <StarRatings
                     count={5}
                     onChange={ratingChanged}
@@ -364,7 +364,6 @@ const Reviews = () => {
                         <span className="sr-only font-montserrat">Enviando...</span>
                       </div>
                     ) : (
-<<<<<<< HEAD
                       <button
                         type="submit"
                         className="w-full inline-flex justify-center rounded-md text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 sm:ml-3 sm:w-auto sm:text-sm"
@@ -381,9 +380,6 @@ const Reviews = () => {
                         )}
                       </button>
 
-=======
-                      'Enviar'
->>>>>>> 01f59eda862b706cb54046ca6dde28f4a53ce7d9
                     )}
                   </Button>
                 </ModalFooter>

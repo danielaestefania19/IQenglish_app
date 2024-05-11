@@ -24,9 +24,7 @@ function App() {
   return (
     <NextUIProvider>
     <ThemeProvider>
-<<<<<<< HEAD
       <ProviderModalIQ>
-        <ProviderModal>
           <UserContextProvider>
             <ToastContainer />
             <Router>
@@ -49,34 +47,7 @@ function App() {
               </Routes>
             </Router>
           </UserContextProvider>
-        </ProviderModal>
       </ProviderModalIQ>
-=======
-       <ProviderModalIQ>
-      <UserContextProvider>
-        <ToastContainer />
-        <Router>
-          <Routes>
-            <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/login" element={<Login />} />
-            <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-            <Route path="/" element={
-              <>
-                <Navbar />
-
-                <Body />
-                <Blog />
-                
-                <Card/>
-                <Reviews/>
-                <Footer />
-              </>
-            }/>
-            <Route path="/teachers" element={<Teachers />} />
-          </Routes>
-        </Router>
-      </UserContextProvider>
-    </ProviderModalIQ>
->>>>>>> 01f59eda862b706cb54046ca6dde28f4a53ce7d9
     </ThemeProvider>
   </NextUIProvider>
   );
