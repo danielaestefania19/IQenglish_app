@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react';
 import useReviews from '../hooks/reviews/useReviews';
 import { ModalContext } from "./ModalConext.jsx";
-import StarRatings from 'react-rating-stars-component';
+//import StarRatings from 'react-rating-stars-component';
 import { toast } from 'react-toastify';
 import { IconButton } from "@material-tailwind/react";
 import {Pagination} from "@nextui-org/react";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+//import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 
 

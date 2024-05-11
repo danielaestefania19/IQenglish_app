@@ -134,7 +134,7 @@ const Blog = () => {
 
 
   return (
-    <section className="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
+    <section className="relative z-10 overflow-hidden bg-gradient-to-b from-blue-50 to-white py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
       <div className="container mx-auto">
         <div id="progress-modal" className={`fixed top-0 right-0 bottom-0 left-0 z-50 flex justify-center items-center ${showModalSucess ? '' : 'hidden'}`}>
           <div className="absolute bg-black opacity-50 inset-0"></div>

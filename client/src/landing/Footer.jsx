@@ -1,21 +1,20 @@
 import logo1 from "../assets/logo1.jpeg";
-import { PiTiktokLogo } from "react-icons/pi";
-import { PiInstagramLogoLight } from "react-icons/pi";
+
 
 const Footer = () => {
     return (
-        <footer className="bg-gradient-to-b from-gray-50 to-white dark:bg-gray-900">
+        <footer className="bg-black">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
                         <a className="flex items-center">
                             <img src={logo1} className="h-8 me-3" alt="FlowBite Logo" />
-                            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">IQEnglish</span>
+                            <span className="self-center text-2xl font-semibold whitespace-nowrap  text-primary">IQEnglish</span>
                         </a>
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Producto</h2>
+                            <h2 className="mb-6 text-sm font-semibold  text-primary  uppercase dark:text-white">Producto</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <a href="https://flowbite.com/" className="hover:underline">Equipo</a>
@@ -30,7 +29,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Síguenos</h2>
+                            <h2 className="mb-6 text-sm font-semibold text-primary uppercase dark:text-white">Síguenos</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <a href="https://www.facebook.com/IQEnglish.MonterreySur?mibextid=ZbWKwL" className="hover:underline ">Facebook</a>
@@ -45,7 +44,7 @@ const Footer = () => {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                            <h2 className="mb-6 text-sm font-semibold text-primary uppercase dark:text-white">Legal</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <a href="#" className="hover:underline">Política de privacidad</a>
