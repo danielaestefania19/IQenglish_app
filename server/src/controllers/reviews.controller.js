@@ -46,7 +46,6 @@ export const createReview = async (req, res) => {
         // Si hay datos del review, devolverlos como respuesta
         if (reviewRows.length > 0) {
             const review = reviewRows[0];
-            console.log(review)
             res.send({
                 review,
             });

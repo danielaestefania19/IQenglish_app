@@ -1,13 +1,11 @@
 import logo1 from "../assets/logo1.jpeg";
 import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ModalContext } from "./ModalConext";
+
 
 function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
-  // Usar el hook useContext para acceder al ModalContext
-  const { isOpenModalSucess, isOpenModalError, isOpenModalReview } = useContext(ModalContext);
 
   return (
     <header className="absolute left-0 top-0 z-50 w-full">
@@ -15,12 +13,12 @@ function Navbar() {
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-60 max-w-full px-4">
             {/* Renderizar el logo solo si ni el modal de éxito ni el de error están abiertos */}
-            {!isOpenModalSucess && !isOpenModalError && !isOpenModalReview && (
-              <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src={logo1} alt="Logo" className="h-12 w-auto" /> {/* Aumentar el tamaño del logo */}
-                <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">IQEnglish</span> {/* Aumentar el tamaño del texto */}
-              </a>
-            )}
+
+            <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+              <img src={logo1} alt="Logo" className="h-12 w-auto" /> {/* Aumentar el tamaño del logo */}
+              <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white font-montserrat">IQEnglish</span> {/* Aumentar el tamaño del texto */}
+            </a>
+
 
           </div>
           <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
@@ -40,22 +38,22 @@ function Navbar() {
               >
                 <ul className="block lg:flex">
                   <li>
-                    <Link to="/" href="javascript:void(0)" className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                    <Link to="/" href="javascript:void(0)" className="flex font-montserrat py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                       Hogar
                     </Link>
                   </li>
                   <li>
-                    <Link to="/teachers" className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                    <Link to="/teachers" className="flex font-montserrat py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                       Equipo
                     </Link>
                   </li>
                   <li>
-                    <a href="javascript:void(0)" className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                    <a href="javascript:void(0)" className="flex font-montserrat py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                       Metodo
                     </a>
                   </li>
                   <li>
-                    <a href="javascript:void(0)" className="flex py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                    <a href="javascript:void(0)" className="flex font-montserrat py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                       Sobre Nosotros
                     </a>
                   </li>

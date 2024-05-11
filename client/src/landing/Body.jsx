@@ -25,7 +25,7 @@ const Body = () => {
             <ul className="flex flex-wrap items-center">
               <li>
                 <button
-                  className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-[20px] font-medium text-white hover:bg-blue-dark lg:px-7"
+                  className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-[20px] font-medium text-white hover:bg-blue-dark lg:px-7 font-montserrat"
                   onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}
                 >
                   Comenzar
