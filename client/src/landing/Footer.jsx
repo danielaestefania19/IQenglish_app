@@ -1,4 +1,4 @@
-import logo1 from "../assets/logo1.jpeg";
+import logo1 from "../assets/logo_vec.png";
 import { FaTiktok } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
@@ -8,12 +8,12 @@ const Footer = () => {
         <footer className="bg-gradient-to-b from-white to-blue-50">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div className="md:flex md:justify-between">
-                    <div className="mb-6 md:mb-0">
-                        <a className="flex items-center">
-                            <img src={logo1} className="h-8 me-3" alt="FlowBite Logo" />
-                            <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white font-montserrat">IQEnglish</span>
-                        </a>
-                    </div>
+            <div className="mb-6 md:mb-0 -mt-12"> {/* Añade 'mt-4' para mover el logo un poco más arriba */}
+    <a className="flex items-center">
+        <img src={logo1} className="h-64 me-3" alt="FlowBite Logo" /> {/* Cambia 'h-28' a 'h-32' para hacer el logo un poco más grande */}
+    </a>
+</div>
+
                     <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                         <div>
                             <h2 className="mb-6 text-sm font-semibold text-black uppercase dark:text-white">Producto</h2>
