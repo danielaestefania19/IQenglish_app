@@ -1,5 +1,5 @@
 import logo from "../assets/logo_vec.png";
-import { useState, useContext } from 'react';
+import { useState} from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -9,13 +9,14 @@ function Navbar() {
 
 
   return (
-    <div className="container mx-auto">
-      <div className="relative -mx-4 flex items-center justify-between">
-        <div className="w-60 max-w-full px-4 flex-shrink-0"> {/* Añade 'flex-shrink-0' para evitar que el contenedor del logo se reduzca */}
-          <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src={logo} alt="Logo" className="h-30 w-auto transform scale-150" /> {/* Añade 'transform scale-110' para hacer el logo un 10% más grande */}
-          </a>
-        </div>
+
+      <div className="relative -mx-0 flex items-center justify-between bg-[#0A259C]">
+   <div className="w-60 max-w-full px-12 flex-shrink-0 mx-16"> {/* Agregué 'mx-auto' para centrar horizontalmente */}
+  <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+    <img src={logo} alt="Logo" className="h-50 w-auto transform scale-150" /> {/* Añade 'transform scale-110' para hacer el logo un 10% más grande */}
+  </a>
+</div>
+
         <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
           <div>
             <button
@@ -33,22 +34,22 @@ function Navbar() {
             >
               <ul className="block lg:flex">
                 <li>
-                  <Link to="/" href="javascript:void(0)" className="flex  font-semibold py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <Link to="/" href="javascript:void(0)" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                     Hogar
                   </Link>
                 </li>
                 <li>
-                  <Link to="/teachers" className="flex  font-semibold py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <Link to="/teachers" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                     Equipo
                   </Link>
                 </li>
                 <li>
-                  <Link to="/metodo" className="flex  font-semibold py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <Link to="/metodo" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                     Metodo 
                   </Link>
                 </li>
                 <li>
-                  <Link to="/nosotros" className="flex  font-semibold py-2 text-base font-medium text-dark hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <Link to="/nosotros" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                     Sobre Nosotros 
                   </Link>
                 </li>
@@ -57,7 +58,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 

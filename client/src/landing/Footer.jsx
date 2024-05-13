@@ -5,7 +5,7 @@ import { FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="bg-gradient-to-b from-white to-blue-50">
+        <footer className="bg-black">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0 -mt-12"> {/* Añade 'mt-4' para mover el logo un poco más arriba */}

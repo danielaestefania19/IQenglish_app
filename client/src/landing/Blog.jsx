@@ -1,11 +1,11 @@
-import { Fragment, useState, useContext } from 'react';
+import { Fragment, useState } from 'react';
 import createProspect from "../views/prospects/createProspect.js";
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import clock from "../../src/assets/clock.png"
 import idea from "../../src/assets/idea.png"
 import lesson from "../../src/assets/lesson.png"
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, RadioGroup, Radio} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 
 
 const locations = [
@@ -118,7 +118,7 @@ const Blog = () => {
   };
 
   return (
-    <section className="relative z-10 overflow-hidden bg-gradient-to-b from-blue-50 to-white py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
+    <section className="relative z-10 overflow-hidden bg-[#F0F4F9] py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
       <div className="container mx-auto">
       <Modal
           isOpen={isOpen}

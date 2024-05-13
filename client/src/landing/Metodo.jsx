@@ -22,11 +22,7 @@ const Metodo = () => {
               <ul className="flex flex-wrap items-center">
                 <li>
                   Método innovador
-
-
-
                   Horarios flexibles
-
                   Clubes de conversación
                 </li>
                 <li>

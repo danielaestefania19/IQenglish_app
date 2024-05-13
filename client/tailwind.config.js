@@ -10,7 +10,7 @@ const tailwindConfig = {
   theme: {
     extend: {
       colors: {
-        primary: '#1D4ED8', /* Cambia esto por el color que desees */
+        primary: '#0A259C', /* Cambia esto por el color que desees */
         customBlue: '#74a7e4',
       },
       fontSize: {
