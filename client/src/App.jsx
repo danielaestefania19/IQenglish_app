@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Navbar from "./landing/Navbar"
 import Body from "./landing/Body"
 import Login from "./components/IQenglish/login.jsx";
@@ -16,16 +16,15 @@ import ProtectedRoute from "./components/IQenglish/middleware/ProtectedRoute.jsx
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { ProviderModalIQ } from './components/IQenglish/Prospects/IQContextModal.jsx';
-import { NextUIProvider } from "@nextui-org/react";
-
+import {NextUIProvider} from "@nextui-org/react";
 import { ThemeProvider } from "@material-tailwind/react";
-
+import Carousel from "./landing/Carousel.jsx"
+ 
 function App() {
   return (
     <NextUIProvider>
       <ThemeProvider>
         <ProviderModalIQ>
-
           <UserContextProvider>
             <ToastContainer />
             <Router>
@@ -37,36 +36,38 @@ function App() {
                   <>
                     <Navbar /> {/* Navbar dentro de las rutas */}
                     <Body />
-                    <Mediun />
-                    <Blog />
-                    <Card />
-                    <Reviews />
-
+                    <Mediun/>
+                    <Carousel/>
+                    <Blog /> 
+                    <Card/>
+                    <Reviews/>
+                    <Footer />
                   </>
                 } />
                 <Route path="/teachers" element={
                   <>
                     <Navbar /> {/* Navbar dentro de las rutas */}
                     <Teachers />
+                    <Footer />
                   </>
                 } />
                 <Route path="/metodo" element={
                   <>
                     <Navbar /> {/* Navbar dentro de las rutas */}
                     <Metodo />
+                    <Footer />
                   </>
                 } />
                 <Route path="/nosotros" element={
                   <>
                     <Navbar /> {/* Navbar dentro de las rutas */}
                     <Nosotros />
+                    <Footer />
                   </>
                 } />
               </Routes>
-              <Footer />
             </Router>
           </UserContextProvider>
-
         </ProviderModalIQ>
       </ThemeProvider>
     </NextUIProvider>

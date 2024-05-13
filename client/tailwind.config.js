@@ -48,6 +48,15 @@ const tailwindConfig = {
         'lg': '1280px',
         'xl': '1536px',
       },
+      transitionProperty: {
+        'all': 'all',
+      },
+      transitionDuration: { // Agrega esta sección
+        '500': '500ms',
+      },
+      transitionTimingFunction: { // Agrega esta sección
+        'in-out': 'ease-in-out',
+      },
     },
   },
   darkMode: "class",
