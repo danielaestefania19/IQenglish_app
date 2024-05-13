@@ -2,9 +2,7 @@ import { Fragment, useState } from 'react';
 import createProspect from "../views/prospects/createProspect.js";
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import clock from "../../src/assets/clock.png"
-import idea from "../../src/assets/idea.png"
-import lesson from "../../src/assets/lesson.png"
+import cohete from "../assets/cohete.png"
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 
 
@@ -118,7 +116,7 @@ const Blog = () => {
   };
 
   return (
-    <section className="relative z-10 overflow-hidden bg-[#F0F4F9] py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
+    <section className="z-10 overflow-hidden bg-[#F0F4F9] py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
       <div className="container mx-auto">
       <Modal
           isOpen={isOpen}
@@ -154,77 +152,35 @@ const Blog = () => {
           </ModalContent>
         </Modal>
 
-        <div id="register"  className="-mx-4 flex flex-wrap lg:justify-between">
+        <div id="register" className="-mx-4 flex flex-wrap lg:justify-between">
 
-          <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
-            <div className="mb-12 max-w-[570px] lg:mb-0">
+<div className="w-full px-4 lg:w-1/2 xl:w-6/12">
+    <div className="mb-24 max-w-[570px] lg:mb-0 mt-4">
+
+        <span className="mb-4 block text-base font-semibold text-primary font-popping">
+            ¿Deseas aprender inglés?
+        </span>
+        <h2 className="mb-9 text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-black">Eleva tu inglés al siguiente nivel.</h2>
+        <p
+            className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6 font-popping"
+        >
+            ¡Nos gustaría saber de ti! Completa a continuación tu información de contacto. Cuando recibamos tu consulta, nos pondremos en contacto contigo lo antes posible.
+        </p>
+
+        <div class="clients pt-16 flex items-center">
+  <h6 class="mb-0 text-xs font-normal text-body-color text-primary">
+    Aprende inglés ahora
+    <span class="ml-3 inline-block h-px w-8 bg-body-color"></span>
+  </h6>
+  <div class="ml-3 flex items-center  transform transition duration-500 ease-in-out hover:scale-105">
+    <img src={cohete} alt="Cohete" class="w-10 h-10" />
+  </div>
+</div>
+
+    </div>
+</div>
 
 
-              <span className="mb-4 block text-base font-semibold text-primary font-montserrat">
-                ¿Deseas aprender ingles?
-              </span>
-              <h2
-                className="mb-6 text-[32px] font-bold uppercase text-dark dark:text-white sm:text-[40px] lg:text-[36px] xl:text-[40px] font-montserrat"
-              >
-                Empieza con Nosotros
-              </h2>
-              <p
-                className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6 font-montserrat"
-              >
-                ¡Nos gustaría saber de ti! Completa a continuación tu información de contacto. Cuando recibamos tu consulta, nos pondremos en contacto contigo lo antes posible.
-              </p>
-
-              <div className="mb-8 flex w-full max-w-[370px] transform transition duration-500 ease-in-out hover:scale-105">
-                <div
-                  className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]"
-                >
-                  <img src={lesson} alt="Clock" className="object-cover" />
-                </div>
-                <div className="w-full">
-                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white font-montserrat">
-                    Nuestro Método de Enseñanza
-                  </h4>
-                  <p className="text-base text-body-color dark:text-dark-6 font-montserrat">
-                    Aprende con nuestro método Activo-Inductivo
-                  </p>
-                </div>
-              </div>
-
-              <div className="mb-8 flex w-full max-w-[370px] transform transition duration-500 ease-in-out hover:scale-105">
-                <div
-                  className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]"
-                >
-
-                  <img src={clock} alt="Clock" className="object-cover" />
-
-                </div>
-                <div className="w-full">
-                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white font-montserrat">
-                    Tiempo de Aprendizaje
-                  </h4>
-                  <p className="text-base text-body-color dark:text-dark-6 font-montserrat">
-                    Aprende ingles en 8 o 12 meses
-                  </p>
-                </div>
-              </div>
-
-              <div className="mb-8 flex w-full max-w-[370px] transform transition duration-500 ease-in-out hover:scale-105">
-                <div
-                  className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]"
-                >
-                   <img src={idea} alt="Clock" className="object-cover" />
-                </div>
-                <div className="w-full">
-                  <h4 className="mb-1 text-xl font-bold text-dark dark:text-white font-montserrat">
-                    Nuestro Slogan
-                  </h4>
-                  <p className="text-base text-body-color dark:text-dark-6 font-montserrat">
-                    ¡Aprender ingles nunca fue tan fácil!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
           <div  className="w-full px-4 lg:w-full xl:w-5/12">
             <div
               className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12 transform transition duration-500 ease-in-out hover:scale-105"

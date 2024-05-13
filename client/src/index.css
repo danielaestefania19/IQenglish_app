@@ -508,8 +508,8 @@ input[type="radio"]:checked ~ .box span {
 
 .circles li:nth-child(1) {
 	left: 25%;
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
 	animation-delay: 0s;
 }
 
@@ -544,16 +544,16 @@ input[type="radio"]:checked ~ .box span {
 
 .circles li:nth-child(6) {
 	left: 75%;
-	width: 80px; /* Reducido el tamaño */
-	height: 80px; /* Reducido el tamaño */
+	width: 60px; /* Reducido el tamaño */
+	height: 60px; /* Reducido el tamaño */
 	animation-delay: 3s;
 }
 
 
 .circles li:nth-child(7) {
 	left: 35%;
-	width: 100px; /* Reducido el tamaño */
-	height: 100px; /* Reducido el tamaño */
+	width: 60px; /* Reducido el tamaño */
+	height: 60px; /* Reducido el tamaño */
 	animation-delay: 7s;
 }
 
@@ -575,8 +575,8 @@ input[type="radio"]:checked ~ .box span {
 
 .circles li:nth-child(10) {
 	left: 85%;
-	width: 80px; /* Reducido el tamaño */
-	height: 80px; /* Reducido el tamaño */
+	width: 60px; /* Reducido el tamaño */
+	height: 60px; /* Reducido el tamaño */
 	animation-delay: 0s;
 	animation-duration: 11s;
 }

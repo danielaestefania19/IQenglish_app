@@ -1,64 +1,89 @@
+import React, { useState, useEffect } from 'react';
+import { Link as RouterLink } from 'react-router-dom'; // Renombrado como RouterLink
+import hamburguer from "../assets/hamburger.png"
 import logo from "../assets/logo_vec.png";
-import { useState} from 'react';
-import { Link } from 'react-router-dom';
-
+import {Dropdown, DropdownTrigger, DropdownMenu, Button, DropdownItem, Link} from "@nextui-org/react";
 
 function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1270);
 
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 1270);
+    };
+
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
 
   return (
+    <div className="relative -mx-0 flex items-center justify-between bg-[#0A259C]">
+      <div className="w-60 max-w-full px-12 flex-shrink-0 mx-16">
+        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <img src={logo} alt="Logo" className="h-50 w-auto transform scale-150" />
+        </a>
+      </div>
 
-      <div className="relative -mx-0 flex items-center justify-between bg-[#0A259C]">
-   <div className="w-60 max-w-full px-12 flex-shrink-0 mx-16"> {/* Agregué 'mx-auto' para centrar horizontalmente */}
-  <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-    <img src={logo} alt="Logo" className="h-50 w-auto transform scale-150" /> {/* Añade 'transform scale-110' para hacer el logo un 10% más grande */}
-  </a>
-</div>
-
+      {isSmallScreen ? (
+          <div className="relative">
+          <Dropdown>
+            <DropdownTrigger>
+              <Button variant="solid" size="md" color="primary">
+                <img src={hamburguer} alt="Menu" />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Navigation">
+              <DropdownItem key="home" href="/">Hogar</DropdownItem>
+              <DropdownItem key="teachers" href="/teachers">Equipo</DropdownItem>
+              <DropdownItem key="method" href="/metodo">Método</DropdownItem>
+              <DropdownItem key="about" href="/nosotros">Sobre Nosotros</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          <div className="absolute top-0 right-0 mt-4 mr-4">
+            <Link href="/">Hogar</Link>
+            <Link href="/teachers">Equipo</Link>
+            <Link href="/metodo">Método</Link>
+            <Link href="/nosotros">Sobre Nosotros</Link>
+          </div>
+        </div>
+         
+      ) : (
         <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
           <div>
-            <button
-              onClick={() => setNavbarOpen(!navbarOpen)}
-              className={`absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden ${navbarOpen ? 'navbarTogglerActive' : ''}`}
-              id="navbarToggler"
-            >
-              <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-              <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-              <span className="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"></span>
-            </button>
             <nav
-              className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow transition-all dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none xl:ml-11 ${!navbarOpen ? 'hidden' : ''}`}
+              className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow transition-all dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none xl:ml-11 'hidden'`}
               id="navbarCollapse"
             >
               <ul className="block lg:flex">
                 <li>
-                  <Link to="/" href="javascript:void(0)" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <RouterLink to="/" href="javascript:void(0)" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                     Hogar
-                  </Link>
+                  </RouterLink>
                 </li>
                 <li>
-                  <Link to="/teachers" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <RouterLink to="/teachers" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                     Equipo
-                  </Link>
+                  </RouterLink>
                 </li>
                 <li>
-                  <Link to="/metodo" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <RouterLink to="/metodo" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                     Metodo 
-                  </Link>
+                  </RouterLink>
                 </li>
                 <li>
-                  <Link to="/nosotros" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <RouterLink to="/nosotros" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
                     Sobre Nosotros 
-                  </Link>
+                  </RouterLink>
                 </li>
               </ul>
             </nav>
           </div>
         </div>
-      </div>
-    
+      )}
+    </div>
   );
 }
 

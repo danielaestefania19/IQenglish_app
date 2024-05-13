@@ -63,12 +63,12 @@ export default function Carousel() {
 
   return (
     <div className="relative">
-      <div className="flex justify-center px-8 mx-auto mb-8" style={{ height: '350px', maxWidth: '80%' }}>
+      <div className="flex justify-center px-8 mx-auto mb-8 mt-40" style={{ height: '350px', maxWidth: '80%' }}>
         {transitions((style, i) => (
           <animated.div style={style} key={i} className="flex justify-center">
             {cards.slice(i * cardsPerPage, i * cardsPerPage + cardsPerPage).map((card, index) => (
               <Card className="mx-2 mt-4 mb-8 relative flex-shrink-0 xs:w-full sm:w-1/2 md:w-1/4" style={{ minWidth: '300px', width: `${100 / cardsPerPage}%`, height: '300px', maxHeight: '300px' }} key={index}>
-                <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+                <CardHeader className="absolute z-1 top-1 flex-col !items-start">
                 </CardHeader>
                 <Image
                   isZoomed

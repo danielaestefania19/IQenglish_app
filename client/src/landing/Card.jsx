@@ -8,7 +8,7 @@ import "../css/Tailwind.css"
 const Card = () => {
     return (
 
-        <section className="bg-gradient-to-b from-white to-blue-50 w-full h-full pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
+        <section className="w-full h-full pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
         <div className="container mx-auto">
           <div className="-mx-4 flex flex-wrap justify-center">
             <div className="w-full px-4">

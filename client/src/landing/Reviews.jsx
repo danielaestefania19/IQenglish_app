@@ -195,7 +195,7 @@ const Reviews = () => {
 
 
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white">
+    <section className="bg-[#F0F4F9]">
       <div className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="md:flex md:items-end md:justify-between">
           <div className="max-w-xl">
@@ -224,9 +224,9 @@ const Reviews = () => {
 
 
 
-        <div className="mt-8 buttom-10 grid grid-cols-1 gap-4 md:grid-cols-3 relative mb-20 ">
+        <div className="mt-8 buttom-10 grid grid-cols-1 gap-4 md:grid-cols-3 relative mb-20 z-1 ">
   {transitions((props, item) => (
-    <animated.blockquote style={props} className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 min-h-[500px] rounded-xl">
+    <animated.blockquote style={props} className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 min-h-[500px] rounded-xl ">
       <div>
         <div className="flex gap-0.5 text-yellow-500">
           <StarRatings
