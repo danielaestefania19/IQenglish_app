@@ -225,30 +225,31 @@ const Reviews = () => {
 
 
         <div className="mt-8 buttom-10 grid grid-cols-1 gap-4 md:grid-cols-3 relative mb-20 ">
-          {transitions((props, item) => (
-            <animated.blockquote style={props} className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 min-h-[500px]">
-              <div>
-                <div className="flex gap-0.5 text-yellow-500">
-                  <StarRatings
-                    count={item.puntuacion}
-                    value={item.puntuacion}
-                    size={24}
-                    activeColor="#ffd700"
-                  />
-                </div>
+  {transitions((props, item) => (
+    <animated.blockquote style={props} className="flex h-full flex-col justify-between bg-white p-6 shadow-sm sm:p-8 min-h-[500px] rounded-xl">
+      <div>
+        <div className="flex gap-0.5 text-yellow-500">
+          <StarRatings
+            count={item.puntuacion}
+            value={item.puntuacion}
+            size={24}
+            activeColor="#ffd700"
+          />
+        </div>
 
-                <div className="mt-4">
-                  <p className="text-2xl font-bold text-rose-600 sm:text-3xl font-montserrat">{item.titulo}</p>
-                  <p className="mt-4 leading-relaxed text-gray-700 font-montserrat">{item.description}</p>
-                </div>
-              </div>
+        <div className="mt-4">
+          <p className="text-2xl font-bold text-rose-600 sm:text-3xl font-montserrat">{item.titulo}</p>
+          <p className="mt-4 leading-relaxed text-gray-700 font-montserrat">{item.description}</p>
+        </div>
+      </div>
 
-              <footer className="mt-4 text-sm font-medium text-gray-700 sm:mt-6 font-montserrat">
-                — {item.nombre}
-              </footer>
-            </animated.blockquote>
+      <footer className="mt-4 text-sm font-medium text-gray-700 sm:mt-6 font-montserrat">
+        — {item.nombre}
+      </footer>
+    </animated.blockquote>
+  ))}
 
-          ))}
+
 
 
           <div className="absolute -bottom-12 right-0 space-x-4">

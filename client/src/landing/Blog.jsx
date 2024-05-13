@@ -118,7 +118,7 @@ const Blog = () => {
   };
 
   return (
-    <section className="relative z-10 overflow-hidden bg-gradient-to-b from-blue-50 to-white py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
+    <section className="relative z-10 overflow-hidden bg-white py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
       <div className="container mx-auto">
       <Modal
           isOpen={isOpen}
