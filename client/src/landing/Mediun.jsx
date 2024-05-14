@@ -1,6 +1,11 @@
 import IQBot from "../assets/IQBot.png";
-import React from 'react';
 import fondo from "../assets/fondo.png";
+import aprendizaje from "../assets/aprendizaje.png";
+import horario from "../assets/horario.png";
+import atencion from "../assets/atencion.png";
+import certificacion from "../assets/certificacion.png";
+import poliza from "../assets/poliza.png";
+
 
 const Mediun = () => {
   return (
@@ -11,14 +16,30 @@ const Mediun = () => {
         </div>
       </div>
 
-      <div className="w-[60vw] flex justify-center flex-col mt-12">
-        <h1 className="text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping" > Aprende ingles en en 8 a 12 meses</h1>
-        <p className="text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping" >Aprende ingles en en 8 a 12 meses</p>
-        <p className="text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping" >  Aprende ingles en en 8 a 12 meses</p>
-        <p className="text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping" > Aprende ingles en en 8 a 12 meses </p>
-        <p className="text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping" > Aprende ingles en en 8 a 12 meses</p>
-        <p className="text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping" > Aprende ingles en en 8 a 12 meses</p>
+      <div className="w-[60vw] flex flex-col items-center justify-center">
+        <h1 className="text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px]">
+          Aprende ingles  en 8 a 12 meses
+        </h1>
+        <div className="flex flex-col mt-12 space-y-4">
+          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping">
+            <img src={aprendizaje} alt="Icono 1" className="w-8 h-8 mr-2" /> Aprendizaje Integral
+          </p>
+          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping">
+            <img src={horario} alt="Icono 2" className="w-8 h-8 mr-2" /> Horarios Personalizados
+          </p>
+          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping">
+            <img src={atencion} alt="Icono 3" className="w-8 h-8 mr-2" /> Atencion Online
+          </p>
+          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping">
+            <img src={certificacion} alt="Icono 4" className="w-8 h-8 mr-2" /> Certificacion Toefl
+          </p>
+          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping">
+            <img src={poliza} alt="Icono 5" className="w-8 h-8 mr-2" /> Poliza de aprendizaje asegurada
+          </p>
+        </div>
       </div>
+
+
     </div>
   )
 }

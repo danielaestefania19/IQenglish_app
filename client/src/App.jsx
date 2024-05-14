@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from "./landing/Navbar"
 import Body from "./landing/Body"
 import Login from "./components/IQenglish/login.jsx";
@@ -9,6 +9,7 @@ import Teachers from "./landing/Teachers"
 import Mediun from "./landing/Mediun.jsx"
 import Reviews from "./landing/Reviews.jsx"
 import Metodo from "./landing/Metodo.jsx"
+import Nivelacion from "./landing/Nivelacion.jsx"
 import Nosotros from "./landing/Nosotros.jsx"
 import { UserContextProvider } from './context/advisor.context.jsx';
 import Dashboard from "./components/IQenglish/Dashboard.jsx"
@@ -37,8 +38,10 @@ function App() {
                     <Navbar /> {/* Navbar dentro de las rutas */}
                     <Body />
                     <Mediun/>
-                    <Carousel/>
-                    <Blog /> 
+                    
+                    <Blog />
+                    <Nivelacion/>
+                    <Carousel/> 
                     <Card/>
                     <Reviews/>
                     <Footer />
