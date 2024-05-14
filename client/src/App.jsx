@@ -1,4 +1,4 @@
-import { BrowserRouter as Route, Routes,  useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import Navbar from "./landing/Navbar"
 import Body from "./landing/Body"
 import Login from "./components/IQenglish/login.jsx";
@@ -10,6 +10,7 @@ import Mediun from "./landing/Mediun.jsx"
 import Reviews from "./landing/Reviews.jsx"
 import Metodo from "./landing/Metodo.jsx"
 import Nivelacion from "./landing/Nivelacion.jsx"
+import Practica from "./landing/Practica.jsx"
 import Nosotros from "./landing/Nosotros.jsx"
 import { UserContextProvider } from './context/advisor.context.jsx';
 import Dashboard from "./components/IQenglish/Dashboard.jsx"
@@ -44,11 +45,11 @@ function App() {
                     <Body />
                     <ContactoFly />
                     <Mediun/>
-                    
-                    <Blog />
+                    <Blog /> 
                     <Nivelacion/>
-                    <Carousel/> 
+                    <Carousel/>
                     <Card/>
+                    <Practica/>
                     <Reviews/>
                     <Footer />
                   </>
