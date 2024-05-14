@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Route, Routes,  useNavigate } from 'react-router-dom';
 import Navbar from "./landing/Navbar"
 import Body from "./landing/Body"
 import Login from "./components/IQenglish/login.jsx";
@@ -20,15 +20,20 @@ import { ProviderModalIQ } from './components/IQenglish/Prospects/IQContextModal
 import {NextUIProvider} from "@nextui-org/react";
 import { ThemeProvider } from "@material-tailwind/react";
 import Carousel from "./landing/Carousel.jsx"
+import ContactoFly from "./landing/ContactoFly.jsx"
+
+
  
 function App() {
+  const navigate = useNavigate();
+
+
   return (
-    <NextUIProvider>
+    <NextUIProvider navigate={navigate}>
       <ThemeProvider>
         <ProviderModalIQ>
           <UserContextProvider>
             <ToastContainer />
-            <Router>
               <Routes>
                 <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/login" element={<Login />} />
                 <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
@@ -37,6 +42,7 @@ function App() {
                   <>
                     <Navbar /> {/* Navbar dentro de las rutas */}
                     <Body />
+                    <ContactoFly />
                     <Mediun/>
                     
                     <Blog />
@@ -69,7 +75,6 @@ function App() {
                   </>
                 } />
               </Routes>
-            </Router>
           </UserContextProvider>
         </ProviderModalIQ>
       </ThemeProvider>
