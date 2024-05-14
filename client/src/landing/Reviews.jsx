@@ -199,8 +199,8 @@ const Reviews = () => {
       <div className="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="md:flex md:items-end md:justify-between">
           <div className="max-w-xl">
-            <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-montserrat">
-              Comentarios
+            <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping">
+            Lo que nuestros estudiantes dicen de nosotros.
             </h2>
           </div>
 
@@ -208,7 +208,7 @@ const Reviews = () => {
             onClick={openModal}
             className="mt-6 inline-flex shrink-0 items-center gap-2 rounded-full border border-rose-600 px-5 py-3 text-primary transition hover:bg-rose-600 hover:text-white md:mt-0"
           >
-            <span className="font-montserrat">Añade un comentario...</span>
+            <span className="font-popping">Añade un comentario...</span>
 
             <svg
               xmlns="http://www.w3.org/2000/svg"

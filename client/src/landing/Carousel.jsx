@@ -2,6 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Card, CardHeader, Image } from "@nextui-org/react";
 import { IconButton } from "@material-tailwind/react";
 import { useTransition, animated, config } from 'react-spring';
+import foto1 from "../assets/gala/foto1.jpg"
+import foto2 from "../assets/gala/foto2.jpg"
+import foto3 from "../assets/gala/foto3.jpg"
+import foto4 from "../assets/gala/foto4.jpg"
+import foto5 from "../assets/gala/foto5.jpg"
+import foto6 from "../assets/gala/foto6.jpg"
+import foto7 from "../assets/gala/foto7.jpg"
+import foto8 from "../assets/gala/foto8.jpg"
+import fondo from "../assets/fondo.jpg"
+
 
 export default function Carousel() {
   const [direction, setDirection] = useState('left');
@@ -10,15 +20,16 @@ export default function Carousel() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const cards = [
-    "https://gateway.pinata.cloud/ipfs/QmfKquXruhQgN54WbLuVg92Fg5Aet2PhSXoyRB1ovRHwK3",
-    "https://nextui.org/images/card-example-3.jpeg",
-    "https://nextui.org/images/card-example-2.jpeg",
-    "https://nextui.org/images/card-example-6.jpeg",
-    "https://nextui.org/images/card-example-6.jpeg",
-    "https://nextui.org/images/card-example-6.jpeg",
-    "https://gateway.pinata.cloud/ipfs/QmfKquXruhQgN54WbLuVg92Fg5Aet2PhSXoyRB1ovRHwK3",
-    "https://nextui.org/images/card-example-6.jpeg",
+    foto1,
+    foto2,
+    foto3,
+    foto4,
+    foto5,
+    foto6,
+    foto7,
+    foto8
   ];
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -62,7 +73,13 @@ export default function Carousel() {
   });
 
   return (
-    <div className="relative">
+    <div className="relative bg-black">
+<div className="w-[60vw] mx-auto flex justify-center flex-col mt-12">
+  <h1 className="text-2xl font-bold tracking-tight text-white sm:text-4xl font-popping">
+    Aprende inglés en 8 a 12 meses
+  </h1>
+</div>
+
       <div className="flex justify-center px-8 mx-auto mb-8 mt-40" style={{ height: '350px', maxWidth: '80%' }}>
         {transitions((style, i) => (
           <animated.div style={style} key={i} className="flex justify-center">
@@ -205,7 +222,7 @@ export default function Carousel() {
           <div className="absolute bottom-28 left-28 transform -translate-y-1/2">
             <IconButton
               variant="text"
-              color="black"
+              color="white"
               size="lg"
               onClick={nextCard}
             >
@@ -228,7 +245,7 @@ export default function Carousel() {
           <div className="absolute bottom-28 right-28 transform -translate-y-1/2">
             <IconButton
               variant="text"
-              color="black"
+              color="white"
               size="lg"
               onClick={prevCard}
             >
