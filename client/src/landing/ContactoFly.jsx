@@ -1,7 +1,7 @@
-import { Tooltip, Avatar } from '@nextui-org/react';
-import llamada from "../assets/phone_black.png";
-import whatsapp from "../assets/whatsapp_black.png"; 
-import icon from "../assets/logo2.jpeg"; 
+import { Tooltip, Avatar, Button } from '@nextui-org/react';
+import { IoCall } from "react-icons/io5";
+import { IoLogoWhatsapp } from "react-icons/io";
+import icon from "../assets/logo2.jpeg";
 import { useEffect, useState } from 'react';
 
 function ContactoFly() {
@@ -57,14 +57,18 @@ function ContactoFly() {
                     {mostrarContactos && (
                         <>
                             <Tooltip showArrow={true} color='foreground' content="Llamada">
-                                <img src={llamada} alt="Llamada" className="h-8 w-8 mr-4 mb-4 hover:shadow-md hover:opacity-50" onClick={hacerLlamada} />
+                                <Button isIconOnly color="primary" variant="light" aria-label="Like" onClick={hacerLlamada} style={{ margin: '0.5rem' }}>
+                                    <IoCall size="4.5em" />
+                                </Button>
                             </Tooltip>
-                            <Tooltip showArrow={true} color='foreground' content="WhatsApp">
-                                <img src={whatsapp} alt="WhatsApp" className="h-8 w-8 mr-4 mb-4 hover:shadow-md hover:opacity-50" onClick={enviarMensaje} />
+                            <Tooltip showArrow={true} color='foreground'  content="WhatsApp">
+                                <Button isIconOnly color="primary"  variant="light" aria-label="Like" onClick={enviarMensaje} style={{ margin: '0.8rem' }}>
+                                    <IoLogoWhatsapp size="4.5em" />
+                                </Button>
                             </Tooltip>
                         </>
                     )}
-                    <Avatar src={icon}  isBordered radius="full" color="default" size="lg" className="z-99"  onClick={toggleContactos} />
+                    <Avatar src={icon} isBordered radius="full" color="default" size="lg" className="z-99" onClick={toggleContactos} style={{ margin: '0.8rem' }} />
                 </>
             )}
         </div>

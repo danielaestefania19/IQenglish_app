@@ -122,14 +122,12 @@ const Blog = () => {
           isOpen={isOpen}
           placement="top-center"
           onOpenChange={onOpenChange}
-          classNames={{
-            backdrop: "bg-gradient-to-t from-blue-50 to-white backdrop-opacity-20"
-          }}
+          backdrop='blur'
         >
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1 font-montserrat">¡Que gran noticia!</ModalHeader>
+                <ModalHeader className="flex flex-col gap-1 font-popping">¡Que gran noticia! 🥳</ModalHeader>
                 <ModalBody>
                   <p>
                     {isError
@@ -183,7 +181,7 @@ const Blog = () => {
 
           <div className="w-full px-4 lg:w-full xl:w-5/12">
             <div
-              className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12 transform transition duration-500 ease-in-out hover:scale-105"
+              className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12"
             >
               <form onSubmit={handleSubmit}>
                 <div className="relative z-0 w-full mb-5 group ">

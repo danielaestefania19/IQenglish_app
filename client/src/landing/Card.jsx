@@ -1,7 +1,6 @@
-import image1 from "../assets/blogs/blog-01/image1.jpg"
-import image2 from "../assets/blogs/blog-01/image2.jpg"
-import image3 from "../assets/blogs/blog-01/image3.jpg"
-import video from "../assets/video1.gif"
+import image1 from "../assets/blogs/blog-01/image1.png"
+import image3 from "../assets/blogs/blog-01/image2.jpg"
+import video from "../assets/blogs/blog-01/video1.gif"
 import "../css/Tailwind.css"
 
 
@@ -9,7 +8,7 @@ import "../css/Tailwind.css"
 const Card = () => {
   return (
 
-    <section className="w-full h-full pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
+    <section className="w-full h-full pb-10 pt-32 dark:bg-dark lg:pb-20 lg:pt-[120px]">
       <div className="container mx-auto">
         <div className="-mx-4 flex flex-wrap justify-center">
           <div className="w-full px-4">
@@ -44,19 +43,18 @@ const Card = () => {
                 <span
                   className="mb-5 inline-block rounded bg-primary px-4 py-1 text-center text-xs font-semibold leading-loose text-white  font-popping"
                 >
-                  Diciembre 22, 2023
+                  Diciembre 22, 2024
                 </span>
                 <h3>
                   <a
                     href="javascript:void(0)"
                     className="mb-4 inline-block  font-popping text-xl font-semibold text-dark hover:text-primary dark:text-white sm:text-2xl lg:text-xl xl:text-2xl"
                   >
-                    Meet AutoManage, the best AI management tools
+                     ¡Visualiza tus metas!
                   </a>
                 </h3>
                 <p className="text-base text-body-color  font-popping dark:text-dark-6">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                Establece objetivos claros y realistas para tu aprendizaje de inglés y celebra cada paso hacia su logro. 🥳💼 
                 </p>
               </div>
             </div>
@@ -86,8 +84,7 @@ const Card = () => {
                   </a>
                 </h3>
                 <p className="text-base text-body-color  font-popping dark:text-dark-6">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                 Nuestros estudiantes se estan esforzando para que nos acompañen en nuestra proxima graduación
                 </p>
               </div>
             </div>
@@ -105,19 +102,18 @@ const Card = () => {
                 <span
                   className="mb-5 inline-block rounded bg-primary px-4 py-1 text-center text-xs font-semibold  font-popping leading-loose text-white"
                 >
-                  Junio 05, 2023
+                  Mayo 05, 2024
                 </span>
                 <h3>
                   <a
                     href="javascript:void(0)"
                     className="mb-4 inline-block text-xl  font-popping font-semibold text-dark hover:text-primary dark:text-white sm:text-2xl lg:text-xl xl:text-2xl"
                   >
-                    The no-fuss guide to upselling and cross selling
+                   ¿Listos para un nuevo desafío?
                   </a>
                 </h3>
                 <p className="text-base  font-popping text-body-color dark:text-dark-6">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry.
+                Intenta hacer pequeñas tareas diarias en inglés, ¡cada palabra cuenta! 📝💼
                 </p>
               </div>
             </div>

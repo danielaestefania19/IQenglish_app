@@ -10,7 +10,6 @@ import foto5 from "../assets/gala/foto5.jpg"
 import foto6 from "../assets/gala/foto6.jpg"
 import foto7 from "../assets/gala/foto7.jpg"
 import foto8 from "../assets/gala/foto8.jpg"
-import fondo from "../assets/fondo.jpg"
 
 
 export default function Carousel() {
@@ -73,14 +72,18 @@ export default function Carousel() {
   });
 
   return (
-    <div className="relative bg-black">
-<div className="w-[60vw] mx-auto flex justify-center flex-col mt-12">
-  <h1 className="text-2xl font-bold tracking-tight text-white sm:text-4xl font-popping">
-    Aprende inglés en 8 a 12 meses
+    <div className="relative mb-32">
+<div className="w-[60vw] mx-auto flex justify-center flex-col items-center">
+  <h1 className="text-2xl font-bold tracking-tight text-primary sm:text-4xl font-popping text-center">
+    Nuestro Gran Evento de Gala Azul y Oro
   </h1>
+  <p className="mb-2 max-w-[600px] text-xl lg:text-2xl text-base text-dark dark:text-dark-4  font-normal text-center" style={{ letterSpacing: '-0.01em' }}>Al terminar su preparación, reconocemos su esfuerzo y dedicación con un diploma que certifica su dominio en el idioma inglés.</p>
 </div>
 
-      <div className="flex justify-center px-8 mx-auto mb-8 mt-40" style={{ height: '350px', maxWidth: '80%' }}>
+
+
+
+      <div className="flex justify-center px-8 mx-auto -mb-4 mt-15" style={{ height: '350px', maxWidth: '80%' }}>
         {transitions((style, i) => (
           <animated.div style={style} key={i} className="flex justify-center">
             {cards.slice(i * cardsPerPage, i * cardsPerPage + cardsPerPage).map((card, index) => (
@@ -222,7 +225,7 @@ export default function Carousel() {
           <div className="absolute bottom-28 left-28 transform -translate-y-1/2">
             <IconButton
               variant="text"
-              color="white"
+              color="black"
               size="lg"
               onClick={nextCard}
             >
@@ -245,7 +248,7 @@ export default function Carousel() {
           <div className="absolute bottom-28 right-28 transform -translate-y-1/2">
             <IconButton
               variant="text"
-              color="white"
+              color="black"
               size="lg"
               onClick={prevCard}
             >

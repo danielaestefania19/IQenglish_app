@@ -20,7 +20,7 @@ function Navbar() {
 
 
   return (
-    <div className="relative -mx-0 flex items-center justify-between bg-[#0A259C]">
+    <div className="relative -mx-0 flex items-center justify-between bg-primary">
       <div className="w-60 max-w-full px-12 flex-shrink-0 mx-16">
         <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
           <img src={logo} alt="Logo" className="h-50 w-auto transform scale-150" />
@@ -31,7 +31,7 @@ function Navbar() {
           <div className="relative">
           <Dropdown>
             <DropdownTrigger>
-              <Button variant="solid" size="md" color="primary">
+              <Button variant="solid" size="md" color="secondprimary">
                 <img src={hamburguer} alt="Menu" />
               </Button>
             </DropdownTrigger>
