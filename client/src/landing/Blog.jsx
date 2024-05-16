@@ -118,37 +118,39 @@ const Blog = () => {
   return (
     <section className="z-10 overflow-hidden bg-[#F0F4F9] py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
       <div className="container mx-auto">
-        <Modal
-          isOpen={isOpen}
-          placement="top-center"
-          onOpenChange={onOpenChange}
-          backdrop='blur'
-        >
-          <ModalContent>
-            {(onClose) => (
-              <>
-                <ModalHeader className="flex flex-col gap-1 font-popping">¡Que gran noticia! 🥳</ModalHeader>
-                <ModalBody>
-                  <p>
-                    {isError
-                      ? "Lo sentimos, algo mal ha sucedido al enviar tus datos. Por favor, intenta de nuevo."
-                      : "Acabas de dar el primer paso para convertirte en una persona bilingue. IQenglish agradece tu preferencia para aprender inglés con nosotros."}
-                  </p>
-                  <p>
-                    {isError
-                      ? null
-                      : "En breve uno de nuestros asesores se pondrá en contacto contigo para darte más información."}
-                  </p>
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="primary" onPress={onClose}>
-                    Aceptar
-                  </Button>
-                </ModalFooter>
-              </>
-            )}
-          </ModalContent>
-        </Modal>
+      <Modal
+  isOpen={isOpen}
+  placement="top-center"
+  onOpenChange={onOpenChange}
+  backdrop='blur'
+>
+  <ModalContent>
+    {(onClose) => (
+      <>
+        <ModalHeader className="flex flex-col gap-1 font-popping">
+          {isError ? "¡Lo sentimos!" : "¡Qué gran noticia! 🥳"} 
+        </ModalHeader>
+        <ModalBody>
+          <p>
+            {isError
+              ? "Lo sentimos, algo mal ha sucedido al enviar tus datos. Por favor, intenta de nuevo."
+              : "Acabas de dar el primer paso para convertirte en una persona bilingüe. IQenglish agradece tu preferencia para aprender inglés con nosotros."}
+          </p>
+          {!isError && (
+            <p>
+              En breve uno de nuestros asesores se pondrá en contacto contigo para darte más información.
+            </p>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onPress={onClose}>
+            Aceptar
+          </Button>
+        </ModalFooter>
+      </>
+    )}
+  </ModalContent>
+</Modal>
 
         <div id="register" className="-mx-4 flex flex-wrap lg:justify-between">
 

@@ -1,11 +1,11 @@
-import logo1 from "../assets/logo_vec.png";
+import logo1 from "../assets/logo_vec3.png";
 import { FaTiktok } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <footer className="bg-black">
+        <footer className="bg-[#F0F4F9]">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
             <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0 -mt-12"> {/* Añade 'mt-4' para mover el logo un poco más arriba */}

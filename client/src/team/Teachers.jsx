@@ -642,8 +642,8 @@ const Teachers = () => {
                               cx="16"
                               cy="45"
                               r="45"
-                              fill="#13C296"
-                              fillOpacity="0.11"
+                              fill="#1D4ED8"
+                              fillOpacity="0.48"
                             />
                           </svg>
                         </span>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import card2 from "../../src/assets/tarjeta.png";
 
-const Course = () => {
+const TeacherSecond = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -34,7 +34,7 @@ const Course = () => {
   });
 
   return (
-    <div className="flex justify-between mt-24 mb-36">
+    <div className="flex justify-between mt-32 mb-16">
         
       <div id="card" className="lg:w-1/2 flex justify-center -mt-26 mb-8 lg:mb-0 order-2 lg:order-1 relative z-10">
         <animated.img 
@@ -69,4 +69,4 @@ const Course = () => {
   )
 }
 
-export default Course;
+export default TeacherSecond;

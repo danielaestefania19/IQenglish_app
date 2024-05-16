@@ -6,7 +6,6 @@ import Login from "./components/IQenglish/login.jsx";
 import Footer from "./landing/Footer";
 import Card from "./landing/Card";
 import Blog from "./landing/Blog";
-import Teachers from "./landing/Teachers";
 import Mediun from "./landing/Mediun.jsx";
 import Reviews from "./landing/Reviews.jsx";
 import Metodo from "./landing/Metodo.jsx";
@@ -24,6 +23,12 @@ import Carousel from "./landing/Carousel.jsx";
 import ContactoFly from "./landing/ContactoFly.jsx";
 import Course from "./landing/Course.jsx"
 import Practica from "./landing/Practica.jsx"
+import Teachers from "./team/Teachers.jsx";
+import BodyTeachers from './team/BodyTeachers.jsx';
+import Cards from "./team/Cards.jsx"
+import ContactoFlyTeachers from "./team/ContactoTeachers.jsx"
+import TeacherOne from './team/TeacherOne.jsx';
+import TeacherSecond from './team/TeacherSecond.jsx';
 
 function App() {
   return (
@@ -43,8 +48,9 @@ function App() {
                   <Mediun />
                   <Blog />
                   <Course />
-                  <Carousel />
+  
                   <Practica />
+                  <Carousel />
                   <Nivelacion />
                   <Card />
                   <Reviews />
@@ -54,6 +60,11 @@ function App() {
               <Route path="/teachers" element={
                 <>
                   <Navbar />
+                  <BodyTeachers />
+                  <ContactoFlyTeachers />
+                  <Cards />
+                  <TeacherOne />
+                  <TeacherSecond />
                   <Teachers />
                   <Footer />
                 </>
