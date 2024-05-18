@@ -160,7 +160,8 @@ const Blog = () => {
               <span className="mb-4 block text-base font-semibold text-primary font-popping">
                 ¿Deseas aprender inglés?
               </span>
-              <h2 className="mb-9 text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-black">Eleva tu inglés al siguiente nivel.</h2>
+              <h2 className="mb-9 text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-black">Aprende con el método más innovador
+y efectivo</h2>
               <p
                 className="mb-9 text-base leading-relaxed text-body-color dark:text-dark-6 font-popping"
               >

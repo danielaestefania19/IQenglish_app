@@ -1,5 +1,5 @@
 import student from "../../src/assets/student1.png"
-
+import { Card, CardBody } from "@nextui-org/react";
 
 const Nivelacion = () => {
   return (
@@ -10,14 +10,23 @@ const Nivelacion = () => {
           <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-primary mb-4 -mt-10">Acepta el reto</h2>
           <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-[#000000]">Conoce tu nivel de inglés</h2>
           <p className="mb-2 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>¡En IQ English te hacemos un examen de nivelación para saber cuál es la mejor opción para ti!</p>
-          <p className="mb-2 mt-12 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-black transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
-            <span className="inline-block bg-primary rounded-full h-2 w-2 mr-2"></span>
-            Examen Online
-          </p>
-          <p className="mb-6 mt-4 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-black transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
-            <span className="inline-block bg-primary rounded-full h-2 w-2 mr-2"></span>
-            Examen Presencial
-          </p>
+          <div className="mb-6 mt-8 ml-4 max-w-[600px] transform transition duration-500 ease-in-out hover:scale-105 flex items-center"> {/* Añade un margen inferior a esta div */}
+        <span className="inline-block bg-primary rounded-full h-2 w-2 mr-2"></span>
+        <Card>
+            <CardBody>
+            <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Examenes Presenciales</p>
+            </CardBody>
+        </Card>
+    </div>
+
+    <div className="mb-6 mt-4 ml-4 max-w-[600px] transform transition duration-500 ease-in-out hover:scale-105 flex items-center"> {/* Añade un margen inferior a esta div */}
+    <span className="inline-block bg-primary rounded-full h-2 w-2 mr-2"></span>
+        <Card>
+            <CardBody>
+            <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}> Examenes Online</p>
+            </CardBody>
+        </Card>
+    </div>
 
           <ul className="flex flex-wrap items-center mt-12">
             <li>

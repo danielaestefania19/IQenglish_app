@@ -59,22 +59,22 @@ function Navbar() {
             >
               <ul className="block lg:flex">
                 <li>
-                  <RouterLink to="/" href="javascript:void(0)" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <RouterLink to="/" href="javascript:void(0)" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-black dark:text-white lg:ml-10 lg:inline-flex">
                     Hogar
                   </RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/teachers" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <RouterLink to="/teachers" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-black dark:text-white lg:ml-10 lg:inline-flex">
                     Equipo
                   </RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/metodo" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <RouterLink to="/metodo" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-black dark:text-white lg:ml-10 lg:inline-flex">
                     Metodo 
                   </RouterLink>
                 </li>
                 <li>
-                  <RouterLink to="/nosotros" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-primary dark:text-white lg:ml-10 lg:inline-flex">
+                  <RouterLink to="/nosotros" className="flex  font-semibold py-2 text-base font-medium text-white hover:text-black dark:text-white lg:ml-10 lg:inline-flex">
                     Sobre Nosotros 
                   </RouterLink>
                 </li>

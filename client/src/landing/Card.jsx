@@ -14,15 +14,15 @@ const Card = () => {
           <div className="w-full px-4">
             <div className="mx-auto mb-[60px] max-w-[510px] text-center lg:mb-20">
               <span className="mb-2 block text-lg font-semibold text-primary  font-popping">
-                Nuestro Blog
+               Beneficios exclusivos
               </span>
               <h2
                 className="mb-4 text-3xl font-bold text-dark text-dark sm:text-4xl md:text-[40px]  font-popping"
               >
-                IQENGLISH LIVE
+                El mejor método para aprender inglés
               </h2>
               <p className="text-base text-dark dark:text-dark-6  font-popping">
-                Nos mantendremos actualizados para darles las noticias o sucesos mas recientes.
+              Algunas razones para elegir a IQ English
               </p>
             </div>
           </div>

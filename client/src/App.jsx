@@ -29,6 +29,7 @@ import Cards from "./team/Cards.jsx"
 import ContactoFlyTeachers from "./team/ContactoTeachers.jsx"
 import TeacherOne from './team/TeacherOne.jsx';
 import TeacherSecond from './team/TeacherSecond.jsx';
+import End from "./team/End.jsx"
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
                   <TeacherOne />
                   <TeacherSecond />
                   <Teachers />
+                  <End />
                   <Footer />
                 </>
               } />

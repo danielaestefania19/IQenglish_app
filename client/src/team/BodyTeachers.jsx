@@ -3,8 +3,10 @@ import { useSpring, animated } from "react-spring";
 import blogs from "../assets/computer2.png";
 import blogsSmall from "../assets/blogsSmall.png";
 import fondo_image from "../assets/fondo_image2.png";
-import { IoMdCheckmark } from "react-icons/io";
-
+import { HiEmojiHappy } from "react-icons/hi";
+import { GiStairsGoal } from "react-icons/gi";
+import { TbVocabulary } from "react-icons/tb";
+import { FaStar } from "react-icons/fa6";
 
 const BodyTeachers = () => {
     const [image, setImage] = useState(blogs);
@@ -57,21 +59,24 @@ const BodyTeachers = () => {
                         <p className="mb-2 mt-12 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-white transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
                             <span className="inline-block bg-white rounded-full h-2 w-2 mr-2"></span>
                             Perfecciona tu pronunciación
+                            <FaStar className="inline-block ml-1" />
                         </p>
                         <p className="mb-6 mt-4 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-white transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
                             <span className="inline-block bg-white rounded-full h-2 w-2 mr-2"></span>
                             Mejora tu gramática
+                            <HiEmojiHappy className="inline-block ml-1" />
                         </p>
-
                         <p className="mb-6 mt-4 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-white transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
                             <span className="inline-block bg-white rounded-full h-2 w-2 mr-2"></span>
-                            Mejora tu gramática
+                            Amplia tu vocabulario
+                            <TbVocabulary className="inline-block ml-1" />
                         </p>
-
                         <p className="mb-6 mt-4 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-white transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
                             <span className="inline-block bg-white rounded-full h-2 w-2 mr-2"></span>
-                           Cumple tu sueño de hablar ingles
+                            Cumple tu meta de hablar ingles
+                            <GiStairsGoal className="inline-block ml-1" />
                         </p>
+
 
                         <ul className="flex flex-wrap items-center">
                             <li>
@@ -79,7 +84,7 @@ const BodyTeachers = () => {
                                     className="inline-flex items-center mt-12 ml-4 justify-center rounded-md bg-white px-6 py-3 text-center text-xl lg:text-2xl font-medium text-gray-900  focus:outline-none border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 lg:px-7"
                                     onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}
                                 >
-                                   Saber más
+                                    Saber más
                                 </button>
                             </li>
 

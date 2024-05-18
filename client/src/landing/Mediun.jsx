@@ -49,7 +49,7 @@ const Mediun = () => {
       </div>
       <div className="w-[60vw] flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px]">
-          Aprende ingles  solamente en 8 a 12 meses
+        IQ English es la mejor opción para ti
         </h1>
         <div className="flex flex-col mt-12 space-y-4">
           <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
