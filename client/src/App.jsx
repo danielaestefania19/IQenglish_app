@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from "./landing/Navbar";
 import Body from "./landing/Body";
@@ -8,9 +7,7 @@ import Card from "./landing/Card";
 import Blog from "./landing/Blog";
 import Mediun from "./landing/Mediun.jsx";
 import Reviews from "./landing/Reviews.jsx";
-import Metodo from "./landing/Metodo.jsx";
 import Nivelacion from "./landing/Nivelacion.jsx";
-import Nosotros from "./landing/Nosotros.jsx";
 import { UserContextProvider } from './context/advisor.context.jsx';
 import Dashboard from "./components/IQenglish/Dashboard.jsx";
 import ProtectedRoute from "./components/IQenglish/middleware/ProtectedRoute.jsx";
@@ -29,7 +26,12 @@ import Cards from "./team/Cards.jsx"
 import ContactoFlyTeachers from "./team/ContactoTeachers.jsx"
 import TeacherOne from './team/TeacherOne.jsx';
 import TeacherSecond from './team/TeacherSecond.jsx';
-import End from "./team/End.jsx"
+import BodyNosotros from './nosotros/BodyNosotros.jsx';
+import Nosotros from './nosotros/Nosotros.jsx';
+import CardNosotros from './nosotros/CardNosotros.jsx';
+import VideoNosotros from './nosotros/VideoNosotros.jsx';
+import BodyMetodo from './metodo/BodyMetodo.jsx';
+
 
 function App() {
   return (
@@ -67,21 +69,23 @@ function App() {
                   <TeacherOne />
                   <TeacherSecond />
                   <Teachers />
-                  <End />
                   <Footer />
                 </>
               } />
               <Route path="/metodo" element={
                 <>
                   <Navbar />
-                  <Metodo />
+                  <BodyMetodo />
                   <Footer />
                 </>
               } />
               <Route path="/nosotros" element={
                 <>
                   <Navbar />
+                  <BodyNosotros/>
                   <Nosotros />
+                  <CardNosotros/>
+                  <VideoNosotros/>
                   <Footer />
                 </>
               } />
