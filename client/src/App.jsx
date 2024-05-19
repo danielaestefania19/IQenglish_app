@@ -32,6 +32,7 @@ import CardNosotros from './nosotros/CardNosotros.jsx';
 import VideoNosotros from './nosotros/VideoNosotros.jsx';
 import BodyMetodo from './metodo/BodyMetodo.jsx';
 import Metodo from './metodo/Metodo.jsx';
+import End from './team/End.jsx';
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
                   <TeacherOne />
                   <TeacherSecond />
                   <Teachers />
+                  <End />
                   <Footer />
                 </>
               } />
