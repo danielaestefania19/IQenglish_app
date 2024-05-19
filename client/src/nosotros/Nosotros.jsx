@@ -5,7 +5,7 @@ import Nosotros2 from "../assets/Nosotros2.png";
 const Nosotros = () => {
     return (
 
-        <div className="flex flex-col items-center justify-center h-full">
+        <div className="flex flex-col items-center justify-center h-full mt-16">
               <div className="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row md:max-w-7xl p-0 mb-8">
                 <img src={Nosotros1} className="object-cover w-full h-128 md:w-96 md:h-auto rounded-t-lg md:rounded-none md:rounded-s-lg" /> 
                 <div className="flex flex-col justify-between p-2 leading-normal">

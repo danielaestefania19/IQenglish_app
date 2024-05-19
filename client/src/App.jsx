@@ -31,6 +31,7 @@ import Nosotros from './nosotros/Nosotros.jsx';
 import CardNosotros from './nosotros/CardNosotros.jsx';
 import VideoNosotros from './nosotros/VideoNosotros.jsx';
 import BodyMetodo from './metodo/BodyMetodo.jsx';
+import Metodo from './metodo/Metodo.jsx';
 
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
                 <>
                   <Navbar />
                   <BodyMetodo />
+                  <Metodo/>
                   <Footer />
                 </>
               } />
