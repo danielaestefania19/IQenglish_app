@@ -16,27 +16,27 @@ const Card = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      const windowHeight = window.innerHeight;
-      const componentTop = document.getElementById('card').offsetTop;
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const componentTop = document.getElementById('card').offsetTop;
 
-      // Verifica si el componente es visible en la ventana
-      if (scrollTop + windowHeight > componentTop && !isVisible) {
-        setIsVisible(true);
-      }
+        if (scrollTop + windowHeight > componentTop) {
+            setIsVisible(true);
+        }
     };
 
     window.addEventListener('scroll', handleScroll);
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isVisible]);
+}, []);
 
-  // Configura las transiciones
-  const transitions = useTransition(isVisible ? issues : [], {
+// Configura las transiciones
+const transitions = useTransition(isVisible ? issues : [], {
     from: { opacity: 0, transform: 'translateY(100px)' },
     enter: { opacity: 1, transform: 'translateY(0px)' },
     config: config.molasses,
-  });
+});
+
 
   return (
     <section id="card" className="w-full h-full pb-10 pt-32 dark:bg-dark lg:pb-20 lg:pt-[120px]">

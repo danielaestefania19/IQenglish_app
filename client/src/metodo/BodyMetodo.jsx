@@ -3,6 +3,8 @@ import { useSpring, animated } from "react-spring";
 import IQBot from "../assets/IQBot.png";
 import blogsSmall from "../assets/blogsSmall.png";
 import { IoMdCheckmark } from "react-icons/io";
+import fondo_image from "../assets/fondo_image2.png";
+
 
 
 const BodyMetodo = () => {
@@ -51,7 +53,7 @@ const BodyMetodo = () => {
             <div className="content-container py-8 mx-auto relative mb-4 " >
                 <div className="flex flex-col-reverse lg:flex-row items-center ml-0 lg:ml-[250px]" >
                     <div className="max-w-xl">
-                        <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-white mt-12">Habla inglés fluido en 7 meses. Rápido y efectivo. </h2>
+                        <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-white mt-12">Habla inglés en 8 meses con nuestro metodo inovador </h2>
                         <p className="mb-2 max-w-[600px] text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}> IQ English es tu opción para aprender inglés rápido e intensivo.</p>
                         <p className="mb-2 mt-12 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-white transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
                             <span className="inline-block bg-white rounded-full h-2 w-2 mr-2"></span>
@@ -69,7 +71,7 @@ const BodyMetodo = () => {
 
                         <p className="mb-6 mt-4 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-white transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
                             <span className="inline-block bg-white rounded-full h-2 w-2 mr-2"></span>
-                            Clubes de conversación
+                            Clubes de practica
                         </p>
 
                         <ul className="flex flex-wrap items-center">
@@ -84,10 +86,10 @@ const BodyMetodo = () => {
 
                         </ul>
                     </div>
-                    <div className="w-[400px] lg:w-1/3 flex items-center flex-grow ml-0 order-1 lg:order-2 lg:ml-48">
+                    <div className="w-[400px] lg:w-1/3 flex items-center flex-grow ml-0 order-1 lg:order-2 lg:ml-32">
                         <div className="w-full lg:w-2/3 flex justify-center mb-8 lg:mb-0 order-2 lg:order-1 image-container">
                             <animated.div style={imageAnimation}>
-                                <div>
+                            <div>
                                     <img src={IQBot} alt="hero" className="max-w-full lg:ml-auto w-[750px] transform transition duration-500 ease-in-out hover:scale-105" />
                                 </div>
                             </animated.div>

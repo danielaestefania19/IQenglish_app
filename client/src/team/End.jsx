@@ -51,7 +51,7 @@ const End = () => {
                         <CardFooter className="gap-3">
                             <div className="flex gap-1">
                                
-                                <p className="text-default-400 text-small">Las oportunidades tu las creas.</p>
+                                <p className="text-default-400 text-small">¡El momento es ahora!</p>
                             </div>
                         
                         </CardFooter>
@@ -81,7 +81,7 @@ const End = () => {
                         <CardFooter className="gap-3">
                             <div className="flex gap-1">
                                
-                                <p className="text-default-400 text-small">IQ English es tu mejor opción.</p>
+                                <p className="text-default-400 text-small">¡IQ English es tu mejor opción!</p>
                             </div>
                         
                         </CardFooter>
