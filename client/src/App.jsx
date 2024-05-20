@@ -33,8 +33,9 @@ import VideoNosotros from './nosotros/VideoNosotros.jsx';
 import BodyMetodo from './metodo/BodyMetodo.jsx';
 import Metodo from './metodo/Metodo.jsx';
 import End from './team/End.jsx';
-
-
+import NuevaYork from './metodo/NuevaYork.jsx';
+import Aprende from './metodo/Aprende.jsx';
+import Libros from './metodo/Libros.jsx';
 function App() {
   return (
     <NextUIProvider>
@@ -80,6 +81,9 @@ function App() {
                   <Navbar />
                   <BodyMetodo />
                   <Metodo/>
+                  <Libros/>
+                  <Aprende/>
+                  <NuevaYork/>
                   <Footer />
                 </>
               } />

@@ -42,42 +42,19 @@ const Metodo = () => {
                             </p>
                             <div className="mb-9 flex flex-col gap-[14px]">
                                 <p className="text-base text-body-color dark:text-dark-6">
-                                    <strong>Lecciones:</strong>
+                                    <strong>Lecciones:</strong> 14 lecciones en 2 secciones:
+                                    <em>Sección A:</em> 7 lecciones,
+                                    <em>Sección B:</em> 7 lecciones.
                                 </p>
                                 <p className="text-base text-body-color dark:text-dark-6">
-                                    14 lecciones divididas en 2 secciones:
+                                    <strong>Checkpoints:</strong> Después de Sección A y Sección B.
                                 </p>
                                 <p className="text-base text-body-color dark:text-dark-6">
-                                    <em>Sección A:</em> 7 lecciones
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    <em>Sección B:</em> 7 lecciones
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    2 checkpoints:
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    Checkpoint 1: Después de las primeras 7 lecciones (Sección A)
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    <em>Checkpoint 2:</em> Después de las siguientes 7 lecciones (Sección B)
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    <strong>Clubes de práctica:</strong>
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    Participación en 22 clubes de práctica
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    Los clubes proporcionan habilidades y herramientas para:
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    - Hablar de forma básica sobre asuntos cotidianos
-                                </p>
-                                <p className="text-base text-body-color dark:text-dark-6">
-                                    - Entender de forma básica asuntos cotidianos
+                                    <strong>Clubes de práctica:</strong> Participación en 22 clubes para habilidades básicas en asuntos cotidianos.
                                 </p>
                             </div>
+
+
 
                             <div>
                                 <span className="absolute right-0 top-7 z-[-1]">
