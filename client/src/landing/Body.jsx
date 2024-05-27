@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import blogs from "../assets/blogs.png";
 import blogsSmall from "../assets/blogsSmall.png";

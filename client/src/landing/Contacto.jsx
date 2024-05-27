@@ -1,5 +1,5 @@
 import { Tooltip } from '@nextui-org/react'; // Importa Tooltip desde NextUI
-import llamada from "../assets/phone.png";
+import llamada from "../assets/llamada.png";
 import whatsapp from "../assets/whatsapp.png";
 import check from "../assets/marker.png";
 
@@ -24,18 +24,18 @@ function Contacto() {
     };
 
     return (
-        <div className="h-20 w-full relative flex justify-center items-start">
+        <div className="h-24 w-full relative flex justify-center items-start">
             <div className="absolute bottom-7 left-10">
                 <div className="flex">
                     {/* Envuelve cada imagen en un Tooltip */}
                     <Tooltip showArrow={true} color='default' content="Llamada">
-                        <img src={llamada} alt="Llamada" className="h-5 w-5 mr-3 hover:shadow-md hover:opacity-50" onClick={hacerLlamada} />
+                        <img src={llamada} alt="Llamada" className="h-10 w-10 mr-3 hover:shadow-md hover:opacity-50" onClick={hacerLlamada} />
                     </Tooltip>
                     <Tooltip showArrow={true} color='default' content="WhatsApp">
-                        <img src={whatsapp} alt="WhatsApp" className="h-5 w-5 mr-3 hover:shadow-md hover:opacity-50" onClick={enviarMensaje} />
+                        <img src={whatsapp} alt="WhatsApp" className="h-10 w-10 mr-3 hover:shadow-md hover:opacity-50" onClick={enviarMensaje} />
                     </Tooltip>
                     <Tooltip showArrow={true} color='default' content="Ubicación">
-                        <img src={check} alt="Check" className="h-5 w-5 hover:shadow-md hover:opacity-50" onClick={irALocalizacion} />
+                        <img src={check} alt="Check" className="h-10 w-10 hover:shadow-md hover:opacity-50" onClick={irALocalizacion} />
                     </Tooltip>
                 </div>
             </div>

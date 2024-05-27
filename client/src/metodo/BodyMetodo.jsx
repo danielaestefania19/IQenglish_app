@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
-import IQBot from "../assets/IQBot.png";
+import IQBot from "../assets/student.jpg";
 import blogsSmall from "../assets/blogsSmall.png";
 import { IoMdCheckmark } from "react-icons/io";
 import fondo_image from "../assets/fondo_image2.png";
@@ -87,7 +87,7 @@ const BodyMetodo = () => {
                         </ul>
                     </div>
                     <div className="w-[400px] lg:w-1/3 flex items-center flex-grow ml-0 order-1 lg:order-2 lg:ml-32">
-                        <div className="w-full lg:w-2/3 flex justify-center mb-8 lg:mb-0 order-2 lg:order-1 image-container">
+                        <div className="w-full lg:w-2/3 flex justify-center mb-8 lg:mb-0 order-2 lg:order-1 image-container rounded-3xl">
                             <animated.div style={imageAnimation}>
                             <div>
                                     <img src={IQBot} alt="hero" className="max-w-full lg:ml-auto w-[750px] transform transition duration-500 ease-in-out hover:scale-105" />

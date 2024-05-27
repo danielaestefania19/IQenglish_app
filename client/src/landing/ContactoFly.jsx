@@ -1,4 +1,4 @@
-import { Tooltip, Avatar, Button } from '@nextui-org/react';
+import { Tooltip, Button } from '@nextui-org/react';
 import { IoCall } from "react-icons/io5";
 import { IoLogoWhatsapp } from "react-icons/io";
 import icon from "../assets/logo2.jpeg";
@@ -69,7 +69,7 @@ function ContactoFly() {
                             </Tooltip>
                         </>
                     )}
-                    <Avatar src={icon} isBordered radius="full" color="default" size="lg" className="z-99" onClick={toggleContactos} style={{ margin: '0.8rem' }} />
+                    < button className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-xl lg:text-2xl font-medium text-white hover:bg-blue-200 lg:px-7" onClick={toggleContactos} style={{ margin: '0.8rem' }} > Contactanos </button>
                 </div>
             )}
         </div>
