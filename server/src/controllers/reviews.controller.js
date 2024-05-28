@@ -1,9 +1,7 @@
 import { pool } from "../db.js";
 import dotenv from 'dotenv'
-import { Resend } from 'resend';
 
-const API_KEY = process.env.API_KEY;
-const resend = new Resend(API_KEY);
+
 dotenv.config()
 
 
