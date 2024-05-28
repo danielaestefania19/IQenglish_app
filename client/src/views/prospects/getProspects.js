@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const baseUrl = 'http://localhost:3001/api/prospects';
+// Obtener la URL base de la variable de entorno o usar la URL local por defecto
+const baseUrl = (import.meta.env.VITE_API || 'http://localhost:3001/api') + '/prospects';
 
 export default async function getProspects(token) {
-   
-    const tokenjwt = token.token
+    const tokenjwt = token.token;
     try {
         const config = {
             headers: {

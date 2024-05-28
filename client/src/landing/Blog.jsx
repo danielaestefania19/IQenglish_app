@@ -20,6 +20,7 @@ const locations = [
   { name: 'San Nicolás de los Garza', value: 'San Nicolás de los Garza' },
   { name: 'Santa Catarina', value: 'Santa Catarina' },
   { name: 'Santiago', value: 'Santiago' },
+  { name: 'Otro lugar', value: 'Otro lugar' },
 ];
 
 const Blog = () => {

@@ -10,7 +10,7 @@ const resend = new Resend(API_KEY);
 
 const validAddresses = [
     "Apodaca", "Cadereyta Jiménez", "García", "San Pedro Garza García", "General Escobedo", 
-    "Guadalupe", "Juárez", "Monterrey", "Salinas Victoria", "San Nicolás de los Garza", "Santa Catarina", "Santiago"
+    "Guadalupe", "Juárez", "Monterrey", "Salinas Victoria", "San Nicolás de los Garza", "Santa Catarina", "Santiago", "Otro lugar"
 ];
 
 
@@ -74,6 +74,7 @@ export const createProspect = async (req, res) => {
         }
 
         if (!validAddresses.includes(address)) {
+            console.log("Hola")
             return res.status(400).send({ error: 'Invalid address' });
         }
         

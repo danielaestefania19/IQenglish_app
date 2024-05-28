@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = 'http://localhost:3001/api/advisors/login';
+// Obtener la URL base de la variable de entorno o usar la URL local por defecto
+const baseUrl = (import.meta.env.VITE_API || 'http://localhost:3001/api') + '/advisors/login';
 
 export default async function login_user({ username, password }) {
     try {
@@ -17,9 +18,9 @@ export default async function login_user({ username, password }) {
             throw new Error('Response is NOT ok');
         }
 
-        const { token  } = response.data; // Asume que el tipo de usuario se devuelve en la respuesta
+        const { token } = response.data; // Asume que el token se devuelve en la respuesta
 
-        return { token  }; // Devuelve el token y el tipo de usuario
+        return { token }; // Devuelve el token
 
     } catch (error) {
         throw error;

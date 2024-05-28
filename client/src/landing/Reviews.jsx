@@ -99,7 +99,7 @@ const Reviews = () => {
   const handleTitleChange = (event) => {
     const value = event.target.value;
     setTitle({ value: value, completed: !!value });
-    if (value.length > 60) {
+    if (value.length > 100) {
       setTitleError('Se acepta un máximo de 60 caracteres.');
     } else {
       setTitleError('');

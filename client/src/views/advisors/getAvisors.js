@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const baseUrl = 'http://localhost:3001/api/advisors';
+// Obtener la URL base de la variable de entorno o usar la URL local por defecto
+const baseUrl = (import.meta.env.VITE_API || 'http://localhost:3001/api') + '/advisors';
 
 export default async function getAllAdvisors({ token }) {
     try {

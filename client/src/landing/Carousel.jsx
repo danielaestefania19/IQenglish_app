@@ -10,6 +10,10 @@ import foto5 from "../assets/gala/foto5.jpg"
 import foto6 from "../assets/gala/foto6.jpg"
 import foto7 from "../assets/gala/foto7.jpg"
 import foto8 from "../assets/gala/foto8.jpg"
+import foto9 from "../assets/graduado1.jpeg"
+import foto10 from "../assets/graduado2.jpeg"
+import foto11 from "../assets/graduado3.jpeg"
+import foto12 from "../assets/graduado4.jpeg"
 
 
 export default function Carousel() {
@@ -26,7 +30,11 @@ export default function Carousel() {
     foto5,
     foto6,
     foto7,
-    foto8
+    foto8,
+    foto9, 
+    foto10,
+    foto11,
+    foto12
   ];
   
 

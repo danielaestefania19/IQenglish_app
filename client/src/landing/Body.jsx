@@ -11,6 +11,7 @@ const Body = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+
         const handleResize = () => {
             if (window.innerWidth < 1270) {
                 setImage(blogsSmall);
