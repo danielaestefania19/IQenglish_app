@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const { PASSWORD_DATABASE, USER_DATABASE, HOST_DATABASE, DATABASE, DATABASE_TEST, NODE_ENV } = process.env
+const { PASSWORD_DATABASE, USER_DATABASE, HOST_DATABASE, DATABASE, DATABASE_TEST, NODE_ENV, DB_PORT } = process.env
 
 const databseString = NODE_ENV === 'test'
    ? DATABASE_TEST
@@ -14,6 +14,7 @@ let pool;
 
 try {
     pool = createPool({
+        port: DB_PORT,
         host: HOST_DATABASE,
         user: USER_DATABASE,
         password: PASSWORD_DATABASE,

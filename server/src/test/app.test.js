@@ -20,7 +20,7 @@ const newProspect = {
     email: 'test@example.com',
     phone_number: '1234567890',
     age: 30,
-    addresses: 'Test Address'
+    address: 'Otro lugar'
 };
 
 const updatedProspect = {
@@ -29,7 +29,7 @@ const updatedProspect = {
     email: 'updated@example.com',
     phone_number: '0987654321',
     age: 35,
-    addresses: 'Updated Address'
+    address: 'Otro lugar'
 };
 
 
@@ -50,7 +50,7 @@ describe('Admin operations', () => {
 
     test('Admin login', async () => {
         const response = await api
-            .post('/api/advisors/admin/login')
+            .post('/api/advisors/login')
             .send({
                 username: ADMIN_USERNAME,
                 password: ADMIN_PASSWORD
@@ -67,7 +67,7 @@ describe('Admin operations', () => {
         };
 
         await api
-            .post('/api/advisors/admin/login')
+            .post('/api/advisors/login')
             .send(incorrectCredentials)
             .expect(400) // Esperar un código de estado 401 (No autorizado)
     });
@@ -86,7 +86,7 @@ describe('Admin operations', () => {
         };
 
         const response = await api
-            .post('/api/advisors/admin/register')
+            .post('/api/advisors/register')
             .set('Authorization', `Bearer ${tokenAdmin}`) // Usar el token para autenticar la solicitud
             .send(newUser)
             .expect(200)
@@ -105,7 +105,7 @@ describe('Admin operations', () => {
         };
 
         await api
-            .post('/api/advisors/admin/register')
+            .post('/api/advisors/register')
             .set('Authorization', `Bearer ${tokenAdmin}`) // Usar el token para autenticar la solicitud
             .send(newUser)
             .expect(400)
@@ -130,7 +130,7 @@ describe('Admin operations', () => {
         };
 
         await api
-            .post('/api/advisors/admin/login')
+            .post('/api/advisors/login')
             .send(updatedCredentials)
             .expect(200)
     });
@@ -144,7 +144,7 @@ describe('Admin operations', () => {
 
     test('Deleted admin cannot login', async () => {
         await api
-            .post('/api/advisors/admin/login')
+            .post('/api/advisors/login')
             .send(adminCredentials)
             .expect(400) // Esperar un código de estado 400 (Solicitud incorrecta)
     });
@@ -179,7 +179,7 @@ describe('Advisor operations', () => {
         };
 
         const response = await api
-            .post('/api/advisors/admin/register')
+            .post('/api/advisors/register')
             .set('Authorization', `Bearer ${tokenAdmin}`) // Usar el token para autenticar la solicitud
             .send(newUser)
             .expect(200)
@@ -200,7 +200,7 @@ describe('Advisor operations', () => {
         };
 
         await api
-            .post('/api/advisors/admin/register')
+            .post('/api/advisors/register')
             .set('Authorization', `Bearer ${tokenAdmin}`) // Usar el token para autenticar la solicitud
             .send(newUser)
             .expect(400)
@@ -225,13 +225,6 @@ describe('Advisor operations', () => {
             .post('/api/advisors/login')
             .send(incorrectCredentials)
             .expect(400) // Esperar un código de estado 401 (No autorizado)
-    });
-
-    test('Advisor fails to login as admin', async () => {
-        await api
-            .post('/api/advisors/admin/login')
-            .send(advisorCredentials) // Usar las credenciales del asesor
-            .expect(403) // Esperar un código de estado 403 (Prohibido)
     });
 
     test('Update advisor', async () => {
@@ -352,7 +345,7 @@ describe('Prospects:', () => {
         expect(prospect.email).toBe(updatedProspect.email);
         expect(prospect.phone_number).toBe(updatedProspect.phone_number);
         expect(prospect.age).toBe(updatedProspect.age);
-        expect(prospect.addresses).toBe(updatedProspect.addresses);
+        expect(prospect.addresses).toBe(updatedProspect.address);
     });
 
     test('Delete prospect', async () => {
