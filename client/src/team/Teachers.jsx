@@ -4,7 +4,7 @@ import image3 from "../assets/team/team-01/image3.jpg";
 import image4 from "../assets/team/team-01/image4.jpg";
 import "../css/Tailwind.css";
 import { useSpring, animated } from '@react-spring/web';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Teachers = () => {
     const [flipped, setFlipped] = useState({});
@@ -35,10 +35,10 @@ const Teachers = () => {
                                 Nuestro Equipo
                             </span>
                             <h2 className="mb-3 text-3xl font-bold leading-[1.2] text-dark dark:text-white sm:text-4xl md:text-[40px]">
-                                ¡Conoce a tus profesores!
+                                ¡Conoce a tus instructores!
                             </h2>
                             <p className="text-base text-body-color dark:text-dark-6">
-                                Profesores certificados y expertos en educación que van a ayudarte que tu proceso sea más fácil.
+                                Instructores certificados y expertos en educación que van a ayudarte que tu proceso sea más fácil.
                             </p>
                         </div>
                     </div>
@@ -111,11 +111,11 @@ const Teachers = () => {
                                         <animated.div style={{ opacity, transform: 'rotateY(180deg)' }} className="absolute w-full h-full backface-hidden">
                                             <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-4">
                                                 <div className="flex justify-end px-4 pt-4">
-                                                    <button onClick={() => handleFlip(teacher.id)} type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
-                                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                    <button onClick={() => handleFlip(teacher.id)} type="button" className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                                                        <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                                         </svg>
-                                                        <span class="sr-only">Close modal</span>
+                                                        <span className="sr-only">Close modal</span>
                                                     </button>
                                                 </div>
                                                 <div className="flex flex-col items-center pb-10">

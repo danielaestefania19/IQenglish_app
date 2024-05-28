@@ -7,13 +7,13 @@ const TeacherOne = () => {
             <div className="flex flex-col lg:flex-row items-center lg:ml-[230px] mt-10">
 
             <div className="max-w-xl">
-    <p className="mb-8 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-primary" style={{ letterSpacing: '-0.01em' }}>Estudiar con nuestros profesores te va a permitir desarrollar al máximo cada una de las áreas del inglés.</p>
+    <p className="mb-8 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-primary" style={{ letterSpacing: '-0.01em' }}>Estudiar con nuestros instructores te va a permitir desarrollar al máximo cada una de las áreas del inglés.</p>
 
     <div className="mb-6 mt-4 ml-4 max-w-[600px] transform transition duration-500 ease-in-out hover:scale-105 flex items-center"> {/* Añade un margen inferior a esta div */}
         <span className="inline-block bg-primary rounded-full h-2 w-3 mr-2"></span>
         <Card>
             <CardBody>
-                <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Nuestros profesores ofrecen un apoyo personalizado para que alcances tus metas en el aprendizaje del inglés.</p>
+                <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Nuestros instructores ofrecen un apoyo personalizado para que alcances tus metas en el aprendizaje del inglés.</p>
             </CardBody>
         </Card>
     </div>
@@ -22,7 +22,7 @@ const TeacherOne = () => {
         <span className="inline-block bg-primary rounded-full h-2 w-3 mr-2"></span>
         <Card>
             <CardBody>
-            <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Con la ayuda de nuestros profesores serás capaz de hablar de forma fluida el idioma inglés con cualquier persona.</p>
+            <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Con la ayuda de nuestros instructores serás capaz de hablar de forma fluida el idioma inglés con cualquier persona.</p>
             </CardBody>
         </Card>
     </div>
@@ -31,7 +31,7 @@ const TeacherOne = () => {
         <span className="inline-block bg-primary rounded-full h-2 w-3 mr-2"></span>
         <Card>
             <CardBody>
-            <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Nuestros profesores te ayudarán con cualquier problema o duda que tengas en el camino.</p>
+            <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Nuestros instructores te ayudarán con cualquier problema o duda que tengas en el camino.</p>
             </CardBody>
         </Card>
     </div>
@@ -40,7 +40,7 @@ const TeacherOne = () => {
     <span className="inline-block bg-primary rounded-full h-2 w-3 mr-2"></span>
         <Card>
             <CardBody>
-            <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}> Con años de experiencia, nuestros profesores están capacitados para que tengas los mejores resultados posibles.</p>
+            <p className="text-base lg:text-lg dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}> Con años de experiencia, nuestros instructores están capacitados para que tengas los mejores resultados posibles.</p>
             </CardBody>
         </Card>
     </div>
