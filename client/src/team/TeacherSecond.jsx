@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import workshops from "../assets/icons/talleres.png";
 import atencion from "../assets/icons/internet.png";
@@ -42,7 +42,7 @@ const TeacherSecond = () => {
         
       <div id="card" className="lg:w-1/2 flex justify-center -mt-26 mb-8 lg:mb-0 order-2 lg:order-1 relative z-10">
         <animated.img 
-          src="https://www.openenglish.com/wp-content/uploads/2022/05/prof_character2__desktop_x1.png" 
+          src="https://blogassets.leverageedu.com/media/uploads/2022/11/07134619/Indian-students-important-for-New-Zealands-foreign-education-goals.png" 
           alt="hero" 
           className="h-[500px] lg:ml-48 lg:-mr-12 w-[500px] rounded-lg" 
           style={{...card2Animation, ...hoverAnimation}}
@@ -52,10 +52,10 @@ const TeacherSecond = () => {
       </div>
       <div className="lg:w-1/2 flex justify-center mt-8 mb-8 lg:mb-0 order-2 lg:order-1 z-1">
         <div className="text-left -ml-48">
-        <p className="mb-4 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-primary" style={{ letterSpacing: '-0.01em' }}>¡Nunca estarás solo! Nuestros profesores expertos te acompañarán en tu proceso</p>
+        <p className="mb-4 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-primary" style={{ letterSpacing: '-0.01em' }}>¡Nunca estarás solo! Nuestros instructores expertos te acompañarán en tu proceso</p>
 
         {/* Nuevo texto con un tamaño de fuente más pequeño */}
-        <p className="mb-4 max-w-[600px] text-lg lg:text-xl dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Tendras la posibilidad de interactuar con nuestros profesores en diferentes espacios</p>
+        <p className="mb-4 max-w-[600px] text-lg lg:text-xl dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Tendras la posibilidad de interactuar con nuestros instructores en diferentes espacios</p>
         
         <div className="flex flex-col mt-12 space-y-4">
           <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">

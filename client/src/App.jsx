@@ -23,7 +23,7 @@ import Practica from "./landing/Practica.jsx"
 import Teachers from "./team/Teachers.jsx";
 import BodyTeachers from './team/BodyTeachers.jsx';
 import Cards from "./team/Cards.jsx"
-import ContactoFlyTeachers from "./team/ContactoTeachers.jsx"
+import ContactoFlyEdit from "./landing/ContactoFlyEdit.jsx"
 import TeacherOne from './team/TeacherOne.jsx';
 import TeacherSecond from './team/TeacherSecond.jsx';
 import BodyNosotros from './nosotros/BodyNosotros.jsx';
@@ -36,6 +36,8 @@ import End from './team/End.jsx';
 import NuevaYork from './metodo/NuevaYork.jsx';
 import Aprende from './metodo/Aprende.jsx';
 import Libros from './metodo/Libros.jsx';
+import Banner from "./landing/Banner.jsx"
+import VideoMetodo from './metodo/VideoMetodo.jsx';
 function App() {
   return (
     <NextUIProvider>
@@ -48,6 +50,7 @@ function App() {
               <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
               <Route path="/" element={
                 <>
+                <Banner />
                   <Navbar />
                   <Body />
                   <ContactoFly />
@@ -65,9 +68,10 @@ function App() {
               } />
               <Route path="/teachers" element={
                 <>
+                  <Banner />
                   <Navbar />
                   <BodyTeachers />
-                  <ContactoFlyTeachers />
+                  <ContactoFlyEdit />
                   <Cards />
                   <TeacherOne />
                   <TeacherSecond />
@@ -78,19 +82,24 @@ function App() {
               } />
               <Route path="/metodo" element={
                 <>
+                  <Banner />
                   <Navbar />
                   <BodyMetodo />
+                  <ContactoFlyEdit />
                   <Metodo/>
                   <Libros/>
                   <Aprende/>
                   <NuevaYork/>
+                  <VideoMetodo />
                   <Footer />
                 </>
               } />
               <Route path="/nosotros" element={
                 <>
+                  <Banner />
                   <Navbar />
                   <BodyNosotros/>
+                  <ContactoFlyEdit />
                   <Nosotros />
                   <CardNosotros/>
                   <VideoNosotros/>

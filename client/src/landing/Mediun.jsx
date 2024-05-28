@@ -36,7 +36,7 @@ const Mediun = () => {
   const iqBotAnimation = useSpring({
     opacity: isVisible ? 1 : 0,
     from: { opacity: 0 },
-    config: { duration: 1000 }, // Ajusta la duración de la animación según sea necesario
+    config: { duration: 100 }, // Ajusta la duración de la animación según sea necesario
   });
 
   return (
@@ -47,7 +47,7 @@ const Mediun = () => {
           <animated.img src={IQBot} alt="hero" className="w-full h-full transform transition duration-500 ease-in-out hover:scale-110" style={iqBotAnimation} />
         </div>
       </div>
-      <div className="w-[60vw] flex flex-col items-center justify-center">
+      <div className="w-[60vw] flex flex-col items-center justify-center -mt-12">
         <h1 className="text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px]">
         IQ English es la mejor opción para ti
         </h1>

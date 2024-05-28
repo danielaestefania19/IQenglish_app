@@ -39,7 +39,7 @@ const Nivelacion = () => {
         </div>
         <div className="w-[400px] lg:w-1/3 flex items-center flex-grow ml-32 order-1 lg:order-2">
           <div className="w-full lg:w-2/3 flex justify-center mb-8 lg:mb-0 order-2 lg:order-1">
-            <img src={student} alt="hero" className="w-full h-auto md:w-[400px] md:h-[350px] lg:w-[600px] lg:h-[400px] xl:w-[900px] xl:h-[500px] transform transition duration-500 ease-in-out hover:scale-105 rounded-lg" />
+            <img src="https://wpvip.edutopia.org/wp-content/uploads/2023/10/hero_blog_Student-Wellness_Homework_photo_iStock_878931780_monkeybusinessimages.jpg?w=2880&quality=85" alt="hero" className="w-full h-auto md:w-[400px] md:h-[350px] lg:w-[600px] lg:h-[400px] xl:w-[900px] xl:h-[500px] transform transition duration-500 ease-in-out hover:scale-105 rounded-lg" />
 
           </div>
 

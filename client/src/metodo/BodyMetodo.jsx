@@ -52,7 +52,7 @@ const BodyMetodo = () => {
         <div className="area">
             <div className="content-container py-8 mx-auto relative mb-4 " >
                 <div className="flex flex-col-reverse lg:flex-row items-center ml-0 lg:ml-[250px]" >
-                    <div className="max-w-xl">
+                    <div className="max-w-xl -mt-8">
                         <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-white mt-12">Habla inglés en 8 meses con nuestro metodo inovador </h2>
                         <p className="mb-2 max-w-[600px] text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}> IQ English es tu opción para aprender inglés rápido e intensivo.</p>
                         <p className="mb-2 mt-12 ml-4 max-w-[600px] text-base lg:text-lg dark:text-dark-6 font-popping text-white transform transition duration-500 ease-in-out hover:scale-105" style={{ letterSpacing: '-0.01em' }}>
@@ -77,7 +77,7 @@ const BodyMetodo = () => {
                         <ul className="flex flex-wrap items-center">
                             <li>
                                 <button
-                                    className="inline-flex items-center mt-12 ml-4 justify-center rounded-md bg-white px-6 py-3 text-center text-xl lg:text-2xl font-medium text-gray-900  focus:outline-none border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 lg:px-7"
+                                    className="inline-flex items-center mt-4 ml-4 justify-center rounded-md bg-white px-6 py-3 text-center text-xl lg:text-2xl font-medium text-gray-900  focus:outline-none border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 lg:px-7"
                                     onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}
                                 >
                                    Saber más

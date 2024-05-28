@@ -4,7 +4,6 @@ import { useTransition, animated, config } from 'react-spring';
 const Metodo = () => {
     const [isVisible, setIsVisible] = useState(false);
 
-    // Define los niveles y sus detalles
     const cards = [
         {
             id: 1,
@@ -14,7 +13,8 @@ const Metodo = () => {
                 "Lecciones: 14 lecciones en 2 secciones: Sección A y Sección B.",
                 "Objetivo: Lograr un dominio de hasta un nivel A2 de acuerdo al Marco Comúń Europeo de referencia",
                 "Clubes de práctica: Participación en 22 clubes para aprender habilidades básicas en asuntos de nuestra vida cotidiana."
-            ]
+            ],
+            color: "#3056D3"  // Azul oscuro
         },
         {
             id: 2,
@@ -24,9 +24,9 @@ const Metodo = () => {
                 "Lecciones: 14 lecciones en 2 secciones: Sección A y Sección B.",
                 "Objetivo: Lograr un dominio de hasta un nivel B1 de acuerdo al Marco Comúń Europeo de referencia",
                 "Clubes de práctica: Participación en 32 clubes para hablar y entender el inglés más allá de lo cotidiano."
-            ]
+            ],
+            color: "#6B9DFE"  // Azul claro
         },
-
         {
             id: 3,
             title: "Nivel Avanzado",
@@ -35,10 +35,9 @@ const Metodo = () => {
                 "Lecciones: 14 lecciones en 2 secciones: Sección A y Sección B.",
                 "Objetivo: Lograr un dominio de hasta un nivel B2 de acuerdo al Marco Comúń Europeo de referencia",
                 "Clubes de práctica: Participación en 41 clubes para entender, hablar y manejar el idioma de manera dinámica, segura y fluida."
-            ]
+            ],
+            color: "#D4AF37"  // Dorado
         }
-
-
     ];
 
     useEffect(() => {
@@ -57,7 +56,6 @@ const Metodo = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Configura las transiciones
     const transitions = useTransition(isVisible ? cards : [], {
         from: { opacity: 0, transform: 'translateY(100px)' },
         enter: { opacity: 1, transform: 'translateY(0px)' },
@@ -87,11 +85,11 @@ const Metodo = () => {
                     {transitions((props, item) => (
                         <animated.div key={item.id} style={props} className="w-full px-4 md:w-1/2 lg:w-1/3">
                             <div className="relative z-10 mb-10 overflow-hidden rounded-[10px] border-2 border-stroke bg-white px-8 py-10 shadow-pricing dark:border-dark-3 dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-[50px]">
-                                <span className="mb-2 block text-lg font-semibold text-primary">
+                                <span className="mb-2 block text-lg font-semibold text-primary" style={{ color: item.color }}>
                                     {item.title}
                                 </span>
                                 <h2 className="mb-0 text-[42px] font-bold text-dark dark:text-white">
-                                    <span>Nivel {item.id}</span>
+                                    <span style={{ color: item.color }}>Nivel {item.id}</span>
                                 </h2>
                                 <p className="mb-8 border-b border-stroke pb-8 text-base text-body-color dark:border-dark-3 dark:text-dark-6">
                                     {item.description}
@@ -103,7 +101,7 @@ const Metodo = () => {
                                         </p>
                                     ))}
 
-                                    <a href="#" className="inline-flex font-medium items-center text-primary hover:underline">
+                                    <a href="#" className="inline-flex font-medium items-center text-primary hover:underline" style={{ color: item.color }}>
                                         Conoce más!
                                         <svg className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778" />
@@ -129,7 +127,7 @@ const Metodo = () => {
                                                     y2="172"
                                                     gradientUnits="userSpaceOnUse"
                                                 >
-                                                    <stop stopColor="#3056D3" stopOpacity="0.09" />
+                                                    <stop stopColor={item.color} stopOpacity="0.09" />
                                                     <stop
                                                         offset="1"
                                                         stopColor="#C4C4C4"
@@ -152,224 +150,224 @@ const Metodo = () => {
                                                 cy="87.4849"
                                                 r="1.42021"
                                                 transform="rotate(180 38.9138 87.4849)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="38.9138"
                                                 cy="74.9871"
                                                 r="1.42021"
                                                 transform="rotate(180 38.9138 74.9871)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="38.9138"
                                                 cy="62.4892"
                                                 r="1.42021"
                                                 transform="rotate(180 38.9138 62.4892)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="38.9138"
                                                 cy="38.3457"
                                                 r="1.42021"
                                                 transform="rotate(180 38.9138 38.3457)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="38.9138"
                                                 cy="13.634"
                                                 r="1.42021"
                                                 transform="rotate(180 38.9138 13.634)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="38.9138"
                                                 cy="50.2754"
                                                 r="1.42021"
                                                 transform="rotate(180 38.9138 50.2754)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="38.9138"
                                                 cy="26.1319"
                                                 r="1.42021"
                                                 transform="rotate(180 38.9138 26.1319)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="38.9138"
                                                 cy="1.42021"
                                                 r="1.42021"
                                                 transform="rotate(180 38.9138 1.42021)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="26.4157"
                                                 cy="87.4849"
                                                 r="1.42021"
                                                 transform="rotate(180 26.4157 87.4849)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="26.4157"
                                                 cy="74.9871"
                                                 r="1.42021"
                                                 transform="rotate(180 26.4157 74.9871)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="26.4157"
                                                 cy="62.4892"
                                                 r="1.42021"
                                                 transform="rotate(180 26.4157 62.4892)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="26.4157"
                                                 cy="38.3457"
                                                 r="1.42021"
                                                 transform="rotate(180 26.4157 38.3457)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="26.4157"
                                                 cy="13.634"
                                                 r="1.42021"
                                                 transform="rotate(180 26.4157 13.634)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="26.4157"
                                                 cy="50.2754"
                                                 r="1.42021"
                                                 transform="rotate(180 26.4157 50.2754)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="26.4157"
                                                 cy="26.1319"
                                                 r="1.42021"
                                                 transform="rotate(180 26.4157 26.1319)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="26.4157"
                                                 cy="1.4202"
                                                 r="1.42021"
                                                 transform="rotate(180 26.4157 1.4202)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="13.9177"
                                                 cy="87.4849"
                                                 r="1.42021"
                                                 transform="rotate(180 13.9177 87.4849)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="13.9177"
                                                 cy="74.9871"
                                                 r="1.42021"
                                                 transform="rotate(180 13.9177 74.9871)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="13.9177"
                                                 cy="62.4892"
                                                 r="1.42021"
                                                 transform="rotate(180 13.9177 62.4892)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="13.9177"
                                                 cy="38.3457"
                                                 r="1.42021"
                                                 transform="rotate(180 13.9177 38.3457)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="13.9177"
                                                 cy="13.634"
                                                 r="1.42021"
                                                 transform="rotate(180 13.9177 13.634)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="13.9177"
                                                 cy="50.2754"
                                                 r="1.42021"
                                                 transform="rotate(180 13.9177 50.2754)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="13.9177"
                                                 cy="26.1319"
                                                 r="1.42021"
                                                 transform="rotate(180 13.9177 26.1319)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="13.9177"
                                                 cy="1.42019"
                                                 r="1.42021"
                                                 transform="rotate(180 13.9177 1.42019)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="1.41963"
                                                 cy="87.4849"
                                                 r="1.42021"
                                                 transform="rotate(180 1.41963 87.4849)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="1.41963"
                                                 cy="74.9871"
                                                 r="1.42021"
                                                 transform="rotate(180 1.41963 74.9871)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="1.41963"
                                                 cy="62.4892"
                                                 r="1.42021"
                                                 transform="rotate(180 1.41963 62.4892)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="1.41963"
                                                 cy="38.3457"
                                                 r="1.42021"
                                                 transform="rotate(180 1.41963 38.3457)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="1.41963"
                                                 cy="13.634"
                                                 r="1.42021"
                                                 transform="rotate(180 1.41963 13.634)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="1.41963"
                                                 cy="50.2754"
                                                 r="1.42021"
                                                 transform="rotate(180 1.41963 50.2754)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="1.41963"
                                                 cy="26.1319"
                                                 r="1.42021"
                                                 transform="rotate(180 1.41963 26.1319)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                             <circle
                                                 cx="1.41963"
                                                 cy="1.4202"
                                                 r="1.42021"
                                                 transform="rotate(180 1.41963 1.4202)"
-                                                fill="#3056D3"
+                                                fill={item.color}
                                             />
                                         </svg>
                                     </span>

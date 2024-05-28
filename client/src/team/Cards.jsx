@@ -9,7 +9,7 @@ const Cards = () => {
     { 
         id: 1, 
         title: "Expertos en educación de calidad", 
-        description: "Nuestros profesores son especialistas dedicados a la enseñanza y comprometidos con la excelencia."
+        description: "Nuestros instructores son especialistas dedicados a la enseñanza."
 },
     
     { 
@@ -25,7 +25,7 @@ const Cards = () => {
     { 
         id: 4, 
         title: "Más que un profesor, un amigo", 
-        description: "Nuestros profesores te acompañan en tu viaje de aprendizaje, brindándote apoyo y motivación.",
+        description: "Nuestros instructores te acompañan en tu viaje de aprendizaje, brindándote apoyo y motivación.",
     },
   ];
 
@@ -59,7 +59,7 @@ const Cards = () => {
           <h1 className="text-2xl font-bold tracking-tight text-primary sm:text-4xl font-popping text-center mb-4">
           Aprende de los mejores
           </h1>
-          <p className="mb-2 max-w-[600px] text-xl lg:text-2xl text-base text-dark dark:text-dark-4  font-normal text-center" style={{ letterSpacing: '-0.01em' }}>¡Nos encargamos de elegir los profesores perfectos para ti!</p>
+          <p className="mb-2 max-w-[600px] text-xl lg:text-2xl text-base text-dark dark:text-dark-4  font-normal text-center" style={{ letterSpacing: '-0.01em' }}>¡Nos encargamos de elegir los instructores perfectos para ti!</p>
           <p className="text-lg leading-relaxed text-body-color dark:text-dark-6 font-popping text-center mt-4">
   Seleccionamos cuidadosamente a los talentos más destacados, para que tengas la seguridad de que aprenderás con los mejores.
 </p>

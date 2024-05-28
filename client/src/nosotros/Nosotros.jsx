@@ -6,7 +6,7 @@ const Nosotros = () => {
     return (
 
         <div className="flex flex-col items-center justify-center h-full mt-16">
-            <div className="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row md:max-w-7xl p-0 mb-8">
+            <div className="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row md:max-w-7xl p-0 mb-8 transform transition duration-500 ease-in-out hover:scale-105  ">
                 <img src={Nosotros1} className="object-cover w-full h-128 md:w-96 md:h-auto rounded-t-lg md:rounded-none md:rounded-s-lg" />
                 <div className="flex flex-col justify-between p-2 leading-normal">
                     <h5 className="mb-2 text-5xl font-bold tracking-tight text-black">¿Quiénes somos?</h5>
@@ -15,7 +15,7 @@ const Nosotros = () => {
                 </div>
             </div>
             <div className="flex flex-col items-center justify-center h-full">
-                <div className="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row-reverse md:max-w-7xl p-0 mb-8">
+                <div className="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row-reverse md:max-w-7xl p-0 mb-8 transform transition duration-500 ease-in-out hover:scale-105 ">
                     <img src={Nosotros2} className="object-cover w-full h-128 md:w-96 md:h-auto rounded-t-lg md:rounded-none md:rounded-e-lg" />
                     <div className="flex flex-col justify-between p-4 leading-normal">
                         <h5 className="mb-2 text-5xl font-bold tracking-tight text-black">Nuestra Misión</h5>
@@ -25,7 +25,7 @@ const Nosotros = () => {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row md:max-w-7xl p-0 mb-8">
+            <div className="flex flex-col items-center bg-white border rounded-lg shadow-md md:flex-row md:max-w-7xl p-0 mb-8 transform transition duration-500 ease-in-out hover:scale-105 ">
                 <img src={Nosotros3} className="object-cover w-full h-96 md:w-96 md:h-auto rounded-t-lg md:rounded-none md:rounded-l-lg" />
                 <div className="flex flex-col justify-between p-2 leading-normal">
                     <h5 className="mb-2 text-5xl font-bold tracking-tight text-black">Nuestra Visión</h5>

@@ -52,24 +52,26 @@ function ContactoFly() {
 
 
     return (
-        <div className="fixed bottom-5 right-5 flex flex-col items-end z-999">
+        <div className="fixed bottom-5 right-5 flex flex-col items-end" style={{ zIndex: '999' }}>
             {mostrarBotones && (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}> {/* Cambio aquí */}
                     {mostrarContactos && (
                         <>
                             <Tooltip showArrow={true} color='foreground' content="Llamada">
-                                <Button isIconOnly color="primary" variant="bordered" aria-label="Like" onClick={hacerLlamada} style={{ margin: '0.5rem' }}>
+                                <Button isIconOnly color="primary" variant="light" aria-label="Like" onClick={hacerLlamada} style={{ margin: '0.5rem' }}>
                                     <IoCall size="4.5em" />
                                 </Button>
                             </Tooltip>
                             <Tooltip showArrow={true} color='foreground' content="WhatsApp">
-                                <Button isIconOnly color="primary" variant="bordered" aria-label="Like" onClick={enviarMensaje} style={{ margin: '0.5rem' }}>
+                                <Button isIconOnly color="primary" variant="light" aria-label="Like" onClick={enviarMensaje} style={{ margin: '0.5rem' }}>
                                     <IoLogoWhatsapp size="4.5em" />
                                 </Button>
                             </Tooltip>
                         </>
                     )}
-                    < button className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-xl lg:text-2xl font-medium text-white hover:bg-blue-200 lg:px-7" onClick={toggleContactos} style={{ margin: '0.8rem' }} > Contactanos </button>
+                    <Button color="primary" onClick={toggleContactos} radius="lg"  size="lg" variant="shadow">
+                    ¡Contáctanos!
+                    </Button>
                 </div>
             )}
         </div>

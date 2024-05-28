@@ -29,13 +29,13 @@ function Contacto() {
                 <div className="flex">
                     {/* Envuelve cada imagen en un Tooltip */}
                     <Tooltip showArrow={true} color='default' content="Llamada">
-                        <img src={llamada} alt="Llamada" className="h-10 w-10 mr-3 hover:shadow-md hover:opacity-50" onClick={hacerLlamada} />
+                        <img src={llamada} alt="Llamada" className="h-6 w-6 mr-3 hover:shadow-md hover:opacity-50" onClick={hacerLlamada} />
                     </Tooltip>
                     <Tooltip showArrow={true} color='default' content="WhatsApp">
-                        <img src={whatsapp} alt="WhatsApp" className="h-10 w-10 mr-3 hover:shadow-md hover:opacity-50" onClick={enviarMensaje} />
+                        <img src={whatsapp} alt="WhatsApp" className="h-6 w-6 mr-3 hover:shadow-md hover:opacity-50" onClick={enviarMensaje} />
                     </Tooltip>
                     <Tooltip showArrow={true} color='default' content="Ubicación">
-                        <img src={check} alt="Check" className="h-10 w-10 hover:shadow-md hover:opacity-50" onClick={irALocalizacion} />
+                        <img src={check} alt="Check" className="h-6 w-6 hover:shadow-md hover:opacity-50" onClick={irALocalizacion} />
                     </Tooltip>
                 </div>
             </div>
