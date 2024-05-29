@@ -165,20 +165,20 @@ function Dashboard() {
             >   <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <a href="#" className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isHomeActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`} onClick={handleHomeClick}>
+                            <a className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isHomeActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`} onClick={handleHomeClick}>
                                 <GrHome className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                                 <span className="ms-3">Hogar</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isProspectsActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`} onClick={handleProspectsClick}>
+                            <a className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isProspectsActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`} onClick={handleProspectsClick}>
                                 <LiaSellsy className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                                 <span className="ms-3">Prospectos</span>
                             </a>
                         </li>
                         <li>
                             {userType === 'admin' && (
-                                <a href="#" className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isAdvisorsActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`} onClick={handleAdvisorsClick}>
+                                <a className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ${isAdvisorsActive ? 'bg-gray-100 dark:bg-gray-700' : ''}`} onClick={handleAdvisorsClick}>
                                     <GrUserAdmin className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                                     <span className="flex-1 ms-3 whitespace-nowrap">Asesores</span>
                                 </a>
@@ -186,7 +186,7 @@ function Dashboard() {
                         </li>
 
                         <li>
-                            <a onClick={handleLogout} href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <a onClick={handleLogout} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <CgLogOut className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Cerrar sesión</span>
                             </a>
