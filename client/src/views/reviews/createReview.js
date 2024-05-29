@@ -5,6 +5,7 @@ const baseUrl = (import.meta.env.VITE_API || 'http://localhost:3001/api') + '/re
 
 export default async function createReview({ puntuacion, titulo, description, nombre }) {
     try {
+        console,log()
         const response = await axios.post(baseUrl, {
             puntuacion,
             titulo,

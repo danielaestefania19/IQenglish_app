@@ -41,7 +41,7 @@ export async function deleteProspects({id, token}) {
             }
         };
 
-        const response = await axios.delete(`${baseUrl}/${id}`, config);
+        const response = await axios.delete(`${baseUrl}/${id.id}`, config);
 
         if (response.status !== 204) {
             throw new Error('Response is NOT ok');

@@ -52,7 +52,6 @@ export default function useAdvisors() {
   const registerNewAdvisor = useCallback(async ({ username, password, userType }) => {
     try {
         const newAdvisor = await register({ username, password, userType, token: jwt });
-        console.log(newAdvisor);
         setAdvisors(prevAdvisors => [...prevAdvisors, newAdvisor]);
         return { success: true, data: newAdvisor };
     } catch (error) {

@@ -4,7 +4,9 @@ import axios from "axios";
 const baseUrl = (import.meta.env.VITE_API || 'http://localhost:3001/api') + '/advisors/login';
 
 export default async function login_user({ username, password }) {
+
     try {
+
         const response = await axios.post(baseUrl, {
             username,
             password

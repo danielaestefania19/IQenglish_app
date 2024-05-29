@@ -4,7 +4,6 @@ import axios from "axios";
 const baseUrl = (import.meta.env.VITE_API || 'http://localhost:3001/api') + '/advisors/register';
 
 export default async function register({ username, password, userType, token }) {
-    console.log("Datos:",  username, password, userType, token )
     try {
         const config = {
             headers: {

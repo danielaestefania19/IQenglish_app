@@ -19,6 +19,7 @@ export default async function createProspect({ name, lastname, email, phone_numb
         }
 
         return response.data;
+        
     } catch (error) {
         throw error;
     }

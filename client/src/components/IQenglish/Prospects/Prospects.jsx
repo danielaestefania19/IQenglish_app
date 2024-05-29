@@ -392,7 +392,6 @@ const Prospects = () => {
     const searcherProspect = async (searchTerm) => {
         const lowercaseSearchTerm = searchTerm.toLowerCase();
         let filteredProspects = [];
-        console.log("Valor", searchTerm)
         if (searchType === 'Nombre') {
             filteredProspects = prospects.filter(prospect => prospect.name.toLowerCase().includes(lowercaseSearchTerm));
         } else if (searchType === 'Id') {
