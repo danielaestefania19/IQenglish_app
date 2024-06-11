@@ -68,6 +68,9 @@ const Body = () => {
             <p className="mb-2 text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}>
               La forma más fácil de aprender inglés, Domina el inglés para ampliar tus oportunidades profesionales y personales.
             </p>
+            <p className="mb-2 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-signature text-dark" style={{ letterSpacing: '-0.01em', lineHeight: '1.4' }}>
+                We are the speaking specialist.
+              </p>
             <ul className="flex flex-col items-center">
               <li>
                 <button
