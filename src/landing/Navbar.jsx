@@ -26,7 +26,7 @@ function NavbarApp() {
   return (
     <div className="relative -mx-0 flex items-center justify-between bg-primary ">
       {isSmallScreen ? (
-        <Navbar className='bg-primary mt-16'>
+        <Navbar className='bg-primary mt-24'>
           <div className="relative flex items-center justify-between w-full">
             <div className="flex items-center">
               <NavbarBrand>
