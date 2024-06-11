@@ -65,10 +65,10 @@ const Body = () => {
             <h2 className="text-2xl font-bold tracking-tight text-rose-600 sm:text-3xl font-popping text-[#b5d3f8]">
               Construyamos tu futuro aprendiendo inglés.
             </h2>
-            <p className="mb-2 text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}>
+            <p className="mb-1 text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}>
               La forma más fácil de aprender inglés, Domina el inglés para ampliar tus oportunidades profesionales y personales.
             </p>
-            <p className="mb-2 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-signature text-dark" style={{ letterSpacing: '-0.01em', lineHeight: '1.4' }}>
+            <p className="mb-1 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-signature text-dark" style={{ letterSpacing: '-0.01em', lineHeight: '1.4' }}>
                 We are the speaking specialist.
               </p>
             <ul className="flex flex-col items-center">
