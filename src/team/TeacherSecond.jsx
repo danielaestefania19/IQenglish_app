@@ -4,8 +4,6 @@ import workshops from "../assets/icons/talleres.png";
 import atencion from "../assets/icons/internet.png";
 import clases from "../assets/icons/clases.png";
 
-
-
 const TeacherSecond = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -38,48 +36,45 @@ const TeacherSecond = () => {
   });
 
   return (
-    <div className="flex justify-between mt-32 mb-4">
-        
-      <div id="card" className="lg:w-1/2 flex justify-center -mt-26 mb-8 lg:mb-0 order-2 lg:order-1 relative z-10">
+    <div className="flex flex-col lg:flex-row justify-center items-center mt-8">
+      <div id="card" className="flex justify-center mb-8 lg:mb-0 order-2 lg:order-1 relative z-10 w-full lg:w-1/2">
         <animated.img 
           src="https://blogassets.leverageedu.com/media/uploads/2022/11/07134619/Indian-students-important-for-New-Zealands-foreign-education-goals.png" 
           alt="hero" 
-          className="h-[500px] lg:ml-48 lg:-mr-12 w-[500px] rounded-lg" 
+          className="h-auto w-[90%] md:w-[70%] lg:w-[500px] rounded-lg" 
           style={{...card2Animation, ...hoverAnimation}}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
       </div>
-      <div className="lg:w-1/2 flex justify-center mt-8 mb-8 lg:mb-0 order-2 lg:order-1 z-1">
-        <div className="text-left -ml-48">
-        <p className="mb-4 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-primary" style={{ letterSpacing: '-0.01em' }}>¡Nunca estarás solo! Nuestros instructores expertos te acompañarán en tu proceso</p>
-
-        {/* Nuevo texto con un tamaño de fuente más pequeño */}
-        <p className="mb-4 max-w-[600px] text-lg lg:text-xl dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>Tendras la posibilidad de interactuar con nuestros instructores en diferentes espacios</p>
-        
-        <div className="flex flex-col mt-12 space-y-4">
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
-            <img src={clases} alt="Icono 1" className="w-8 h-8 mr-2" /> Clases presenciales
+      <div className="flex flex-col justify-center items-center lg:items-start mb-8 lg:mb-0 order-1 lg:order-2 z-1 w-full lg:w-1/2 mt-8">
+        <div className="text-center lg:text-left lg:ml-12">
+          <p className="mb-4 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-primary" style={{ letterSpacing: '-0.01em' }}>
+            ¡Nunca estarás solo! Nuestros instructores expertos te acompañarán en tu proceso
+          </p>
+          <p className="mb-4 max-w-[600px] text-lg lg:text-xl dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>
+            Tendrás la posibilidad de interactuar con nuestros instructores en diferentes espacios
+          </p>
+          <div className="flex flex-col mt-12 space-y-4">
+            <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+              <img src={clases} alt="Icono 1" className="w-8 h-8 mr-2" /> Clases presenciales
             </p>
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
-            <img src={workshops} alt="Icono 2" className="w-8 h-8 mr-2" /> Actividades especiales
-          </p>
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
-            <img src={atencion} alt="Icono 3" className="w-8 h-8 mr-2" /> Clases Online
-          </p>
-        </div>
-          
-          {/* Nuevo div para el botón */}
-          <div className="mt-12">
+            <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+              <img src={workshops} alt="Icono 2" className="w-8 h-8 mr-2" /> Actividades especiales
+            </p>
+            <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+              <img src={atencion} alt="Icono 3" className="w-8 h-8 mr-2" /> Clases Online
+            </p>
+          </div>
+          <div className="mt-12 flex justify-center lg:justify-start">
             <button
               className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-xl lg:text-2xl font-medium text-white hover:bg-blue-600 lg:px-7"
               onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}
             >
-           ¡Conoce más!
+              ¡Conoce más!
             </button>
           </div>
         </div>
-        
       </div>
     </div>
   )

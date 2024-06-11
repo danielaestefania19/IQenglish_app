@@ -24,7 +24,7 @@ const Cards = () => {
     },
     { 
         id: 4, 
-        title: "Más que un profesor, un amigo", 
+        title: "Más que un instructor, un amigo", 
         description: "Nuestros instructores te acompañan en tu viaje de aprendizaje, brindándote apoyo y motivación.",
     },
   ];

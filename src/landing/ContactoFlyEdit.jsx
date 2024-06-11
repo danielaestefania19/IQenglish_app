@@ -43,7 +43,7 @@ function ContactoFlyEdit() {
                             </Tooltip>
                         </>
                     )}
-                    <Button color="primary" onClick={toggleContactos} radius="lg"  size="lg" variant="shadow">
+                    <Button color="secondary" onClick={toggleContactos} radius="lg"  size="lg" variant="solid">
                     ¡Contáctanos!
                     </Button>
                 </div>

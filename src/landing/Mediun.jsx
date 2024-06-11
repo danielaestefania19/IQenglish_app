@@ -9,30 +9,37 @@ import poliza from "../assets/icons/garantia.png";
 import card from "../assets/icons/card.png";
 import fondo from "../assets/fondo.png";
 
-
 const Mediun = () => {
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1500);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 1500);
+    };
+
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
       const componentTop = document.querySelector(".image-container").getBoundingClientRect().top;
 
-      // Verifica si el componente es visible en la ventana
-      if (scrollTop + windowHeight > componentTop && !isVisible) {
+      if (scrollTop + windowHeight > componentTop) {
         setIsVisible(true);
       }
     };
 
+    window.addEventListener("resize", handleResize);
     window.addEventListener("scroll", handleScroll);
 
+    handleResize();
+    handleScroll();
+
     return () => {
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isVisible]);
+  }, []);
 
-  // Define la animación para la imagen IQBot
   const iqBotAnimation = useSpring({
     opacity: isVisible ? 1 : 0,
     from: { opacity: 0 },
@@ -40,43 +47,43 @@ const Mediun = () => {
   });
 
   return (
-    <div className="flex justify-between">
-      <div className="w-[40vw] bg-cover bg-center flex justify-center items-center" style={{ backgroundImage: `url(${fondo})`, height: "15cm" }}>
-        <div className="w-full lg:w-1/2 flex justify-center mb-8 lg:mb-0 order-2 lg:order-1 relative z-10">
-          {/* Aplica la animación de difuminado a la imagen IQBot */}
-          <animated.img src={IQBot} alt="hero" className="w-full h-full transform transition duration-500 ease-in-out hover:scale-110" style={iqBotAnimation} />
+    <div className={`flex justify-between ${isSmallScreen ? 'flex-col items-center' : ''}`}>
+      {isSmallScreen ? (
+        <div className="w-full bg-cover bg-center flex justify-center items-center mb-8" style={{ backgroundImage: `url(${fondo})`, height: "8cm" }}>
+          <animated.img src={IQBot} alt="hero" className="w-auto h-[250px] transform transition duration-500 ease-in-out hover:scale-110" style={iqBotAnimation} />
         </div>
-      </div>
-      <div className="w-[60vw] flex flex-col items-center justify-center -mt-12">
-        <h1 className="text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px]">
-        IQ English es la mejor opción para ti
+      ) : (
+        <div className="w-[40vw] bg-cover bg-center flex justify-center items-center" style={{ backgroundImage: `url(${fondo})`, height: "15cm" }}>
+          <animated.img src={IQBot} alt="hero" className="w-auto h-[400px] transform transition duration-500 ease-in-out hover:scale-110" style={iqBotAnimation} />
+        </div>
+      )}
+      <div className={`w-[60vw] flex flex-col items-center justify-center -mt-22  ${isSmallScreen ? 'mb-4' : ''}`}>
+        <h1 className={`text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px] ${isSmallScreen ? '-mb-4 text-sm' : ''}`}>
+          IQ English es la mejor opción para ti
         </h1>
         <div className="flex flex-col mt-12 space-y-4">
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+          <p className={`flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105 ${isSmallScreen ? 'text-sm' : ''}`}>
             <img src={aprendizaje} alt="Icono 1" className="w-8 h-8 mr-2" /> Aprendizaje Integral
           </p>
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+          <p className={`flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105 ${isSmallScreen ? 'text-sm' : ''}`}>
             <img src={horario} alt="Icono 2" className="w-8 h-8 mr-2" /> Horarios Personalizados
           </p>
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+          <p className={`flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105 ${isSmallScreen ? 'text-sm' : ''}`}>
             <img src={atencion} alt="Icono 3" className="w-8 h-8 mr-2" /> Atencion Online
           </p>
-          
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+          <p className={`flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105 ${isSmallScreen ? 'text-sm' : ''}`}>
             <img src={certificacion} alt="Icono 4" className="w-8 h-8 mr-2" /> Certificacion Toefl
           </p>
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
-            <img src={poliza} alt="Icono 5" className="w-8 h-8 mr-2" /> Poliza de aprendizaje asegurada
+          <p className={`flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105 ${isSmallScreen ? 'text-sm' : ''}`}>
+            <img src={poliza} alt="Icono 5" className="w-8 h-8 mr-2" /> Aprendizaje asegurado
           </p>
-          <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+          <p className={`flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105 ${isSmallScreen ? 'text-center text-sm' : ''}`}>
             <img src={card} alt="Icono 4" className="w-8 h-8 mr-2" /> Aprendizaje de por vida
           </p>
         </div>
       </div>
-
-
     </div>
-  )
-}
+  );
+};
 
 export default Mediun;

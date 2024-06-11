@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTransition, animated, config } from 'react-spring';
-import libros from "../assets/libros.webp";
-
+import libros from "../assets/libros.png";
 
 const Libros = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,20 +30,20 @@ const Libros = () => {
   return (
       <div id="libros" className="bg-gray-100 py-12">
           <div className="max-w-7xl mx-auto px-8 flex justify-center">
-              <div className="flex items-center justify-center space-x-64 -ml-24">
+              <div className="flex items-center justify-center space-x-32"> {/* Cambiado a space-x-8 */}
                   {transitions((props, item) => 
                       item && (
                           <>
                               <animated.div style={props}>
-                                  <img src={libros} alt="Descripción de la imagen" className="w-auto h-auto mb-8 transform transition duration-500 ease-in-out hover:scale-105" />
-                                  <h2 className="text-4xl font-bold text-black mb-4 text-center ml-24">Nuestro Material de Estudio</h2>
+                                  <img src={libros} alt="Descripción de la imagen" className="w-auto max-w-xl mb-2 transform" />
+                                  <h2 className="text-4xl font-bold text-primary mb-4 text-start -mt-32 ml-12">Nuestro Material de Estudio</h2>
                               </animated.div>
-                              <animated.div style={props} className="bg-white p-8 rounded-lg shadow-lg ">
+                              <animated.div style={props} className="bg-white p-8 rounded-lg shadow-lg">
                                   <div className="flex flex-col items-center">
                                       <h2 className="text-4xl font-bold text-primary mb-4 text-center">¿Por qué elegirnos?</h2>
                                       <h3 className="text-3xl font-semibold text-gray-800 mb-4 text-center">IQ English®</h3>
                                       <h4 className="text-2lg font-semibold text-gray-800 mb-4 text-center">Principales Ventajas</h4>
-                                      <ul className="space-y-2 ">
+                                      <ul className="space-y-2">
                                           <li className="flex items-center text-gray-600">
                                               <svg className="w-8 h-8 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                                   <path fillRule="evenodd" d="M16.707 4.707a1 1 0 00-1.414-1.414l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 10-1.414 1.414l4 4a1 1 0 001.414 0l8-8z" clipRule="evenodd"></path>
@@ -61,7 +60,7 @@ const Libros = () => {
                                               <svg className="w-8 h-8 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                                   <path fillRule="evenodd" d="M16.707 4.707a1 1 0 00-1.414-1.414l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 10-1.414 1.414l4 4a1 1 0 001.414 0l8-8z" clipRule="evenodd"></path>
                                               </svg>
-                                              100% aprovechamiento
+                                              100% funcional
                                           </li>
                                           <li className="flex items-center text-gray-600">
                                               <svg className="w-8 h-8 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">

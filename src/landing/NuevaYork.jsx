@@ -24,12 +24,12 @@ const NuevaYork = () => {
               ¡Viaja a Nueva York!
             </h1>
             <p
-              className="mb-2 max-w-[600px] text-xl lg:text-2xl text-dark dark:text-dark-4 font-normal text-center"
+              className="mb-4 max-w-[600px] text-xl lg:text-2xl text-dark dark:text-dark-4 font-normal text-center"
               style={{ letterSpacing: '-0.01em' }}
             >
               Al concluir tu preparación bilingüe en IQ English en 12 meses o menos, podrás vivir esta experiencia que cambiará tu vida y relación con el idioma.
             </p>
-            <p className="text-lg leading-relaxed text-white dark:text-dark-6 font-popping text-center mt-4">
+            <p className="mb-2 max-w-[600px] text-md text-white font-normal text-center">
               Durante una semana perfecciona tu inglés en el College of Mount Saint Vincent y explora de cerca los lugares más emocionantes de la ciudad de Nueva York. ¡Inscríbete ahora!
             </p>
             <ul className="flex flex-wrap justify-center items-center mt-8 lg:mt-16">

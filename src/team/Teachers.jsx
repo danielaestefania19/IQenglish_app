@@ -1,7 +1,4 @@
-import image1 from "../assets/team/team-01/image1.jpg";
-import image2 from "../assets/team/team-01/image2.jpg";
-import image3 from "../assets/team/team-01/image3.jpg";
-import image4 from "../assets/team/team-01/image4.jpg";
+
 import teachertwo from "../assets/teachertwo.jpeg"
 import teacherthree from "../assets/teacherthree.jpeg"
 import teacherfour from "../assets/teacherfour.jpg"
@@ -17,8 +14,7 @@ const Teachers = () => {
         { id: 1, image: teachertwo, name: "Coriss Ambady", role: " Maestría en Educación", description: " Jessica es una Teacher genial. No solo sabe mucho sobre educación, ¡sino que también le encanta pintar con acuarelas en su tiempo libre! Está lista para cualquier desafío que se le presente en su vida profesional." },
         { id: 2, image: teacherfour, name: "Diego", role: "Dibujar y leer", description: "Decidió enseñar inglés para que más personas mejoren sus habilidades de comunicación, Se ha preparado muy duro para ser un instructor de calidad obteniendo certificaciones reconocidas como  Cambridge C1 y TOEFL." },
         { id: 3, image: teacherthree, name: "Rocio", role: "Licen", description: "Después de trabajar en negocios internacionales por un año, decidí trasladarme a Costa Rica, donde empecé mi carrera como maestra de inglés en el 2011. " },
-        { id: 4, image: image4, name: "Nikolas Brooten", role: "Sales Manager", description: "Después de trabajar en negocios internacionales por un año, decidí trasladarme a Costa Rica, donde empecé mi carrera como maestra de inglés en el 2011. " },
-    ];
+        { id: 3, image: teacherthree, name: "Rocio", role: "Licen", description: "Después de trabajar en negocios internacionales por un año, decidí trasladarme a Costa Rica, donde empecé mi carrera como maestra de inglés en el 2011. " },  ];
 
     const handleFlip = (id) => {
         setFlipped((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -29,7 +25,7 @@ const Teachers = () => {
     };
 
     return (
-        <section id="teachers-section" className="pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
+        <section id="teachers-section" className="pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px] bg-white">
             <div className="container mx-auto">
                 <div className="-mx-4 flex flex-wrap">
                     <div className="w-full px-4">

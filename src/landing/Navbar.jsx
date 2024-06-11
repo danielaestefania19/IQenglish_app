@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom'; // Renombrado como RouterLink
 import hamburguer from "../assets/hamburger.png";
 import logo from "../assets/logo_vec.png";
-import { Dropdown, DropdownTrigger, DropdownMenu, Button, DropdownItem, Link } from "@nextui-org/react";
+import { Navbar, NavbarBrand, Dropdown, DropdownTrigger, DropdownMenu, Button, DropdownItem, Link } from "@nextui-org/react";
 
-function Navbar() {
+function NavbarApp() {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1270);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1570);
   const location = useLocation();
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 1270);
+      setIsSmallScreen(window.innerWidth < 1570);
     };
 
     window.addEventListener('resize', checkScreenSize);
@@ -24,70 +24,72 @@ function Navbar() {
   );
 
   return (
-    <div className="relative -mx-0 flex items-center justify-between bg-primary mt-8">
-      <div className="w-60 max-w-full px-12 flex-shrink-0 mx-16">
-        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src={logo} alt="Logo" className="h-[140px]  w-auto transform scale-150" />
-        </a>
-      </div>
-
+    <div className="relative -mx-0 flex items-center justify-between bg-primary ">
       {isSmallScreen ? (
-        <div className="relative">
-          <Dropdown>
-            <DropdownTrigger>
-              <Button variant="solid" size="md" color="secondprimary">
-                <img src={hamburguer} alt="Menu" />
-              </Button>
-            </DropdownTrigger>
-            <DropdownMenu aria-label="Navigation">
-              <DropdownItem key="home" href="/">Inicio</DropdownItem>
-              <DropdownItem key="teachers" href="/teachers">Aprende</DropdownItem>
-              <DropdownItem key="method" href="/metodo">Método</DropdownItem>
-              <DropdownItem key="about" href="/nosotros">Sobre Nosotros</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          <div className="absolute top-0 right-0 mt-4 mr-4">
-            <Link href="/">Inicio</Link>
-            <Link href="/teachers">Aprende</Link>
-            <Link href="/metodo">Método</Link>
-            <Link href="/nosotros">Sobre Nosotros</Link>
+        <Navbar className='bg-primary mt-16'>
+          <div className="relative flex items-center justify-between w-full">
+            <div className="flex items-center">
+              <NavbarBrand>
+                <img src={logo} alt="Logo" className='w-[250px] h-auto' />
+              </NavbarBrand>
+            </div>
+            <div className="flex items-center ml-auto">
+              <Dropdown>
+                <DropdownTrigger>
+                  <Button variant="solid" size="md" color="secondprimary">
+                    <img src={hamburguer} alt="Menu" className='w-12 h-12' />
+                  </Button>
+                </DropdownTrigger>
+                <DropdownMenu aria-label="Navigation">
+                  <DropdownItem key="home" as={RouterLink} to="/">Inicio</DropdownItem>
+                  <DropdownItem key="teachers" as={RouterLink} to="/teachers">Aprende</DropdownItem>
+                  <DropdownItem key="method" as={RouterLink} to="/metodo">Método</DropdownItem>
+                  <DropdownItem key="about" as={RouterLink} to="/nosotros">Sobre Nosotros</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </div>
           </div>
-        </div>
+        </Navbar>
       ) : (
-        <div className="hidden justify-end pr-16 sm:flex lg:pr-0">
-          <div>
-            <nav
-              className={`absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow transition-all dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none xl:ml-11 'hidden'`}
-              id="navbarCollapse"
-            >
-              <ul className="block lg:flex">
-                <li>
-                  <RouterLink to="/" className={getLinkClass("/")}>
-                    Inicio
-                  </RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/teachers" className={getLinkClass("/teachers")}>
-                    Aprende
-                  </RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/metodo" className={getLinkClass("/metodo")}>
-                    Método
-                  </RouterLink>
-                </li>
-                <li>
-                  <RouterLink to="/nosotros" className={getLinkClass("/nosotros")}>
-                    Sobre Nosotros
-                  </RouterLink>
-                </li>
-              </ul>
-            </nav>
+        <Navbar className='bg-primary mt-8 mb-24'>
+          <NavbarBrand className='relative'>
+            <img src={logo} alt="Logo" className='-ml-48 mt-24 w-64 h-64' />
+          </NavbarBrand>
+          <div className="flex justify-start items-center pl-16 sm:flex lg:pl-0">
+            <div>
+              <nav
+                className={`absolute left-4 mt-16 -mr-32 rounded-lg px-6 py-5 shadow transition-all dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none xl:ml-32 'hidden'`}
+                id="navbarCollapse"
+              >
+                <ul className="block lg:flex">
+                  <li>
+                    <RouterLink to="/" className={getLinkClass("/")}>
+                      Inicio
+                    </RouterLink>
+                  </li>
+                  <li>
+                    <RouterLink to="/teachers" className={getLinkClass("/teachers")}>
+                      Aprende
+                    </RouterLink>
+                  </li>
+                  <li>
+                    <RouterLink to="/metodo" className={getLinkClass("/metodo")}>
+                      Método
+                    </RouterLink>
+                  </li>
+                  <li>
+                    <RouterLink to="/nosotros" className={getLinkClass("/nosotros")}>
+                      Sobre Nosotros
+                    </RouterLink>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </div>
-        </div>
+        </Navbar>
       )}
     </div>
   );
 }
 
-export default Navbar;
+export default NavbarApp;

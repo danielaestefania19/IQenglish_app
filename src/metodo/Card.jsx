@@ -3,7 +3,6 @@ import { useTransition, animated, config } from 'react-spring';
 import image1 from "../assets/groups.png";
 import image2 from "../assets/users.png";
 import visual from "../assets/visual.png";
-import fondo from "../assets/FondoColores.png";
 import "../css/Tailwind.css";
 
 const issues = [
@@ -39,7 +38,7 @@ const Card = () => {
   });
 
   return (
-    <section  className="w-full h-full  pt-32 dark:bg-dark lg:pb-20 lg:pt-[120px]">
+    <section id='card' className="w-full h-full  pt-32 dark:bg-dark lg:pb-20 lg:pt-[120px] bg-[#F0F4F9]">
       <div className=" mx-auto">
         <div className="-mx-4 flex flex-wrap justify-center">
           <div className="w-full px-4">
@@ -57,11 +56,11 @@ const Card = () => {
           </div>
         </div>
 
-        <div className="relative w-full h-[400px]" style={{ backgroundImage: `url(${fondo})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+        <div className="relative w-full h-[400px]">
           <div className="flex flex-wrap justify-center w-full max-w-screen-xl mx-auto px-4">
             {transitions((props, item) => (
               <animated.div key={item.id} style={props} className="m-6 flex flex-col">
-                <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:scale-105">
                   <div className="flex flex-col items-center pb-10">
                     <img
                       className="w-24 h-32 mb-3 rounded-full mt-12"

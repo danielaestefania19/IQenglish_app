@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import Navbar from "./landing/Navbar";
+import NavbarApp from "./landing/Navbar";
 import Body from "./landing/Body";
 import Login from "./components/IQenglish/login.jsx";
 import Footer from "./landing/Footer";
-import Card from "./landing/Card";
+import Card from "./metodo/Card.jsx";
 import Blog from "./landing/Blog";
 import Mediun from "./landing/Mediun.jsx";
 import Reviews from "./landing/Reviews.jsx";
@@ -33,11 +33,13 @@ import VideoNosotros from './nosotros/VideoNosotros.jsx';
 import BodyMetodo from './metodo/BodyMetodo.jsx';
 import Metodo from './metodo/Metodo.jsx';
 import End from './team/End.jsx';
-import NuevaYork from './metodo/NuevaYork.jsx';
+import NuevaYork from './landing/NuevaYork.jsx';
 import Aprende from './metodo/Aprende.jsx';
 import Libros from './metodo/Libros.jsx';
 import Banner from "./landing/Banner.jsx"
-import VideoMetodo from './metodo/VideoMetodo.jsx';
+import Video from './landing/Video.jsx';
+import VideoMetodo from './metodo/videoMetodo.jsx';
+import Toefl from './landing/Toefl.jsx';
 function App() {
   return (
     <NextUIProvider>
@@ -50,18 +52,20 @@ function App() {
               <Route path="/ma9ypwq1420s/sa9v5r3cd64q/prospects/secure/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
               <Route path="/" element={
                 <>
-                <Banner />
-                  <Navbar />
+                  <Banner />
+                  <NavbarApp />
                   <Body />
                   <ContactoFly />
                   <Mediun />
                   <Blog />
                   <Course />
-  
+
                   <Practica />
-                  <Carousel />
                   <Nivelacion />
-                  <Card />
+                  <Carousel />
+                  <NuevaYork />
+                  <Video />
+                  <Toefl />
                   <Reviews />
                   <Footer />
                 </>
@@ -69,7 +73,7 @@ function App() {
               <Route path="/teachers" element={
                 <>
                   <Banner />
-                  <Navbar />
+                  <NavbarApp />
                   <BodyTeachers />
                   <ContactoFlyEdit />
                   <Cards />
@@ -83,13 +87,13 @@ function App() {
               <Route path="/metodo" element={
                 <>
                   <Banner />
-                  <Navbar />
+                  <NavbarApp />
                   <BodyMetodo />
+                  <Card />
                   <ContactoFlyEdit />
-                  <Metodo/>
-                  <Libros/>
-                  <Aprende/>
-                  <NuevaYork/>
+                  <Metodo />
+                  <Libros />
+                  <Aprende />
                   <VideoMetodo />
                   <Footer />
                 </>
@@ -97,12 +101,12 @@ function App() {
               <Route path="/nosotros" element={
                 <>
                   <Banner />
-                  <Navbar />
-                  <BodyNosotros/>
+                  <NavbarApp />
+                  <BodyNosotros />
                   <ContactoFlyEdit />
                   <Nosotros />
-                  <CardNosotros/>
-                  <VideoNosotros/>
+                  <CardNosotros />
+                  <VideoNosotros />
                   <Footer />
                 </>
               } />

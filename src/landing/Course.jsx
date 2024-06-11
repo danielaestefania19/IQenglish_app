@@ -34,36 +34,33 @@ const Course = () => {
   });
 
   return (
-    <div className="flex justify-between mt-24 mb-36">
-        
-      <div id="card" className="lg:w-1/2 flex justify-center -mt-26 mb-8 lg:mb-0 order-2 lg:order-1 relative z-10">
+    <div className="flex flex-col-reverse lg:flex-row justify-center items-center mt-12 mb-28">
+      <div id="card" className="lg:w-1/2 flex justify-center mb-8 lg:mb-0 relative z-10 lg:z-1">
         <animated.img 
           src={card2} 
           alt="hero" 
-          className="h-[400px] lg:ml-48 lg:mr-12 w-[600px] rounded-lg" 
+          className="h-[400px] w-[600px] rounded-lg lg:ml-48" 
           style={{...card2Animation, ...hoverAnimation}}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
       </div>
-      <div className="lg:w-1/2 flex justify-center mt-12 mb-8 lg:mb-0 order-2 lg:order-1 z-1">
-        <div className="text-left -ml-48">
+      <div className="lg:w-1/2 flex justify-center mb-8 lg:mb-0 z-10 lg:z-1">
+        <div className="text-center lg:text-left px-4 lg:px-0">
           <h2 className="text-4xl font-bold tracking-tight text-rose-600 mb-4 sm:text-5xl font-popping text-[#000000]">¡Practica inglés de por vida!</h2>
-          <p className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-primary mb-4 -mt-304">Únete a nuestra gran comunidad</p>
+          <p className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-primary mb-4">Únete a nuestra gran comunidad</p>
           <p className="mb-2 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>
-          Nuestros graduados podrán seguir practicando su inglés de por vida presentando su Gold Card en cualquiera de nuestros institutos. </p>
-          
-          {/* Nuevo div para el botón */}
-          <div className="mt-8">  
+            Nuestros graduados podrán seguir practicando su inglés de por vida presentando su Gold Card en cualquiera de nuestros institutos.
+          </p>
+          <div className="mt-8">
             <button
               className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-xl lg:text-2xl font-medium text-white hover:bg-blue-600 lg:px-7"
               onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}
             >
-            Aprende más
+              Aprende más
             </button>
           </div>
         </div>
-        
       </div>
     </div>
   )

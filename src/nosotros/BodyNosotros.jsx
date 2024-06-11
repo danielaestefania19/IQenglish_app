@@ -37,11 +37,11 @@ const BodyNosotros = () => {
             <div className="content-container py-8 mx-auto relative mb-4">
                 <div className="flex flex-col-reverse lg:flex-row items-center ml-0 lg:ml-[250px]">
                     <div className="max-w-xl -mt-8">
-                        <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-white -mt-8">
-                            Somos una reconocida escuela de inglés con más de 36 años de experiencia en la enseñanza.
+                        <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping  text-[#b5d3f8] -mt-8">
+                            Somos una reconocida escuela de inglés con más de 36 años de experiencia
                         </h2>
                         <p className="mb-2 max-w-[600px] text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}>
-                            Comprometidos con brindar una educación de calidad y adaptada a las necesidades de nuestros estudiantes.
+                            Comprometidos con brindar una educación de calidad y adaptada a las necesidades de nuestros estudiantes
                         </p>
 
                         <ul className="flex flex-wrap items-center">

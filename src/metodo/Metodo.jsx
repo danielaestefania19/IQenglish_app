@@ -8,33 +8,30 @@ const Metodo = () => {
         {
             id: 1,
             title: "Nivel Inicial",
-            description: "En nuestro nivel inicial de nuestro método de enseñanza. Aprenderás los conceptos básicos para comenzar a comunicarte de manera sencilla en inglés.",
+            description: "Al termino de nuestro nivel inicial estaras dentro de un nivel A2 de acuerdo al MCERL.",
             details: [
-                "Lecciones: 14 lecciones en 2 secciones: Sección A y Sección B.",
-                "Objetivo: Lograr un dominio de hasta un nivel A2 de acuerdo al Marco Comúń Europeo de referencia",
-                "Clubes de práctica: Participación en 22 clubes para aprender habilidades básicas en asuntos de nuestra vida cotidiana."
+                "Objetivo: Seras capaz de comprender frases y expresiones de uso frecuente relacionadas con áreas de experiencia (Información basica sobre ti mismo y tu familia).",
+                "Clubes de práctica:Participaras en al menos 22 clubes para que estes preparado para el siguiente nivel."
             ],
             color: "#3056D3"  // Azul oscuro
         },
         {
             id: 2,
             title: "Nivel Intermedio",
-            description: "En nuestro nivel intermedio de nuestro método de enseñanza. Profundizarás en tus habilidades lingüísticas y podrás participar en conversaciones más complejas.",
+            description: "Al termino de nuestro nivel intermedio estaras dentro de un nivel B1 de acuerdo al MCERL.",
             details: [
-                "Lecciones: 14 lecciones en 2 secciones: Sección A y Sección B.",
-                "Objetivo: Lograr un dominio de hasta un nivel B1 de acuerdo al Marco Comúń Europeo de referencia",
-                "Clubes de práctica: Participación en 32 clubes para hablar y entender el inglés más allá de lo cotidiano."
+                "Objetivo: Seras capaz de hablar en la mayor parte de situaciones que pueden surgir durante un viaje donde se utiliza la lengua inglesa.",
+                "Clubes de práctica:Participaras en al menos 32 clubes en los cuales podras describir experiencias, acontecimientos deseos y aspiraciones personales."
             ],
             color: "#6B9DFE"  // Azul claro
         },
         {
             id: 3,
             title: "Nivel Avanzado",
-            description: "En nuestro nivel avanzado de nuestro método de enseñanza. Obtendras habilidades lingüísticas de manera avanzada y podrás hablar y entender el ingles de forma fluida.",
+            description: "Al termino de nuestro nivel avanzado estaras dentro de un nivel B2 de acuerdo al MCERL.",
             details: [
-                "Lecciones: 14 lecciones en 2 secciones: Sección A y Sección B.",
-                "Objetivo: Lograr un dominio de hasta un nivel B2 de acuerdo al Marco Comúń Europeo de referencia",
-                "Clubes de práctica: Participación en 41 clubes para entender, hablar y manejar el idioma de manera dinámica, segura y fluida."
+                "Objetivo: Seras capaz de interactuar con fluidez y confianza con hablantes nativos sin que haya tensión en la conversación.",
+                "Clubes de práctica: Participaras en al menos 32 clubes donde podras expresar ideas complejas y detalladas sobre temas abstractos y concretos, argumentar y defender tu punto de vista."
             ],
             color: "#D4AF37"  // Dorado
         }
@@ -72,7 +69,7 @@ const Metodo = () => {
                                 Nuestro Metodo
                             </span>
                             <h2 className="mb-3 text-3xl font-bold leading-[1.208] text-dark dark:text-white sm:text-4xl md:text-[40px]">
-                                3 Niveles
+                                3 Niveles de 14 lecciones
                             </h2>
                             <p className="text-base text-body-color dark:text-dark-6">
                                 El mejor sistema de enseñanza: observando, escuchando y repitiendo. Lo que nos permitirá tener conversaciones más fluidas en menos tiempo y con menos esfuerzo.
