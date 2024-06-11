@@ -65,11 +65,11 @@ const Nivelacion = () => {
             </ul>
           </div>
           <div className="w-full flex justify-center order-1 lg:w-1/3 lg:items-center lg:order-2 m-4 lg:ml-32">
-            <div className="w-full lg:w-3/3 flex justify-center mb-8 lg:mb-0 ">
+            <div className="w-full lg:w-3/3 flex justify-center mb-8 lg:mb-0 mr-8">
               <img
                 src="https://wpvip.edutopia.org/wp-content/uploads/2023/10/hero_blog_Student-Wellness_Homework_photo_iStock_878931780_monkeybusinessimages.jpg?w=2880&quality=85"
                 alt="hero"
-                className=" mt-8  sm:w-[800px] sm:h-[350px] md:w-[800px] md:h-[350px] lg:w-[800px] lg:h-[400px] xl:w-[1200px] xl:h-[500px] transform transition duration-500 ease-in-out hover:scale-105 rounded-lg"
+                className=" mt-8  sm:w-[500px] sm:h-[350px] md:w-[800px] md:h-[350px] lg:w-[800px] lg:h-[400px] xl:w-[1200px] xl:h-[500px] transform transition duration-500 ease-in-out hover:scale-105 rounded-lg"
               />
             </div>
           </div>
