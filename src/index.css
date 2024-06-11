@@ -487,7 +487,7 @@ input[type="radio"]:checked ~ .box span {
   }
   
   .area.small-screen {
-	height: 90vh; /* Ajustar la altura cuando sea una pantalla pequeña */
+	height: 105vh; /* Ajustar la altura cuando sea una pantalla pequeña */
   }
   
   .circles {
