@@ -37,11 +37,11 @@ const Toefl = () => {
 
   return (
     <div className="flex flex-col-reverse lg:flex-row justify-center items-center bg-primary mt-8">
-      <div id="card" className="lg:w-1/2 flex justify-center mb-8 lg:mb-0 relative z-10 lg:z-1">
+      <div id="card" className="lg:w-1/2 flex justify-center mb-8 lg:mb-0 relative z-10 lg:z-1 -ml-48">
         <animated.img 
           src={card2} 
           alt="hero" 
-          className="h-[250px] w-[600px] rounded-lg lg:ml-48" 
+          className="h-[200px] w-[300px] sm:h-[300px] sm:w-[400px]  md:h-[350px] sm:w-[450px] lg:h-[300px] lg:w-[450px] xl:h-[350px] xl:w-[500px] rounded-lg lg:ml-48 mt-6 ml-48 " 
           style={{...card2Animation, ...hoverAnimation}}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

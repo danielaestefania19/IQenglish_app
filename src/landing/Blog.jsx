@@ -154,7 +154,7 @@ const Blog = () => {
           </ModalContent>
         </Modal>
 
-        <div id="register" className="-mx-4 flex flex-wrap lg:justify-between">
+        <div id="register" className="-mx-4 flex flex-wrap lg:justify-between ">
 
           <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
             <div className="mb-24 max-w-[570px] lg:mb-0 mt-4">
@@ -688,49 +688,7 @@ const Blog = () => {
             </div>
 
           </div>
-          <div class="w-full px-4 lg:w-6/12">
-            <div class="lg:ml-auto lg:text-right">
-              <div class="relative z-10 inline-block pt-11 lg:pt-0">
-
-                <span class="absolute -mt-64 -left-8 z-[-1]">
-                  <svg
-                    width="93"
-                    height="93"
-                    viewBox="0 0 93 93"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle cx="2.5" cy="2.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="2.5" cy="24.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="2.5" cy="46.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="2.5" cy="68.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="2.5" cy="90.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="24.5" cy="2.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="24.5" cy="24.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="24.5" cy="46.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="24.5" cy="68.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="24.5" cy="90.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="46.5" cy="2.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="46.5" cy="24.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="46.5" cy="46.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="46.5" cy="68.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="46.5" cy="90.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="68.5" cy="2.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="68.5" cy="24.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="68.5" cy="46.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="68.5" cy="68.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="68.5" cy="90.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="90.5" cy="2.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="90.5" cy="24.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="90.5" cy="46.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="90.5" cy="68.5" r="2.5" fill="#FFFFFF" />
-                    <circle cx="90.5" cy="90.5" r="2.5" fill="#FFFFFF" />
-                  </svg>
-                </span>
-
-              </div>
-            </div>
-          </div>
+    
         </div>
 
       </div>
