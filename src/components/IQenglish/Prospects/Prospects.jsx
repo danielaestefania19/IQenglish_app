@@ -16,8 +16,9 @@ import getProspectById from "../../../views/prospects/getProspectsId.js"
 import Context from '../../../context/advisor.context.jsx';
 
 
+
 const locations = [
-    { name: 'Selecciona la ubicacion:', value: '' },
+    { name: 'Selecciona tu ubicacion:', value: '' },
     { name: 'Apodaca', value: 'Apodaca' },
     { name: 'Cadereyta Jiménez', value: 'Cadereyta Jiménez' },
     { name: 'García', value: 'García' },
@@ -30,8 +31,8 @@ const locations = [
     { name: 'San Nicolás de los Garza', value: 'San Nicolás de los Garza' },
     { name: 'Santa Catarina', value: 'Santa Catarina' },
     { name: 'Santiago', value: 'Santiago' },
-];
-
+    { name: 'Otro lugar', value: 'Otro lugar' },
+  ];
 
 
 const Prospects = () => {
@@ -674,7 +675,7 @@ const Prospects = () => {
                                                 <Listbox.Option
                                                     key={locationIdx}
                                                     className={({ active }) =>
-                                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'text-white bg-blue-600' : 'text-gray-900'
+                                                        `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'text-white bg-primary' : 'text-gray-900'
                                                         }`
                                                     }
                                                     value={location.value}

@@ -63,10 +63,10 @@ const Body = () => {
           </animated.div>
           <div className="text-center max-w-xl -mt-24">
             <h2 className="text-2xl font-bold tracking-tight text-rose-600 sm:text-3xl font-popping text-[#b5d3f8]">
-              Construyamos tu futuro aprendiendo inglés.
+              Domina el Inglés y Transforma tu Futuro
             </h2>
-            <p className="mb-1 text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}>
-              La forma más fácil de aprender inglés, Domina el inglés para ampliar tus oportunidades profesionales y personales.
+            <p className="mb-1 text-md lg:text-sm dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}>
+            Aprende inglés fácilmente con nuestro enfoque práctico y accesible. Mejora tus oportunidades laborales y avanza en tu vida diaria.
             </p>
             <p className="mb-1 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-signature text-dark" style={{ letterSpacing: '-0.01em', lineHeight: '1.4' }}>
                 We are the speaking specialist.
@@ -74,7 +74,7 @@ const Body = () => {
             <ul className="flex flex-col items-center">
               <li>
                 <button
-                  className="inline-flex items-center mt-1 justify-center rounded-md bg-[#b5d3f8] px-4 py-2 text-center text-lg lg:text-xl font-medium text-black hover:bg-blue-200"
+                  className=" transform transition duration-500 ease-in-out hover:scale-105 inline-flex items-center mt-1 justify-center rounded-md bg-[#b5d3f8] px-4 py-2 text-center text-lg lg:text-xl font-medium text-black hover:bg-blue-200"
                   onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}
                 >
                   Empezar
@@ -93,10 +93,10 @@ const Body = () => {
           <div className="flex flex-col-reverse lg:flex-row items-center ml-0 lg:ml-[250px]">
             <div className="max-w-xl -mt-24">
               <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-[#b5d3f8]">
-                Construyamos tu futuro aprendiendo inglés.
+                Domina el Inglés y transforma tu futuro
               </h2>
-              <p className="mb-2 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}>
-                La forma más fácil de aprender inglés, Domina el inglés para ampliar tus oportunidades profesionales y personales.
+              <p className="mb-2 max-w-[600px] text-lg dark:text-dark-6 font-popping text-[#F0F4F9]" style={{ letterSpacing: '-0.01em' }}>
+              Aprende inglés fácilmente con nuestro enfoque práctico y divertido. Mejora tus oportunidades laborales y avanza en tu vida diaria.
               </p>
               <p className="mb-2 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-signature text-dark" style={{ letterSpacing: '-0.01em', lineHeight: '1.4' }}>
                 We are the speaking specialist.
@@ -104,7 +104,7 @@ const Body = () => {
               <ul className="flex flex-wrap items-center">
                 <li>
                   <button
-                    className="inline-flex items-center mt-1 justify-center rounded-md bg-[#b5d3f8] px-6 py-3 text-center text-xl lg:text-2xl font-medium text-black hover:bg-blue-200 lg:px-7"
+                    className=" transform transition duration-500 ease-in-out hover:scale-105 inline-flex items-center mt-1 justify-center rounded-md bg-[#b5d3f8] px-6 py-3 text-center text-xl lg:text-2xl font-medium text-black hover:bg-blue-200 lg:px-7"
                     onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })}
                   >
                     Empezar

@@ -10,7 +10,7 @@ const Banner = () => {
         <p className="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400 banner-text">
           <img src={cohete} alt="Rocket icon" className="w-6 h-6 mr-3" />
           <span className="animated-text">
-            <span>Promoción</span> <span className="sale">Limitada</span>  60% OFF para que seas bilingüe este 2024
+            <span>Aprovecha el</span> <span className="sale">40% OFF </span> de JUNIO y aprende inglés hoy
           </span>
           <Button color="primary" size="sm" variant='shadow' className="ml-4 flex flex-col -gap-2">
   <p className="mb-0">Empieza</p>

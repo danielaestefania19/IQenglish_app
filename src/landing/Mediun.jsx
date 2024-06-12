@@ -59,7 +59,7 @@ const Mediun = () => {
       )}
       <div className={`w-[60vw] flex flex-col items-center justify-center -mt-22  ${isSmallScreen ? 'mb-4' : ''}`}>
         <h1 className={`text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px] ${isSmallScreen ? '-mb-4 text-sm' : ''}`}>
-          IQ English es la mejor opción para ti
+         Beneficios de pertenecer a la comunidad IQ English
         </h1>
         <div className="flex flex-col mt-12 space-y-4">
           <p className={`flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105 ${isSmallScreen ? 'text-sm' : ''}`}>

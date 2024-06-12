@@ -118,41 +118,41 @@ const Blog = () => {
 
   return (
     <section className="z-10 overflow-hidden bg-primary py-20 dark:bg-dark lg:py-[120px] top-[-30px]">
-      
+
       <div className="container mx-auto">
-      <Modal
-  isOpen={isOpen}
-  placement="top-center"
-  onOpenChange={onOpenChange}
-  backdrop='blur'
->
-  <ModalContent>
-    {(onClose) => (
-      <>
-        <ModalHeader className="flex flex-col gap-1 font-popping">
-          {isError ? "¡Lo sentimos!" : "¡Qué gran noticia! 🥳"} 
-        </ModalHeader>
-        <ModalBody>
-          <p>
-            {isError
-              ? "Lo sentimos, algo mal ha sucedido al enviar tus datos. Por favor, intenta de nuevo."
-              : "Acabas de dar el primer paso para convertirte en una persona bilingüe. IQenglish agradece tu preferencia para aprender inglés con nosotros."}
-          </p>
-          {!isError && (
-            <p>
-              En breve uno de nuestros asesores se pondrá en contacto contigo para darte más información.
-            </p>
-          )}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onPress={onClose}>
-            Aceptar
-          </Button>
-        </ModalFooter>
-      </>
-    )}
-  </ModalContent>
-</Modal>
+        <Modal
+          isOpen={isOpen}
+          placement="top-center"
+          onOpenChange={onOpenChange}
+          backdrop='blur'
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1 font-popping">
+                  {isError ? "¡Lo sentimos!" : "¡Qué gran noticia! 🥳"}
+                </ModalHeader>
+                <ModalBody>
+                  <p>
+                    {isError
+                      ? "Lo sentimos, algo mal ha sucedido al enviar tus datos. Por favor, intenta de nuevo."
+                      : "Acabas de dar el primer paso para convertirte en una persona bilingüe. IQenglish agradece tu preferencia para aprender inglés con nosotros."}
+                  </p>
+                  {!isError && (
+                    <p>
+                      En breve uno de nuestros asesores se pondrá en contacto contigo para darte más información.
+                    </p>
+                  )}
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="primary" onPress={onClose}>
+                    Aceptar
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
 
         <div id="register" className="-mx-4 flex flex-wrap lg:justify-between">
 
@@ -169,7 +169,7 @@ const Blog = () => {
                 ¡Nos gustaría saber de ti! Completa a continuación tu información de contacto. Cuando recibamos tu consulta, nos pondremos en contacto contigo lo antes posible.
               </p>
 
-              
+
               <div className="mb-8 flex w-full max-w-[370px]">
                 <div
                   className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-[#F0F4F9] text-primary sm:h-[70px] sm:max-w-[70px] transform transition duration-500 ease-in-out hover:scale-105 "
@@ -192,7 +192,7 @@ const Blog = () => {
                     Nuestra Ubicación
                   </h4>
                   <p className="text-base text-white dark:text-dark-6">
-                  Av. Chapultepec 2039 Col. Buenos Aires C.P. 64800 Monterrey Nuevo León. 
+                    Av. Chapultepec 2039 Col. Buenos Aires C.P. 64800 Monterrey Nuevo León.
                   </p>
                 </div>
               </div>
@@ -261,11 +261,11 @@ const Blog = () => {
                     Dirección de correo
                   </h4>
                   <p className="text-base text-white dark:text-dark-6">
-                  mty.iqchapultepec@gmail.com
+                    mty.iqchapultepec@gmail.com
                   </p>
                 </div>
               </div>
-      
+
 
               <div className="clients pt-16 flex items-center">
                 <h6 className="mb-2 max-w-[600px] text-sm lg:text-lg dark:text-dark-6 font-signature text-dark" style={{ letterSpacing: '-0.01em', lineHeight: '1.4' }}>
@@ -467,10 +467,272 @@ const Blog = () => {
                 </div>
 
               </form>
-             
+              <div>
+                <span class="absolute right-1 top-1">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="1.39737"
+                      cy="38.6026"
+                      r="1.39737"
+                      transform="rotate(-90 1.39737 38.6026)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="1.39737"
+                      cy="1.99122"
+                      r="1.39737"
+                      transform="rotate(-90 1.39737 1.99122)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="13.6943"
+                      cy="38.6026"
+                      r="1.39737"
+                      transform="rotate(-90 13.6943 38.6026)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="13.6943"
+                      cy="1.99122"
+                      r="1.39737"
+                      transform="rotate(-90 13.6943 1.99122)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="25.9911"
+                      cy="38.6026"
+                      r="1.39737"
+                      transform="rotate(-90 25.9911 38.6026)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="25.9911"
+                      cy="1.99122"
+                      r="1.39737"
+                      transform="rotate(-90 25.9911 1.99122)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="38.288"
+                      cy="38.6026"
+                      r="1.39737"
+                      transform="rotate(-90 38.288 38.6026)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="38.288"
+                      cy="1.99122"
+                      r="1.39737"
+                      transform="rotate(-90 38.288 1.99122)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="1.39737"
+                      cy="26.3057"
+                      r="1.39737"
+                      transform="rotate(-90 1.39737 26.3057)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="13.6943"
+                      cy="26.3057"
+                      r="1.39737"
+                      transform="rotate(-90 13.6943 26.3057)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="25.9911"
+                      cy="26.3057"
+                      r="1.39737"
+                      transform="rotate(-90 25.9911 26.3057)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="38.288"
+                      cy="26.3057"
+                      r="1.39737"
+                      transform="rotate(-90 38.288 26.3057)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="1.39737"
+                      cy="14.0086"
+                      r="1.39737"
+                      transform="rotate(-90 1.39737 14.0086)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="13.6943"
+                      cy="14.0086"
+                      r="1.39737"
+                      transform="rotate(-90 13.6943 14.0086)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="25.9911"
+                      cy="14.0086"
+                      r="1.39737"
+                      transform="rotate(-90 25.9911 14.0086)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="38.288"
+                      cy="14.0086"
+                      r="1.39737"
+                      transform="rotate(-90 38.288 14.0086)"
+                      fill="#3056D3"
+                    />
+                  </svg>
+                </span>
+                <span class="absolute bottom-1 left-1">
+                  <svg
+                    width="29"
+                    height="40"
+                    viewBox="0 0 29 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="2.288"
+                      cy="25.9912"
+                      r="1.39737"
+                      transform="rotate(-90 2.288 25.9912)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="14.5849"
+                      cy="25.9911"
+                      r="1.39737"
+                      transform="rotate(-90 14.5849 25.9911)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="26.7216"
+                      cy="25.9911"
+                      r="1.39737"
+                      transform="rotate(-90 26.7216 25.9911)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="2.288"
+                      cy="13.6944"
+                      r="1.39737"
+                      transform="rotate(-90 2.288 13.6944)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="14.5849"
+                      cy="13.6943"
+                      r="1.39737"
+                      transform="rotate(-90 14.5849 13.6943)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="26.7216"
+                      cy="13.6943"
+                      r="1.39737"
+                      transform="rotate(-90 26.7216 13.6943)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="2.288"
+                      cy="38.0087"
+                      r="1.39737"
+                      transform="rotate(-90 2.288 38.0087)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="2.288"
+                      cy="1.39739"
+                      r="1.39737"
+                      transform="rotate(-90 2.288 1.39739)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="14.5849"
+                      cy="38.0089"
+                      r="1.39737"
+                      transform="rotate(-90 14.5849 38.0089)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="26.7216"
+                      cy="38.0089"
+                      r="1.39737"
+                      transform="rotate(-90 26.7216 38.0089)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="14.5849"
+                      cy="1.39761"
+                      r="1.39737"
+                      transform="rotate(-90 14.5849 1.39761)"
+                      fill="#3056D3"
+                    />
+                    <circle
+                      cx="26.7216"
+                      cy="1.39761"
+                      r="1.39737"
+                      transform="rotate(-90 26.7216 1.39761)"
+                      fill="#3056D3"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div class="w-full px-4 lg:w-6/12">
+            <div class="lg:ml-auto lg:text-right">
+              <div class="relative z-10 inline-block pt-11 lg:pt-0">
+
+                <span class="absolute -mt-64 -left-8 z-[-1]">
+                  <svg
+                    width="93"
+                    height="93"
+                    viewBox="0 0 93 93"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="2.5" cy="2.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="2.5" cy="24.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="2.5" cy="46.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="2.5" cy="68.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="2.5" cy="90.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="24.5" cy="2.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="24.5" cy="24.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="24.5" cy="46.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="24.5" cy="68.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="24.5" cy="90.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="46.5" cy="2.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="46.5" cy="24.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="46.5" cy="46.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="46.5" cy="68.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="46.5" cy="90.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="68.5" cy="2.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="68.5" cy="24.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="68.5" cy="46.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="68.5" cy="68.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="68.5" cy="90.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="90.5" cy="2.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="90.5" cy="24.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="90.5" cy="46.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="90.5" cy="68.5" r="2.5" fill="#FFFFFF" />
+                    <circle cx="90.5" cy="90.5" r="2.5" fill="#FFFFFF" />
+                  </svg>
+                </span>
+
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
   )

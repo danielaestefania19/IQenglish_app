@@ -35,11 +35,11 @@ const Course = () => {
 
   return (
     <div className="flex flex-col-reverse lg:flex-row justify-center items-center mt-12 mb-28">
-      <div id="card" className="lg:w-1/2 flex justify-center mb-8 lg:mb-0 relative z-10 lg:z-1">
+      <div id="card" className="lg:w-1/2 flex justify-center lg:mb-0 relative z-10 lg:z-1">
         <animated.img 
           src={card2} 
           alt="hero" 
-          className="h-[400px] w-[600px] rounded-lg lg:ml-48" 
+          className="h-[200px] w-[300px] sm:h-[300px] sm:w-[400px]  md:h-[350px] sm:w-[450px] lg:h-[400px] lg:w-[600px] xl:h-[400px] xl:w-[600px] rounded-lg lg:ml-48 mt-6" 
           style={{...card2Animation, ...hoverAnimation}}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

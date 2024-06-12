@@ -1,10 +1,9 @@
-import { useState , Fragment} from "react";
+import React, { Fragment, useState } from 'react';
 import createProspect from "../views/prospects/createProspect.js";
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Card, CardHeader, CardBody, CardFooter, Avatar  } from "@nextui-org/react";
-import logo from "../assets/logo2.jpeg";
-import IQbot from "../assets/IQBot.png";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+
 
 const locations = [
     { name: 'Selecciona tu ubicacion:', value: '' },
@@ -21,17 +20,8 @@ const locations = [
     { name: 'Santa Catarina', value: 'Santa Catarina' },
     { name: 'Santiago', value: 'Santiago' },
     { name: 'Otro lugar', value: 'Otro lugar' },
-];
-
-
-const End = () => {
-    const [ageError, setAgeError] = useState(null);
-    const [addressError, setAddressError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-    const [isError, setIsError] = useState(false);
-
+  ];
+const ModalApp = () => {
     const [formData, setFormData] = useState({
         id: '',
         name: '',
@@ -41,7 +31,12 @@ const End = () => {
         age: '',
         address: ''
     });
-
+    const [ageError, setAgeError] = useState(null);
+    const [addressError, setAddressError] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+    const [isError, setIsError] = useState(false);
     const handleChange = (e) => {
         let value = e.target.value;
         if (e.target.name === 'age' && value.trim() === '') {
@@ -132,9 +127,11 @@ const End = () => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
+
     return (
-        <div>
-            <div className="dark:from-blue-900 absolute top-0 left-0 z-0"></div>
+        <div className="flex flex-col min-h-screen">
+            <div className="dark:from-blue-900 absolute top-0 left-0 z-0 w-full h-full"></div>
+
             <div className="container mx-auto">
                 <Modal
                     isOpen={isOpen}
@@ -245,7 +242,7 @@ const End = () => {
                                     <div className="relative z-0 w-full mb-5 group">
                                         <input
                                             type="tel"
-
+                                           
                                             name="phone_number"
                                             id="floating_phone"
                                             value={formData.phone_number}
@@ -377,86 +374,16 @@ const End = () => {
                     </div>
                 )}
 
-            </div>
+                <button
+                    className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-xl lg:text-2xl font-medium text-white hover:bg-blue-600 lg:px-7"
+                    onClick={openModal}
+                >
+                    ¡Conoce más!
+                </button>
 
-            <div className="content-container py-8 mx-auto relative mb-32 bg-[#F0F4F9]">
-                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-4 lg:justify-start">
-                    <div className="max-w-xl mt-16 mx-auto text-center lg:text-left">
-                        <h2 className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-primary">
-                            ¿Todavía tienes dudas sobre aprender Inglés?
-                        </h2>
-                        <p className="mb-2 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-black mx-auto lg:mx-0" style={{ letterSpacing: '-0.01em' }}>
-                            Aprender inglés abre puertas a nuevas oportunidades, amplía tus horizontes y te conecta con el mundo. ¡Transforma tu vida hoy!
-                        </p>
-                        <div className="flex justify-center lg:justify-start mt-8">
-                            <button
-                                className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-xl lg:text-2xl font-medium text-white hover:bg-blue-600 lg:px-7"
-                                onClick={openModal} 
-                            >
-                                Empieza ahora
-                            </button>
-                        </div>
-                    </div>
-                    <div className="flex flex-col lg:flex-row gap-2 mt-12 lg:mt-0 mx-auto lg:mx-0 lg:justify-start">
-                        <Card className="max-w-[340px] bg-white mx-0 lg:mr-24 mt-12 lg:mt-12">
-                            <CardHeader className="justify-between">
-                                <div className="flex gap-5">
-                                    <Avatar radius="full" size="md" src={logo} />
-                                    <div className="flex flex-col gap-1 items-start justify-center">
-                                        <h4 className="text-small font-semibold leading-none text-default-600">Motivo para aprender inglés</h4>
-                                        <h5 className="text-small tracking-tight text-default-400">@iqenglish_monterrey</h5>
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <CardBody className="px-3 py-0 text-small text-default-400">
-                                <p>
-                                    Aprender inglés no solo te abre puertas laborales, sino que también te permite disfrutar de nuevas culturas y hacer amigos de todo el mundo.
-                                </p>
-                                <span className="pt-2">
-                                    #InglesParaTodos
-                                    <span className="py-2" aria-label="earth" role="img">
-                                        🌍
-                                    </span>
-                                </span>
-                            </CardBody>
-                            <CardFooter className="gap-3">
-                                <div className="flex gap-1">
-                                    <p className="text-default-400 text-small">¡El momento es ahora!</p>
-                                </div>
-                            </CardFooter>
-                        </Card>
-                        <Card className="max-w-[340px] bg-white mx-0 lg:mr-24 mt-12 lg:mt-12">
-                            <CardHeader className="justify-between">
-                                <div className="flex gap-5">
-                                    <Avatar radius="full" size="md" src={IQbot} />
-                                    <div className="flex flex-col gap-1 items-start justify-center">
-                                        <h4 className="text-small font-semibold leading-none text-default-600">El inglés impulsa tu carrera</h4>
-                                        <h5 className="text-small tracking-tight text-default-400">@nuevo_estudiante</h5>
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <CardBody className="px-3 py-0 text-small text-default-400">
-                                <p>
-                                    El dominio del inglés te distingue en el mercado laboral, permitiéndote acceder a mejores puestos y salarios. ¡Asegura tu futuro profesional hoy mismo!
-                                </p>
-                                <span className="pt-2">
-                                    #CarreraExitosa
-                                    <span className="py-2" aria-label="briefcase" role="img">
-                                        💼
-                                    </span>
-                                </span>
-                            </CardBody>
-                            <CardFooter className="gap-3">
-                                <div className="flex gap-1">
-                                    <p className="text-default-400 text-small">¡IQ English es tu mejor opción!</p>
-                                </div>
-                            </CardFooter>
-                        </Card>
-                    </div>
-                </div>
             </div>
         </div>
     );
 };
 
-export default End;
+export default ModalApp;

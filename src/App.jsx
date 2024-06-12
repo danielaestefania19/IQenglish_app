@@ -40,6 +40,8 @@ import Banner from "./landing/Banner.jsx"
 import Video from './landing/Video.jsx';
 import VideoMetodo from './metodo/videoMetodo.jsx';
 import Toefl from './landing/Toefl.jsx';
+
+
 function App() {
   return (
     <NextUIProvider>
@@ -111,7 +113,9 @@ function App() {
                 </>
               } />
             </Routes>
+  
           </UserContextProvider>
+ 
         </ProviderModalIQ>
       </ThemeProvider>
     </NextUIProvider>

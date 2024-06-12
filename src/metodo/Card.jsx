@@ -5,20 +5,22 @@ import image2 from "../assets/users.png";
 import visual from "../assets/visual.png";
 import "../css/Tailwind.css";
 
-const issues = [
-  { id: 1, image: image1, name: "Aprende inglés a distancia", description: "Utilizamos las herramientas tecnológicas posibles para segurar tu aprendizaje a la distancia." },
-  { id: 2, image: image2, name: "Grupos pequeños", description: "Manejamos un máximo de 6 alumnos por grupo en el instituto y 4 alumnos por sala en línea." },
-  { id: 3, image: visual, name: "Sistema audiovisual", description: "Aprenderás inglés de la misma forma que aprendiste español: observando, escuchando y repitiendo." },
-];
+
 
 const Card = () => {
   const [isVisible, setIsVisible] = useState(false);
+  // Define tus tarjetas y su estado inicial
+  const issues = [
+    { id: 1, image: image1, name: "Aprende inglés a distancia", description: "Utilizamos las herramientas tecnológicas posibles para segurar tu aprendizaje a la distancia." },
+    { id: 2, image: image2, name: "Grupos pequeños", description: "Manejamos un máximo de 6 alumnos por grupo en el instituto y 4 alumnos por sala en línea." },
+    { id: 3, image: visual, name: "Sistema audiovisual", description: "Aprenderás inglés de la misma forma que aprendiste español: observando, escuchando y repitiendo." },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const windowHeight = window.innerHeight;
-      const componentTop = document.getElementById('card').offsetTop;
+      const componentTop = document.getElementById('practica').offsetTop;
 
       if (scrollTop + windowHeight > componentTop) {
         setIsVisible(true);
@@ -30,36 +32,35 @@ const Card = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Configura las transiciones
-  const transitions = useTransition(isVisible ? issues : [], {
-    from: { opacity: 0, transform: 'translateY(100px)' },
-    enter: { opacity: 1, transform: 'translateY(0px)' },
-    config: config.molasses,
-  });
+// Configura las transiciones
+const transitions = useTransition(isVisible ? issues : [], {
+  from: { opacity: 1, transform: 'translateY(100px)' },
+  enter: { opacity: 1, transform: 'translateY(0px)' },
+  config: config.molasses,
+});
+
 
   return (
-    <section id='card' className="w-full h-full  pt-32 dark:bg-dark lg:pb-20 lg:pt-[120px] bg-[#F0F4F9]">
-      <div className=" mx-auto">
-        <div className="-mx-4 flex flex-wrap justify-center">
-          <div className="w-full px-4">
-            <div className="mx-auto mb-[60px] max-w-[510px] text-center lg:mb-16">
-              <span className="mb-2 block text-lg font-semibold text-primary font-popping">
-                Beneficios exclusivos
-              </span>
-              <h2 className="mb-4 text-3xl font-bold text-dark text-dark sm:text-4xl md:text-[40px] font-popping">
-                Por qué estudiar en IQ English
-              </h2>
-              <p className="text-xl text-dark dark:text-dark-6 font-popping">
-                Somos una escuela de inglés con más de 36 años de experiencia en la enseñanza del idioma inglés
-              </p>
-            </div>
-          </div>
-        </div>
+    <section className="w-full h-full mt-[-1px] pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px] flex justify-center items-center bg-[#F0F4F9]">
+    <div className="container mx-auto">
+      <div className="w-[60vw] mx-auto flex justify-center flex-col items-center -mt-4 mb-12">
+        <h1 className="text-2xl font-bold tracking-tight text-primary sm:text-4xl font-popping text-center mb-4">
+        Beneficios exclusivos
+        </h1>
+        <p className="mb-2 max-w-[600px] text-lg lg:text-2xl text-base text-dark dark:text-dark-4  font-normal text-center" style={{ letterSpacing: '-0.01em' }}> Por qué estudiar en IQ English</p>
+        <p className="text-lg leading-relaxed text-body-color dark:text-dark-6 font-popping text-center mt-4">
+        Somos una escuela de inglés con más de 36 años de experiencia en la enseñanza del idioma inglés
+</p>
 
-        <div className="relative w-full h-[400px]">
-          <div className="flex flex-wrap justify-center w-full max-w-screen-xl mx-auto px-4">
-            {transitions((props, item) => (
-              <animated.div key={item.id} style={props} className="m-6 flex flex-col">
+      </div>
+
+      <div id="practica" className="-mx-4 flex flex-wrap justify-center ">
+      {transitions((props, item) => (
+              <animated.div
+                key={item.id}
+                style={props}
+                className="m-6 flex flex-col relative z-10"
+              >
                 <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:scale-105">
                   <div className="flex flex-col items-center pb-10">
                     <img
@@ -73,10 +74,9 @@ const Card = () => {
                 </div>
               </animated.div>
             ))}
-          </div>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 }
 
