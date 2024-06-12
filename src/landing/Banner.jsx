@@ -12,7 +12,7 @@ const Banner = () => {
           <span className="animated-text">
             <span>Aprovecha el</span> <span className="sale">40% OFF </span> de JUNIO y aprende inglés hoy
           </span>
-          <Button color="primary" size="sm" variant='shadow' className="ml-4 flex flex-col -gap-2">
+          <Button  onClick={() => document.getElementById('register').scrollIntoView({ behavior: 'smooth' })} color="primary" size="sm" variant='shadow' className="ml-4 flex flex-col -gap-2">
   <p className="mb-0">Empieza</p>
   <p className="mt-0">Hoy</p>
 </Button> 
