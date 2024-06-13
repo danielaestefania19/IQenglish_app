@@ -58,7 +58,7 @@ const Mediun = () => {
         </div>
       )}
       <div className={`w-[80vw] flex flex-col items-center justify-center -mt-22  ${isSmallScreen ? 'mb-4' : ''}`}>
-        <h1 className={`-mb-2 text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px] ${isSmallScreen ? '-mb-4 text-xl' : ''}`}>
+        <h1 className={`mb-2 text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px] ${isSmallScreen ? '-mb-4 text-xl' : ''}`}>
          Beneficios de pertenecer a la 
         </h1>
         <h1 className={`text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px] ${isSmallScreen ? '-mb-4 text-xl' : ''}`}>
