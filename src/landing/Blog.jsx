@@ -156,7 +156,7 @@ const Blog = () => {
 
         <div id="register" className="-mx-4 flex flex-wrap lg:justify-between ">
 
-          <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
+          <div className="w-full px-4 lg:w-1/2 xl:w-6/12 -mt-16">
             <div className="mb-24 max-w-[570px] lg:mb-0 mt-4">
 
               <span className="mb-4 block text-base font-semibold text-[black] font-popping">
@@ -170,7 +170,7 @@ const Blog = () => {
               </p>
 
 
-              <div className="mb-8 flex w-full max-w-[370px]">
+              <div className="mb-8 flex w-full max-w-[370px] ">
                 <div
                   className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-[#F0F4F9] text-primary sm:h-[70px] sm:max-w-[70px] transform transition duration-500 ease-in-out hover:scale-105 "
                 >

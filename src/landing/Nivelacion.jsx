@@ -22,7 +22,7 @@ const Nivelacion = () => {
             <div className="mb-6 mt-8 ml-4 max-w-[600px] transform transition duration-500 ease-in-out hover:scale-105 flex items-center">
               {/* Añade un margen inferior a esta div */}
               <span className="inline-block bg-white rounded-full h-2 w-2 mr-2"></span>
-              <Card>
+              <Card className="bg-[#b5d3f8]">
                 <CardBody>
                   <p
                     className="text-base lg:text-lg dark:text-dark-6 font-popping text-black"
@@ -37,7 +37,7 @@ const Nivelacion = () => {
             <div className="mb-6 mt-4 ml-4 max-w-[600px] transform transition duration-500 ease-in-out hover:scale-105 flex items-center">
               {/* Añade un margen inferior a esta div */}
               <span className="inline-block bg-white rounded-full h-2 w-2 mr-2"></span>
-              <Card>
+              <Card className="bg-[#b5d3f8]">
                 <CardBody>
                   <p
                     className="text-base lg:text-lg dark:text-dark-6 font-popping text-black"
@@ -45,7 +45,7 @@ const Nivelacion = () => {
                   >
                     Examenes Online
                   </p>
-                </CardBody>
+                </CardBody> 
               </Card>
             </div>
 
@@ -57,7 +57,7 @@ const Nivelacion = () => {
                       behavior: "smooth",
                     })
                   }
-                  className="inline-flex items-center mt-1 justify-center rounded-md bg-white px-6 py-3 text-center text-xl lg:text-2xl font-medium text-gray-900 focus:outline-none border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 lg:px-7"
+                  className="lg:ml-8 ml-24 md:ml-28 inline-flex items-center mt-1 justify-center rounded-md bg-white px-6 py-3 text-center text-xl lg:text-2xl font-medium text-gray-900 focus:outline-none border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 lg:px-7"
                 >
                   Pruebalo
                 </button>

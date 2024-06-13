@@ -41,16 +41,16 @@ const Toefl = () => {
         <animated.img 
           src={card2} 
           alt="hero" 
-          className="h-[200px] w-[300px] sm:h-[300px] sm:w-[400px]  md:h-[350px] sm:w-[450px] lg:h-[300px] lg:w-[450px] xl:h-[350px] xl:w-[500px] rounded-lg lg:ml-48 mt-6 ml-48 " 
+          className="-mt-14 h-[80px] w-[300px] lg:h-[150px] lg:w-[450px] rounded-lg lg:ml-48 mt-6 ml-48 " 
           style={{...card2Animation, ...hoverAnimation}}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         />
       </div>
-      <div className="lg:w-1/2 flex justify-center mb-8 lg:mb-0 z-10 lg:z-1 mt-8">
+      <div className="lg:w-1/2 flex justify-center mb-8 lg:mb-0 z-10 lg:z-1 -mt-12">
         <div className="text-center lg:text-left px-4 lg:px-0 mt-16 lg:flex lg:flex-col lg:justify-center">
-          <h2 className="text-4xl font-bold tracking-tight text-rose-600 mb-4 sm:text-5xl mt-4 font-popping text-[#b5d3f8]">¡Certificate con Nosotros!</h2>
-          <p className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-black mb-4">
+          <h2 className="text-4xl font-bold tracking-tight text-rose-600 mb-4 sm:text-5xl mt-4 font-popping text-[#c9e9fc] ">¡Certificate con Nosotros!</h2>
+          <p className="text-4xl font-bold tracking-tight text-rose-600 sm:text-5xl font-popping text-[#8bd3f8] mb-4">
             Únete hoy y comienza tu camino<br/>hacia una persona bilingüe.
           </p>
           <p className="mb-2 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-white" style={{ letterSpacing: '-0.01em' }}>

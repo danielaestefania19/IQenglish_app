@@ -57,9 +57,12 @@ const Mediun = () => {
           <animated.img src={IQBot} alt="hero" className="w-auto h-[400px] transform transition duration-500 ease-in-out hover:scale-110" style={iqBotAnimation} />
         </div>
       )}
-      <div className={`w-[60vw] flex flex-col items-center justify-center -mt-22  ${isSmallScreen ? 'mb-4' : ''}`}>
-        <h1 className={`text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px] ${isSmallScreen ? '-mb-4 text-sm' : ''}`}>
-         Beneficios de pertenecer a la comunidad IQ English
+      <div className={`w-[80vw] flex flex-col items-center justify-center -mt-22  ${isSmallScreen ? 'mb-4' : ''}`}>
+        <h1 className={`-mb-2 text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px] ${isSmallScreen ? '-mb-4 text-xl' : ''}`}>
+         Beneficios de pertenecer a la 
+        </h1>
+        <h1 className={`text-2xl font-bold tracking-tight text-rose-600 sm:text-4xl font-popping mt-[2px] ${isSmallScreen ? '-mb-4 text-xl' : ''}`}>
+         comunidad IQ English
         </h1>
         <div className="flex flex-col mt-12 space-y-4">
           <p className={`flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105 ${isSmallScreen ? 'text-sm' : ''}`}>

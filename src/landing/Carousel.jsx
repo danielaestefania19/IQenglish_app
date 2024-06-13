@@ -81,11 +81,11 @@ export default function Carousel() {
 
   return (
     <div className="relative mb-32 mt-24">
-<div className="w-[60vw] mx-auto flex justify-center flex-col items-center">
+<div className="w-[80vw] mx-auto flex justify-center flex-col items-center">
   <h1 className="text-2xl font-bold tracking-tight text-primary sm:text-4xl font-popping text-center">
     Nuestro Gran Evento de Gala Azul y Oro
   </h1>
-  <p className="mb-2 max-w-[600px] text-xl lg:text-2xl text-base text-dark dark:text-dark-4  font-normal text-center mt-4 mb-8" style={{ letterSpacing: '-0.01em' }}>Al terminar su preparación, reconocemos su esfuerzo y dedicación con un diploma que certifica su dominio en el idioma inglés.</p>
+  <p className="mb-2 max-w-[600px] text-xl lg:text-2xl text-base text-dark dark:text-dark-4  font-normal text-center mt-4 mb-8" style={{ letterSpacing: '-0.01em' }}>Al terminar la preparación. Reconocemos tu esfuerzo y dedicación en un evento de gala llamado Azul y Oro</p>
 </div>
 
 

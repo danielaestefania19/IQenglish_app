@@ -424,20 +424,20 @@ const closeModal = () => {
       </div>
       <div className="flex flex-col justify-center items-center lg:items-start mb-8 lg:mb-0 order-1 lg:order-2 z-1 w-full lg:w-1/2 mt-8">
         <div className="text-center lg:text-left lg:ml-12">
-          <p className="mb-4 max-w-[600px] text-xl lg:text-2xl dark:text-dark-6 font-popping text-primary" style={{ letterSpacing: '-0.01em' }}>
+          <p className="mb-4 max-w-[600px] ml-4 text-xl lg:text-2xl dark:text-dark-6 font-popping text-primary" style={{ letterSpacing: '-0.01em' }}>
             ¡Nunca estarás solo! Nuestros instructores expertos te acompañarán en tu proceso
           </p>
-          <p className="mb-4 max-w-[600px] text-lg lg:text-xl dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>
+          <p className="mb-4 max-w-[600px] ml-4 text-lg lg:text-xl dark:text-dark-6 font-popping text-black" style={{ letterSpacing: '-0.01em' }}>
             Tendrás la posibilidad de interactuar con nuestros instructores en diferentes espacios
           </p>
           <div className="flex flex-col mt-12 space-y-4">
-            <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+            <p className="flex ml-6 items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
               <img src={clases} alt="Icono 1" className="w-8 h-8 mr-2" /> Clases presenciales
             </p>
-            <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+            <p className="flex ml-6 items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
               <img src={workshops} alt="Icono 2" className="w-8 h-8 mr-2" /> Actividades especiales
             </p>
-            <p className="flex items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
+            <p className="flex ml-6 items-center text-2xl font-bold tracking-tight text-rose-600 sm:text-2xl font-popping transform transition duration-500 ease-in-out hover:scale-105">
               <img src={atencion} alt="Icono 3" className="w-8 h-8 mr-2" /> Clases Online
             </p>
           </div>

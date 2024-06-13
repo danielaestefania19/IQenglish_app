@@ -428,10 +428,10 @@ const BodyTeachers = () => {
       {isSmallScreen ? (
         <div className="content-container py-8 mx-auto flex flex-col ">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-bold tracking-tight text-rose-600 sm:text-3xl font-popping text-[#b5d3f8] xs-4  ml-8 sm:ml-16 md:ml-64 lg:ml-82 mb-4">
+            <h2 className="text-xl font-bold tracking-tight text-rose-600 sm:text-3xl font-popping text-[#b5d3f8] xs-4  ml-8 sm:ml-16 md:ml-64 lg:ml-82 mb-4">
               Habla inglés fluido y aprende con los mejores instructores
             </h2>
-            <p className="mb-4 text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]  ml-8 sm:ml-16 md:ml-64 lg:ml-82" style={{ letterSpacing: '-0.01em' }}>
+            <p className="mb-8 text-lg lg:text-xl dark:text-dark-6 font-popping text-[#F0F4F9]  ml-8 sm:ml-16 md:ml-64 lg:ml-82" style={{ letterSpacing: '-0.03em' }}>
               Capacitate para dominar el idioma con un método innovador y el mejor curso de inglés en Monterrey
             </p>
             <div className="flex flex-col justify-center items-center mx-auto max-w-[800px]">

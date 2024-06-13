@@ -432,7 +432,7 @@ const transitions = useTransition(isVisible ? cards : [], {
 
     <section className="w-full h-full mt-[-1px] pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px] flex justify-center items-center bg-[#F0F4F9]">
       <div className="container mx-auto">
-        <div className="w-[60vw] mx-auto flex justify-center flex-col items-center -mt-4 mb-12">
+        <div className="w-30vw] mx-auto flex justify-center flex-col items-center -mt-4 mb-12">
           <h1 className="text-2xl font-bold tracking-tight text-primary sm:text-4xl font-popping text-center mb-4">
           Aprende de los mejores
           </h1>

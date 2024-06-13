@@ -78,7 +78,7 @@ const Practica = () => {
   return (
     <section className="w-full h-full mt-[-1px] pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px] flex justify-center items-center bg-[#F0F4F9]">
       <div className="container mx-auto">
-        <div className="w-[60vw] mx-auto flex justify-center flex-col items-center -mt-16 mb-12">
+        <div className="w-[80vw] mx-auto flex justify-center flex-col items-center -mt-16 mb-8">
           <h1 className="text-2xl font-bold tracking-tight text-black sm:text-4xl font-popping text-center mb-4">
             Actividades Especiales de IQ English
           </h1>
@@ -88,7 +88,7 @@ const Practica = () => {
         <div id="practica" className="-mx-4 flex flex-wrap justify-center">
           {transitions((props, item) => (
             <animated.div key={item.id} style={props} className="flex flex-col">
-              <div className="max-w-sm mx-6 my-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 transform transition duration-500 ease-in-out hover:scale-105">
+              <div className="max-w-sm mx-6 my-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 -mt-4 transform transition duration-500 ease-in-out hover:scale-105">
                 <a href="#">
                   <img className="rounded-t-lg" src={item.image} alt={item.title} style={{ height: "200px", width: "400px" }} />
                 </a>
