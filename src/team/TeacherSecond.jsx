@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
+import foto from "../assets/profesor.jpeg"
 import { useSpring, animated } from "react-spring";
 import workshops from "../assets/icons/talleres.png";
 import atencion from "../assets/icons/internet.png";
@@ -414,7 +415,7 @@ const closeModal = () => {
       
       <div id="card" className="flex justify-center mb-8 lg:mb-0 order-2 lg:order-1 relative z-10 w-full lg:w-1/2">
         <animated.img
-          src="https://blogassets.leverageedu.com/media/uploads/2022/11/07134619/Indian-students-important-for-New-Zealands-foreign-education-goals.png"
+          src={foto}
           alt="hero"
           className="h-auto w-[90%] md:w-[70%] lg:w-[500px] rounded-lg ml-0 lg:ml-64 "
           style={{ ...card2Animation, ...hoverAnimation }}
@@ -443,7 +444,7 @@ const closeModal = () => {
           </div>
           <div className="mt-12 flex justify-center lg:justify-start">
             <button
-              className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-xl lg:text-2xl font-medium text-white hover:bg-blue-600 lg:px-7"
+              className="inline-flex items-center mt-1 justify-center rounded-md bg-primary px-6 py-3 text-center text-xl lg:text-2xl font-medium text-white hover:bg-blue-600 lg:px-7 ml-4"
               onClick={openModal}
             >
               ¡Conoce más!

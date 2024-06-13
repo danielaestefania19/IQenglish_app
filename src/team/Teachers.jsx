@@ -5,16 +5,16 @@ import teacherfour from "../assets/teacherfour.jpg"
 import "../css/Tailwind.css";
 import { useSpring, animated } from '@react-spring/web';
 import { useState } from 'react';
-
+import teacherone from "../assets/teacherone.jpeg";
 const Teachers = () => {
     const [flipped, setFlipped] = useState({});
     const [tooltips, setTooltips] = useState({});
 
     const teachers = [
-        { id: 1, image: teachertwo, name: "Coriss Ambady", role: " Maestría en Educación", description: " Jessica es una Teacher genial. No solo sabe mucho sobre educación, ¡sino que también le encanta pintar con acuarelas en su tiempo libre! Está lista para cualquier desafío que se le presente en su vida profesional." },
-        { id: 2, image: teacherfour, name: "Diego", role: "Dibujar y leer", description: "Decidió enseñar inglés para que más personas mejoren sus habilidades de comunicación, Se ha preparado muy duro para ser un instructor de calidad obteniendo certificaciones reconocidas como  Cambridge C1 y TOEFL." },
+        { id: 1, image: teacherone, name: "Coriss Ambady", role: " Maestría en Educación", description: " Jessica es una Teacher genial. No solo sabe mucho sobre educación, ¡sino que también le encanta pintar con acuarelas en su tiempo libre! Está lista para cualquier desafío que se le presente en su vida profesional." },
+        { id: 2, image: teachertwo, name: "Diego", role: "Dibujar y leer", description: "Decidió enseñar inglés para que más personas mejoren sus habilidades de comunicación, Se ha preparado muy duro para ser un instructor de calidad obteniendo certificaciones reconocidas como  Cambridge C1 y TOEFL." },
         { id: 3, image: teacherthree, name: "Rocio", role: "Licen", description: "Después de trabajar en negocios internacionales por un año, decidí trasladarme a Costa Rica, donde empecé mi carrera como maestra de inglés en el 2011. " },
-        { id: 3, image: teacherthree, name: "Rocio", role: "Licen", description: "Después de trabajar en negocios internacionales por un año, decidí trasladarme a Costa Rica, donde empecé mi carrera como maestra de inglés en el 2011. " },  ];
+        { id: 3, image: teacherfour, name: "Rocio", role: "Licen", description: "Después de trabajar en negocios internacionales por un año, decidí trasladarme a Costa Rica, donde empecé mi carrera como maestra de inglés en el 2011. " },  ];
 
     const handleFlip = (id) => {
         setFlipped((prev) => ({ ...prev, [id]: !prev[id] }));
