@@ -37,7 +37,7 @@ const Libros = () => {
                               <img 
                                   src={libros} 
                                   alt="Descripción de la imagen" 
-                                  className="w-3/4 md:w-auto max-w-xl mb-2 md:mr-8" // Agregamos margen derecho en pantallas grandes
+                                  className="w-5/6 md:w-auto max-w-xl mb-2 md:mr-8 " // Agregamos margen derecho en pantallas grandes
                               />
                               <h2 className="text-4xl font-bold text-primary mb-4 text-center md:text-start -mt-8 md:-mt-32 md:ml-12">Nuestro Material Didactico</h2>
                           </animated.div>
